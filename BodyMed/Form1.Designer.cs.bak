@@ -35,7 +35,6 @@
             this.ribbonUpDown1 = new System.Windows.Forms.RibbonUpDown();
             this.ribbon1 = new System.Windows.Forms.Ribbon();
             this.ribbonTab1 = new System.Windows.Forms.RibbonTab();
-            this.ribbonOrbMenuItem1 = new System.Windows.Forms.RibbonButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerHaupt)).BeginInit();
             this.splitContainerHaupt.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -98,12 +97,10 @@
             // 
             // 
             // 
-            this.ribbon1.OrbDropDown.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ribbon1.OrbDropDown.BorderRoundness = 8;
             this.ribbon1.OrbDropDown.Location = new System.Drawing.Point(0, 0);
-            this.ribbon1.OrbDropDown.MenuItems.Add(this.ribbonOrbMenuItem1);
             this.ribbon1.OrbDropDown.Name = "";
-            this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 116);
+            this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 72);
             this.ribbon1.OrbDropDown.TabIndex = 0;
             this.ribbon1.OrbImage = null;
             this.ribbon1.OrbStyle = System.Windows.Forms.RibbonOrbStyle.Office_2013;
@@ -118,14 +115,7 @@
             // 
             // ribbonTab1
             // 
-            this.ribbonTab1.Text = "Start";
-            // 
-            // ribbonOrbMenuItem1
-            // 
-            this.ribbonOrbMenuItem1.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
-            this.ribbonOrbMenuItem1.Image = global::BodyMed.Properties.Resources.newdocument32;
-            this.ribbonOrbMenuItem1.SmallImage = global::BodyMed.Properties.Resources.unorderedlist16;
-            this.ribbonOrbMenuItem1.Text = "Neu";
+            this.ribbonTab1.Text = "ribbonTab1";
             // 
             // Form1
             // 
@@ -155,7 +145,7 @@
         private System.Windows.Forms.RibbonUpDown ribbonUpDown1;
         private System.Windows.Forms.Ribbon ribbon1;
         private System.Windows.Forms.RibbonTab ribbonTab1;
-        private System.Windows.Forms.RibbonButton ribbonOrbMenuItem1;
+        private System.Windows.Forms.RibbonPanel ribbonPanel1;
     }
 }
 

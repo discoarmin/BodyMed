@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetErnaehrung" targetNamespace="http://tempuri.org/DataSetErnaehrung.xsd" xmlns:mstns="http://tempuri.org/DataSetErnaehrung.xsd" xmlns="http://tempuri.org/DataSetErnaehrung.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetErnaehrung" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSetErnaehrung" msprop:Generator_DataSetName="DataSetErnaehrung">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BlutdruckDaten" msprop:Generator_TableClassName="BlutdruckDatenDataTable" msprop:Generator_TableVarName="tableBlutdruckDaten" msprop:Generator_TablePropName="BlutdruckDaten" msprop:Generator_RowDeletingName="BlutdruckDatenRowDeleting" msprop:Generator_RowChangingName="BlutdruckDatenRowChanging" msprop:Generator_RowEvHandlerName="BlutdruckDatenRowChangeEventHandler" msprop:Generator_RowDeletedName="BlutdruckDatenRowDeleted" msprop:Generator_UserTableName="BlutdruckDaten" msprop:Generator_RowChangedName="BlutdruckDatenRowChanged" msprop:Generator_RowEvArgName="BlutdruckDatenRowChangeEvent" msprop:Generator_RowClassName="BlutdruckDatenRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Systolisch" msprop:Generator_ColumnVarNameInTable="columnSystolisch" msprop:Generator_ColumnPropNameInRow="Systolisch" msprop:Generator_ColumnPropNameInTable="SystolischColumn" msprop:Generator_UserColumnName="Systolisch" type="xs:short" />
+              <xs:element name="Diastolisch" msprop:Generator_ColumnVarNameInTable="columnDiastolisch" msprop:Generator_ColumnPropNameInRow="Diastolisch" msprop:Generator_ColumnPropNameInTable="DiastolischColumn" msprop:Generator_UserColumnName="Diastolisch" type="xs:short" />
+              <xs:element name="Puls" msprop:Generator_ColumnVarNameInTable="columnPuls" msprop:Generator_ColumnPropNameInRow="Puls" msprop:Generator_ColumnPropNameInTable="PulsColumn" msprop:Generator_UserColumnName="Puls" type="xs:short" />
+              <xs:element name="Pulsdruck" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPulsdruck" msprop:Generator_ColumnPropNameInRow="Pulsdruck" msprop:Generator_ColumnPropNameInTable="PulsdruckColumn" msprop:Generator_UserColumnName="Pulsdruck" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

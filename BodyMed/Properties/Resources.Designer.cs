@@ -63,6 +63,46 @@ namespace BodyMed.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bold16 {
+            get {
+                object obj = ResourceManager.GetObject("bold16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close32 {
+            get {
+                object obj = ResourceManager.GetObject("close32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newdocument32 {
+            get {
+                object obj = ResourceManager.GetObject("newdocument32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap open16 {
+            get {
+                object obj = ResourceManager.GetObject("open16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap paste16 {
             get {
                 object obj = ResourceManager.GetObject("paste16", resourceCulture);
@@ -86,6 +126,16 @@ namespace BodyMed.Properties {
         internal static System.Drawing.Bitmap pastespecial16 {
             get {
                 object obj = ResourceManager.GetObject("pastespecial16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unorderedlist16 {
+            get {
+                object obj = ResourceManager.GetObject("unorderedlist16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
