@@ -227,7 +227,7 @@
   <data name="ribbonButtonEingabe.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAAAd0SU1FB+AFEhE6OhYhb8oAAAZ7SURBVFhH7ZdrTJNXGMePt2VZzAwfliXLLtnc
+        DAAACwwBP0AiyAAAAAd0SU1FB+AFEhE6OhYhb8oAAAZ7SURBVFhH7ZdrTJNXGMePt2VZzAwfliXLLtnc
         LTH74OTLlmX6AdyMGHUyRRa8YhwZbjJgyqZcFSgYB8UCFpQhIrdyKaWtFErvlFLulQK1tNzKHapc5Fqe
         nfPSVwE16rZuX/Yk/wTOe97z/J7LeV5A/9t/blKp1GGSy+WouIS3Md7ju97Ln22FG5mZX6lUqofPHQ6g
         VCpRHJPpX7v/MPT7BkDOkRO9+VzuxwSMPHcogEwmQ0KRaAPLx7em1+/sdP8PAcDzODSTmZv7uUKhoPY4
@@ -267,7 +267,7 @@
   <data name="ribbonButtonKurven.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAAAd0SU1FB+AFEhE2H/GQ9IEAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
+        vgAADr4B6kKxwAAAAAd0SU1FB+AFEhE2H/GQ9IEAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
         cmlwdGlvbgATCSEjAAAACnRFWHRDb3B5cmlnaHQArA/MOgAAAAl0RVh0U29mdHdhcmUAXXD/OgAAAAd0
         RVh0U291cmNlAPX/g+sAAAAIdEVYdENvbW1lbnQA9syWvwAAAAZ0RVh0VGl0bGUAqO7SJwAABrdJREFU
         WEelV8tP1FcUnv/AhXHXhXWjrBpJTIiLxkdsTBOVhcZqbY0NbGwpJKY1EUzRakkrG1taRYlaAakooBJR
@@ -310,7 +310,7 @@
   <data name="ribbonButtonBlutdruck.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAAd0SU1FB+AFEwowEei9VfQAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
+        vwAADr8BOAVTJAAAAAd0SU1FB+AFEwowEei9VfQAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
         cmlwdGlvbgATCSEjAAAACnRFWHRDb3B5cmlnaHQArA/MOgAAAAl0RVh0U29mdHdhcmUAXXD/OgAAAAd0
         RVh0U291cmNlAPX/g+sAAAAIdEVYdENvbW1lbnQA9syWvwAAAAZ0RVh0VGl0bGUAqO7SJwAACPpJREFU
         WEedVwtwlFcV/vPaZB/ZbAhJMEPHsbYyFCigY2d0OpZ2oCPMYIu0BqiMtkCRIkoFKUqdAQTFOsUWcVSm
@@ -357,7 +357,7 @@
   <data name="ribbonButtonBlutdruck.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
+        vwAADr8BOAVTJAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="ribbonButtonNeu.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -386,7 +386,7 @@
   <data name="ribbonButtonDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAAAd0SU1FB+AFEwsTKX/U8DwAAAWjSURBVFhH7VdZbFRVGJ5iKVAWO5VWQDttaaeV
+        DQAACw0B7QfALAAAAAd0SU1FB+AFEwsTKX/U8DwAAAWjSURBVFhH7VdZbFRVGJ5iKVAWO5VWQDttaaeV
         Zu7MHShqiEv0zbgQNDGKRoW4AFoBkVaD24M8+YAmSAQriMqmSDDxQaOg7C6JUYwR6DKd6Sydrcx0mbvf
         6/ff9rZnKC1tLT7ZL2fm9N7/nP8/3/+d/5yx/f8neG2GsBAN30rFV1uMa5Rphu2/g810vqgvAKlm8wm1
         9OQGvSDmZo2AHKY/Vow4to8Bq1lMVB7aauTK01nDqwWbUnH4Xanm7ZPkPFOLAMCG5Fr7t1p+5A29MLyY
@@ -416,7 +416,7 @@
   <data name="ribbonButtonDelete.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAAAd0SU1FB+AFEwsTKX/U8DwAAAWjSURBVFhH7VdZbFRVGJ5iKVAWO5VWQDttaaeV
+        DQAACw0B7QfALAAAAAd0SU1FB+AFEwsTKX/U8DwAAAWjSURBVFhH7VdZbFRVGJ5iKVAWO5VWQDttaaeV
         Zu7MHShqiEv0zbgQNDGKRoW4AFoBkVaD24M8+YAmSAQriMqmSDDxQaOg7C6JUYwR6DKd6Sydrcx0mbvf
         6/ff9rZnKC1tLT7ZL2fm9N7/nP8/3/+d/5yx/f8neG2GsBAN30rFV1uMa5Rphu2/g810vqgvAKlm8wm1
         9OQGvSDmZo2AHKY/Vow4to8Bq1lMVB7aauTK01nDqwWbUnH4Xanm7ZPkPFOLAMCG5Fr7t1p+5A29MLyY
@@ -446,7 +446,7 @@
   <data name="ribbonButtonAusschneiden.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAAAd0SU1FB+AFEwslMJKjyYkAAAbNSURBVFhH7VZ5UFPnHv187Zt5UlqfWBV8AtoM
+        DQAACw0B7QfALAAAAAd0SU1FB+AFEwslMJKjyYkAAAbNSURBVFhH7VZ5UFPnHv187Zt5UlqfWBV8AtoM
         BbGCikJEJaKWYrWLU6pAW21LadW+YRjs6/jAIuBDwiZBEJsQsCzBmIQgZCOgYV8Ek7BJAoIQCwiispod
         f+9eG2fyhzOdhH97zmTunft9v3NOvu1e9Bf+DD+eTgNxaBPNaGdcCsgyGt82Lr35TQ3tdEwMmOQsB7WE
         DxyypL2d1B01gSY9zA3gNVjyynuMj2wnPGQH5VFl6eJ2+vVS6wPckvUCtUIIP/4nDYQBdTm65fpl5kav
@@ -481,13 +481,13 @@
   <data name="ribbonButtonAusschneiden.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
+        vwAADr8BOAVTJAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="ribbonButtonPaste.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DwAACw8BkvkDpQAAABh0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzT7MfTgAACN1JREFUWEe9V1tQ
+        DQAACw0B7QfALAAAABh0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzT7MfTgAACN1JREFUWEe9V1tQ
         VNkVnUysmapUKpVK1JlMMkkqH/nPV/5TqXxOVX4mpaggQvNo6AYBlXFQUEYzTIwTLPE1EwUxvBtQGFAU
         kUe/eL+h3w+ahww03X277739WtnnOt0DNqOTn2At9j7nXs9ee5199rm8ASABHPgf7DZvX93cW1Vdl3y1
         timltv3RX9s7n/3Z5dj4ecK7Ec+ehLnvwLcDYfPtbx9wuxL4vLY1vX/MhBD94yFCduI8rje0YVNc+zGi
@@ -531,19 +531,19 @@
   <data name="ribbonButtonPaste.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
+        vwAADr8BOAVTJAAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="ribbonButton4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
+        vAAADrwBlbxySQAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ribbonButton4.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
+        vAAADrwBlbxySQAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="dataSetErnaehrung1BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -555,6 +555,9 @@
   <metadata name="oleDbSelectCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <metadata name="oleDbSelectCommand1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
   <metadata name="oleDbSelectCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
@@ -564,11 +567,41 @@
   <metadata name="oleDbInsertCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <metadata name="oleDbInsertCommand1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
   <metadata name="oleDbInsertCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <metadata name="oleDbDataAdapter1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="oleDbSelectCommand2.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbSelectCommand2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="oleDbSelectCommand2.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbInsertCommand2.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbInsertCommand2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="oleDbInsertCommand2.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="oleDbDataAdapterGewicht.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
+  <metadata name="dataSetGewicht1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>214, 56</value>
+  </metadata>
+  <metadata name="dataetGewichtBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>357, 56</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
