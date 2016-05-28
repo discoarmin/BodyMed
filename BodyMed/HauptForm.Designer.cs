@@ -29,22 +29,9 @@
       private void InitializeComponent()
       {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HauptForm));
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel3 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel4 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel5 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Gewicht", -1);
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Datum");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KG");
@@ -52,21 +39,62 @@
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FFM");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KW");
             Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("BMI");
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand2 = new Infragistics.Win.UltraWinGrid.UltraGridBand("BlutdruckDaten", -1);
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Systolisch");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Diastolisch");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Puls");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Pulsdruck");
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HauptForm));
+            Infragistics.Win.Appearance appearance21 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel3 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel4 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel5 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance27 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance30 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance21 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
             this.sliderErnaehrung = new System.Windows.Forms.TrackBar();
+            this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.ultraGroupBoxErnaehrung = new Infragistics.Win.Misc.UltraGroupBox();
+            this.splitContainerErnaehrung = new System.Windows.Forms.SplitContainer();
+            this.zedGraphControlErnaehrung = new ZedGraph.ZedGraphControl();
+            this.ultraGridErnaehrung = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.dataetGewichtBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetGewicht1 = new BodyMed.dataSetGewicht();
+            this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.ultraGroupBoxBlutDruck = new Infragistics.Win.Misc.UltraGroupBox();
+            this.splitContainerBlutDruck = new System.Windows.Forms.SplitContainer();
+            this.zedGraphControlBlutDruck = new ZedGraph.ZedGraphControl();
+            this.ultraGridBlutDruck = new Infragistics.Win.UltraWinGrid.UltraGrid();
+            this.dataSetErnaehrung1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetErnaehrung1 = new BodyMed.DataSetErnaehrung();
+            this.sliderBlutDruck = new System.Windows.Forms.TrackBar();
             this.ultraTabPageGewicht = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.ultraTabPageBlutDruck = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.sliderFuegeModul = new System.Windows.Forms.TrackBar();
@@ -103,29 +131,37 @@
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.ultraTabStripBlutDruck = new Infragistics.Win.UltraWinTabControl.UltraTabStripControl();
             this.ultraTabSharedControlsPage4 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
-            this.ultraGridErnaehrung = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.splitContainerHauptForm = new System.Windows.Forms.SplitContainer();
             this.labelCm = new System.Windows.Forms.Label();
             this.tbGroesse = new System.Windows.Forms.TextBox();
             this.labelKorpergroesse = new System.Windows.Forms.Label();
-            this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
-            this.dataSetErnaehrung1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetErnaehrung1 = new BodyMed.DataSetErnaehrung();
-            this.dataSetGewicht1 = new BodyMed.dataSetGewicht();
-            this.dataetGewichtBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pictureBoxHauptForm = new System.Windows.Forms.PictureBox();
-            this.panelHauptForm = new System.Windows.Forms.Panel();
             this.ultraTabControlHauptForm = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
             this.ultraTabSharedControlsPage3 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
-            this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.splitContainerErnaehrung = new System.Windows.Forms.SplitContainer();
-            this.splitContainerBlutDruck = new System.Windows.Forms.SplitContainer();
-            this.ultraGroupBoxErnaehrung = new Infragistics.Win.Misc.UltraGroupBox();
-            this.ultraGroupBoxBlutDruck = new Infragistics.Win.Misc.UltraGroupBox();
-            this.sliderBlutDruck = new System.Windows.Forms.TrackBar();
-            this.zedGraphControlErnaehrung = new ZedGraph.ZedGraphControl();
+            this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
+            this.pictureBoxHauptForm = new System.Windows.Forms.PictureBox();
+            this.panelHauptForm = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.sliderErnaehrung)).BeginInit();
+            this.ultraTabPageControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).BeginInit();
+            this.ultraGroupBoxErnaehrung.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerErnaehrung)).BeginInit();
+            this.splitContainerErnaehrung.Panel1.SuspendLayout();
+            this.splitContainerErnaehrung.Panel2.SuspendLayout();
+            this.splitContainerErnaehrung.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).BeginInit();
+            this.ultraTabPageControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).BeginInit();
+            this.ultraGroupBoxBlutDruck.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBlutDruck)).BeginInit();
+            this.splitContainerBlutDruck.Panel1.SuspendLayout();
+            this.splitContainerBlutDruck.Panel2.SuspendLayout();
+            this.splitContainerBlutDruck.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGridBlutDruck)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).BeginInit();
             this.ultraTabPageBlutDruck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderFuegeModul)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
@@ -134,33 +170,14 @@
             this.ultraTabStripControlGewicht.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabStripBlutDruck)).BeginInit();
             this.ultraTabStripBlutDruck.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerHauptForm)).BeginInit();
             this.splitContainerHauptForm.Panel1.SuspendLayout();
             this.splitContainerHauptForm.Panel2.SuspendLayout();
             this.splitContainerHauptForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHauptForm)).BeginInit();
-            this.panelHauptForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControlHauptForm)).BeginInit();
             this.ultraTabControlHauptForm.SuspendLayout();
-            this.ultraTabPageControl1.SuspendLayout();
-            this.ultraTabPageControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerErnaehrung)).BeginInit();
-            this.splitContainerErnaehrung.Panel1.SuspendLayout();
-            this.splitContainerErnaehrung.Panel2.SuspendLayout();
-            this.splitContainerErnaehrung.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBlutDruck)).BeginInit();
-            this.splitContainerBlutDruck.Panel2.SuspendLayout();
-            this.splitContainerBlutDruck.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).BeginInit();
-            this.ultraGroupBoxErnaehrung.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).BeginInit();
-            this.ultraGroupBoxBlutDruck.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHauptForm)).BeginInit();
+            this.panelHauptForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // sliderErnaehrung
@@ -170,6 +187,277 @@
             this.sliderErnaehrung.Name = "sliderErnaehrung";
             this.sliderErnaehrung.Size = new System.Drawing.Size(174, 15);
             this.sliderErnaehrung.TabIndex = 0;
+            // 
+            // ultraTabPageControl1
+            // 
+            this.ultraTabPageControl1.Controls.Add(this.ultraGroupBoxErnaehrung);
+            this.ultraTabPageControl1.Location = new System.Drawing.Point(0, 0);
+            this.ultraTabPageControl1.Name = "ultraTabPageControl1";
+            this.ultraTabPageControl1.Size = new System.Drawing.Size(543, 243);
+            // 
+            // ultraGroupBoxErnaehrung
+            // 
+            appearance1.BackColor = System.Drawing.Color.DimGray;
+            appearance1.BorderAlpha = Infragistics.Win.Alpha.Transparent;
+            this.ultraGroupBoxErnaehrung.Appearance = appearance1;
+            this.ultraGroupBoxErnaehrung.Controls.Add(this.splitContainerErnaehrung);
+            this.ultraGroupBoxErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ultraGroupBoxErnaehrung.ForeColor = System.Drawing.Color.RoyalBlue;
+            appearance10.FontData.BoldAsString = "True";
+            appearance10.ForeColor = System.Drawing.Color.WhiteSmoke;
+            appearance10.TextHAlignAsString = "Left";
+            appearance10.TextVAlignAsString = "Middle";
+            this.ultraGroupBoxErnaehrung.HeaderAppearance = appearance10;
+            this.ultraGroupBoxErnaehrung.Location = new System.Drawing.Point(0, 0);
+            this.ultraGroupBoxErnaehrung.Name = "ultraGroupBoxErnaehrung";
+            this.ultraGroupBoxErnaehrung.Size = new System.Drawing.Size(543, 243);
+            this.ultraGroupBoxErnaehrung.TabIndex = 0;
+            this.ultraGroupBoxErnaehrung.Text = "Gewicht";
+            // 
+            // splitContainerErnaehrung
+            // 
+            this.splitContainerErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerErnaehrung.Location = new System.Drawing.Point(3, 16);
+            this.splitContainerErnaehrung.Name = "splitContainerErnaehrung";
+            this.splitContainerErnaehrung.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerErnaehrung.Panel1
+            // 
+            this.splitContainerErnaehrung.Panel1.Controls.Add(this.zedGraphControlErnaehrung);
+            // 
+            // splitContainerErnaehrung.Panel2
+            // 
+            this.splitContainerErnaehrung.Panel2.Controls.Add(this.ultraGridErnaehrung);
+            this.splitContainerErnaehrung.Size = new System.Drawing.Size(537, 224);
+            this.splitContainerErnaehrung.SplitterDistance = 100;
+            this.splitContainerErnaehrung.TabIndex = 0;
+            // 
+            // zedGraphControlErnaehrung
+            // 
+            this.zedGraphControlErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphControlErnaehrung.ForeColor = System.Drawing.Color.Black;
+            this.zedGraphControlErnaehrung.Location = new System.Drawing.Point(0, 0);
+            this.zedGraphControlErnaehrung.Name = "zedGraphControlErnaehrung";
+            this.zedGraphControlErnaehrung.ScrollGrace = 0D;
+            this.zedGraphControlErnaehrung.ScrollMaxX = 0D;
+            this.zedGraphControlErnaehrung.ScrollMaxY = 0D;
+            this.zedGraphControlErnaehrung.ScrollMaxY2 = 0D;
+            this.zedGraphControlErnaehrung.ScrollMinX = 0D;
+            this.zedGraphControlErnaehrung.ScrollMinY = 0D;
+            this.zedGraphControlErnaehrung.ScrollMinY2 = 0D;
+            this.zedGraphControlErnaehrung.Size = new System.Drawing.Size(537, 100);
+            this.zedGraphControlErnaehrung.TabIndex = 0;
+            // 
+            // ultraGridErnaehrung
+            // 
+            this.ultraGridErnaehrung.DataMember = "Gewicht";
+            this.ultraGridErnaehrung.DataSource = this.dataetGewichtBindingSource;
+            appearance2.BackColor = System.Drawing.Color.LightGray;
+            appearance2.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Appearance = appearance2;
+            this.ultraGridErnaehrung.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            ultraGridColumn1.Header.VisiblePosition = 0;
+            ultraGridColumn1.Width = 96;
+            ultraGridColumn2.Header.VisiblePosition = 1;
+            ultraGridColumn2.Width = 84;
+            ultraGridColumn3.Header.VisiblePosition = 2;
+            ultraGridColumn3.Width = 84;
+            ultraGridColumn4.Header.VisiblePosition = 3;
+            ultraGridColumn4.Width = 84;
+            ultraGridColumn5.Header.VisiblePosition = 4;
+            ultraGridColumn5.Width = 84;
+            ultraGridColumn6.Header.VisiblePosition = 5;
+            ultraGridColumn6.Width = 84;
+            ultraGridBand1.Columns.AddRange(new object[] {
+            ultraGridColumn1,
+            ultraGridColumn2,
+            ultraGridColumn3,
+            ultraGridColumn4,
+            ultraGridColumn5,
+            ultraGridColumn6});
+            this.ultraGridErnaehrung.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
+            appearance3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance3.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance3.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance3.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraGridErnaehrung.DisplayLayout.GroupByBox.Appearance = appearance3;
+            this.ultraGridErnaehrung.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            appearance4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            appearance4.ForeColor = System.Drawing.Color.Black;
+            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveCellAppearance = appearance4;
+            appearance5.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance5.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveRowAppearance = appearance5;
+            appearance6.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Override.CellAppearance = appearance6;
+            appearance7.BackColor = System.Drawing.Color.DarkSeaGreen;
+            appearance7.BackColor2 = System.Drawing.Color.White;
+            appearance7.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance7.FontData.BoldAsString = "True";
+            this.ultraGridErnaehrung.DisplayLayout.Override.HeaderAppearance = appearance7;
+            this.ultraGridErnaehrung.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            appearance8.BackColor = System.Drawing.Color.Gainsboro;
+            appearance8.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Override.RowAlternateAppearance = appearance8;
+            appearance9.BackColor = System.Drawing.Color.LightGray;
+            appearance9.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Override.RowAppearance = appearance9;
+            this.ultraGridErnaehrung.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.Extended;
+            this.ultraGridErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ultraGridErnaehrung.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ultraGridErnaehrung.Location = new System.Drawing.Point(0, 0);
+            this.ultraGridErnaehrung.Name = "ultraGridErnaehrung";
+            this.ultraGridErnaehrung.Size = new System.Drawing.Size(537, 120);
+            this.ultraGridErnaehrung.TabIndex = 22;
+            this.ultraGridErnaehrung.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
+            // 
+            // dataetGewichtBindingSource
+            // 
+            this.dataetGewichtBindingSource.AllowNew = true;
+            this.dataetGewichtBindingSource.DataSource = this.dataSetGewicht1;
+            this.dataetGewichtBindingSource.Position = 0;
+            // 
+            // dataSetGewicht1
+            // 
+            this.dataSetGewicht1.DataSetName = "dataSetGewicht";
+            this.dataSetGewicht1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ultraTabPageControl2
+            // 
+            this.ultraTabPageControl2.Controls.Add(this.ultraGroupBoxBlutDruck);
+            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl2.Name = "ultraTabPageControl2";
+            this.ultraTabPageControl2.Size = new System.Drawing.Size(543, 243);
+            // 
+            // ultraGroupBoxBlutDruck
+            // 
+            appearance11.BackColor = System.Drawing.Color.DimGray;
+            appearance11.BorderAlpha = Infragistics.Win.Alpha.Transparent;
+            this.ultraGroupBoxBlutDruck.Appearance = appearance11;
+            this.ultraGroupBoxBlutDruck.Controls.Add(this.splitContainerBlutDruck);
+            this.ultraGroupBoxBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ultraGroupBoxBlutDruck.ForeColor = System.Drawing.Color.RoyalBlue;
+            appearance20.FontData.BoldAsString = "True";
+            appearance20.ForeColor = System.Drawing.Color.WhiteSmoke;
+            appearance20.TextHAlignAsString = "Left";
+            appearance20.TextVAlignAsString = "Middle";
+            this.ultraGroupBoxBlutDruck.HeaderAppearance = appearance20;
+            this.ultraGroupBoxBlutDruck.Location = new System.Drawing.Point(0, 0);
+            this.ultraGroupBoxBlutDruck.Name = "ultraGroupBoxBlutDruck";
+            this.ultraGroupBoxBlutDruck.Size = new System.Drawing.Size(543, 243);
+            this.ultraGroupBoxBlutDruck.TabIndex = 1;
+            this.ultraGroupBoxBlutDruck.Text = "Blutdruck";
+            // 
+            // splitContainerBlutDruck
+            // 
+            this.splitContainerBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerBlutDruck.Location = new System.Drawing.Point(3, 16);
+            this.splitContainerBlutDruck.Name = "splitContainerBlutDruck";
+            this.splitContainerBlutDruck.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainerBlutDruck.Panel1
+            // 
+            this.splitContainerBlutDruck.Panel1.Controls.Add(this.zedGraphControlBlutDruck);
+            // 
+            // splitContainerBlutDruck.Panel2
+            // 
+            this.splitContainerBlutDruck.Panel2.Controls.Add(this.ultraGridBlutDruck);
+            this.splitContainerBlutDruck.Panel2.Controls.Add(this.sliderBlutDruck);
+            this.splitContainerBlutDruck.Size = new System.Drawing.Size(537, 224);
+            this.splitContainerBlutDruck.SplitterDistance = 100;
+            this.splitContainerBlutDruck.TabIndex = 0;
+            // 
+            // zedGraphControlBlutDruck
+            // 
+            this.zedGraphControlBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.zedGraphControlBlutDruck.ForeColor = System.Drawing.Color.Black;
+            this.zedGraphControlBlutDruck.Location = new System.Drawing.Point(0, 0);
+            this.zedGraphControlBlutDruck.Name = "zedGraphControlBlutDruck";
+            this.zedGraphControlBlutDruck.ScrollGrace = 0D;
+            this.zedGraphControlBlutDruck.ScrollMaxX = 0D;
+            this.zedGraphControlBlutDruck.ScrollMaxY = 0D;
+            this.zedGraphControlBlutDruck.ScrollMaxY2 = 0D;
+            this.zedGraphControlBlutDruck.ScrollMinX = 0D;
+            this.zedGraphControlBlutDruck.ScrollMinY = 0D;
+            this.zedGraphControlBlutDruck.ScrollMinY2 = 0D;
+            this.zedGraphControlBlutDruck.Size = new System.Drawing.Size(537, 100);
+            this.zedGraphControlBlutDruck.TabIndex = 0;
+            // 
+            // ultraGridBlutDruck
+            // 
+            this.ultraGridBlutDruck.DataMember = "BlutdruckDaten";
+            this.ultraGridBlutDruck.DataSource = this.dataSetErnaehrung1BindingSource;
+            appearance12.BackColor = System.Drawing.Color.LightGray;
+            appearance12.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Appearance = appearance12;
+            this.ultraGridBlutDruck.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
+            ultraGridColumn7.Header.VisiblePosition = 0;
+            ultraGridColumn7.Width = 141;
+            ultraGridColumn8.Header.VisiblePosition = 1;
+            ultraGridColumn8.Width = 147;
+            ultraGridColumn9.Header.VisiblePosition = 2;
+            ultraGridColumn9.Width = 93;
+            ultraGridColumn10.Header.VisiblePosition = 3;
+            ultraGridColumn10.Width = 135;
+            ultraGridBand2.Columns.AddRange(new object[] {
+            ultraGridColumn7,
+            ultraGridColumn8,
+            ultraGridColumn9,
+            ultraGridColumn10});
+            this.ultraGridBlutDruck.DisplayLayout.BandsSerializer.Add(ultraGridBand2);
+            appearance13.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance13.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance13.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance13.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraGridBlutDruck.DisplayLayout.GroupByBox.Appearance = appearance13;
+            this.ultraGridBlutDruck.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+            appearance14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            appearance14.ForeColor = System.Drawing.Color.Black;
+            this.ultraGridBlutDruck.DisplayLayout.Override.ActiveCellAppearance = appearance14;
+            appearance15.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance15.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ultraGridBlutDruck.DisplayLayout.Override.ActiveRowAppearance = appearance15;
+            appearance16.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Override.CellAppearance = appearance16;
+            appearance17.BackColor = System.Drawing.Color.DarkSeaGreen;
+            appearance17.BackColor2 = System.Drawing.Color.White;
+            appearance17.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance17.FontData.BoldAsString = "True";
+            this.ultraGridBlutDruck.DisplayLayout.Override.HeaderAppearance = appearance17;
+            this.ultraGridBlutDruck.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
+            appearance18.BackColor = System.Drawing.Color.Gainsboro;
+            appearance18.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Override.RowAlternateAppearance = appearance18;
+            appearance19.BackColor = System.Drawing.Color.LightGray;
+            appearance19.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Override.RowAppearance = appearance19;
+            this.ultraGridBlutDruck.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.Extended;
+            this.ultraGridBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ultraGridBlutDruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ultraGridBlutDruck.Location = new System.Drawing.Point(0, 0);
+            this.ultraGridBlutDruck.Name = "ultraGridBlutDruck";
+            this.ultraGridBlutDruck.Size = new System.Drawing.Size(537, 120);
+            this.ultraGridBlutDruck.TabIndex = 23;
+            this.ultraGridBlutDruck.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
+            // 
+            // dataSetErnaehrung1BindingSource
+            // 
+            this.dataSetErnaehrung1BindingSource.AllowNew = true;
+            this.dataSetErnaehrung1BindingSource.DataSource = this.dataSetErnaehrung1;
+            this.dataSetErnaehrung1BindingSource.Position = 0;
+            // 
+            // dataSetErnaehrung1
+            // 
+            this.dataSetErnaehrung1.DataSetName = "DataSetErnaehrung";
+            this.dataSetErnaehrung1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // sliderBlutDruck
+            // 
+            this.sliderBlutDruck.AutoSize = false;
+            this.sliderBlutDruck.Location = new System.Drawing.Point(337, 87);
+            this.sliderBlutDruck.Name = "sliderBlutDruck";
+            this.sliderBlutDruck.Size = new System.Drawing.Size(174, 15);
+            this.sliderBlutDruck.TabIndex = 1;
             // 
             // ultraTabPageGewicht
             // 
@@ -381,13 +669,15 @@
             // 
             // statusBar
             // 
-            appearance1.BackColor = System.Drawing.Color.DarkGray;
-            this.statusBar.Appearance = appearance1;
+            appearance21.BackColor = System.Drawing.Color.DimGray;
+            appearance21.BackColor2 = System.Drawing.Color.LightGray;
+            appearance21.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            this.statusBar.Appearance = appearance21;
             this.statusBar.Controls.Add(this.sliderErnaehrung);
             this.statusBar.Location = new System.Drawing.Point(0, 379);
             this.statusBar.Name = "statusBar";
-            appearance2.FontData.BoldAsString = "True";
-            ultraStatusPanel1.Appearance = appearance2;
+            appearance22.FontData.BoldAsString = "True";
+            ultraStatusPanel1.Appearance = appearance22;
             ultraStatusPanel1.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
             ultraStatusPanel1.Key = "tcurrentDirectory";
             ultraStatusPanel1.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
@@ -399,23 +689,23 @@
             ultraStatusPanel2.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.ControlContainer;
             ultraStatusPanel2.ToolTipText = "Datensatz auswählen";
             ultraStatusPanel2.Width = 180;
-            appearance3.TextHAlignAsString = "Center";
-            appearance3.TextVAlignAsString = "Middle";
-            ultraStatusPanel3.Appearance = appearance3;
+            appearance23.TextHAlignAsString = "Center";
+            appearance23.TextVAlignAsString = "Middle";
+            ultraStatusPanel3.Appearance = appearance23;
             ultraStatusPanel3.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
             ultraStatusPanel3.KeyStateInfo.Key = Infragistics.Win.UltraWinStatusBar.KeyState.CapsLock;
             ultraStatusPanel3.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
             ultraStatusPanel3.Width = 50;
-            appearance4.TextHAlignAsString = "Center";
-            appearance4.TextVAlignAsString = "Middle";
-            ultraStatusPanel4.Appearance = appearance4;
+            appearance24.TextHAlignAsString = "Center";
+            appearance24.TextVAlignAsString = "Middle";
+            ultraStatusPanel4.Appearance = appearance24;
             ultraStatusPanel4.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
             ultraStatusPanel4.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
             ultraStatusPanel4.Width = 50;
-            appearance5.FontData.BoldAsString = "True";
-            appearance5.TextHAlignAsString = "Left";
-            appearance5.TextVAlignAsString = "Middle";
-            ultraStatusPanel5.Appearance = appearance5;
+            appearance25.FontData.BoldAsString = "True";
+            appearance25.TextHAlignAsString = "Left";
+            appearance25.TextVAlignAsString = "Middle";
+            ultraStatusPanel5.Appearance = appearance25;
             ultraStatusPanel5.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
             ultraStatusPanel5.Key = "Version";
             ultraStatusPanel5.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
@@ -500,23 +790,23 @@
             // 
             // ultraTabStripControlGewicht
             // 
-            appearance6.BackColor = System.Drawing.Color.DimGray;
-            appearance6.BackColor2 = System.Drawing.Color.DarkGray;
-            appearance6.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance6.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance6.FontData.BoldAsString = "True";
-            appearance6.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripControlGewicht.Appearance = appearance6;
+            appearance26.BackColor = System.Drawing.Color.DimGray;
+            appearance26.BackColor2 = System.Drawing.Color.DarkGray;
+            appearance26.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance26.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance26.FontData.BoldAsString = "True";
+            appearance26.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripControlGewicht.Appearance = appearance26;
             this.ultraTabStripControlGewicht.Controls.Add(this.ultraTabSharedControlsPage1);
             this.ultraTabStripControlGewicht.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraTabStripControlGewicht.Location = new System.Drawing.Point(0, 0);
             this.ultraTabStripControlGewicht.Name = "ultraTabStripControlGewicht";
-            appearance7.BackColor = System.Drawing.Color.Red;
-            appearance7.BackColor2 = System.Drawing.Color.Firebrick;
-            appearance7.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance7.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
-            appearance7.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripControlGewicht.SelectedTabAppearance = appearance7;
+            appearance27.BackColor = System.Drawing.Color.Red;
+            appearance27.BackColor2 = System.Drawing.Color.Firebrick;
+            appearance27.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance27.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
+            appearance27.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripControlGewicht.SelectedTabAppearance = appearance27;
             this.ultraTabStripControlGewicht.SharedControlsPage = this.ultraTabSharedControlsPage1;
             this.ultraTabStripControlGewicht.Size = new System.Drawing.Size(222, 52);
             this.ultraTabStripControlGewicht.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel;
@@ -531,22 +821,22 @@
             // 
             // ultraTabStripBlutDruck
             // 
-            appearance8.BackColor = System.Drawing.Color.DimGray;
-            appearance8.BackColor2 = System.Drawing.Color.DarkGray;
-            appearance8.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance8.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance8.FontData.BoldAsString = "True";
-            appearance8.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripBlutDruck.Appearance = appearance8;
+            appearance28.BackColor = System.Drawing.Color.DimGray;
+            appearance28.BackColor2 = System.Drawing.Color.DarkGray;
+            appearance28.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance28.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance28.FontData.BoldAsString = "True";
+            appearance28.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripBlutDruck.Appearance = appearance28;
             this.ultraTabStripBlutDruck.Controls.Add(this.ultraTabSharedControlsPage4);
             this.ultraTabStripBlutDruck.Location = new System.Drawing.Point(-262, -64);
             this.ultraTabStripBlutDruck.Name = "ultraTabStripBlutDruck";
-            appearance9.BackColor = System.Drawing.Color.Red;
-            appearance9.BackColor2 = System.Drawing.Color.Firebrick;
-            appearance9.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance9.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
-            appearance9.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripBlutDruck.SelectedTabAppearance = appearance9;
+            appearance29.BackColor = System.Drawing.Color.Red;
+            appearance29.BackColor2 = System.Drawing.Color.Firebrick;
+            appearance29.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance29.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
+            appearance29.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripBlutDruck.SelectedTabAppearance = appearance29;
             this.ultraTabStripBlutDruck.SharedControlsPage = this.ultraTabSharedControlsPage4;
             this.ultraTabStripBlutDruck.Size = new System.Drawing.Size(222, 100);
             this.ultraTabStripBlutDruck.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel;
@@ -558,68 +848,6 @@
             this.ultraTabSharedControlsPage4.Location = new System.Drawing.Point(1, 20);
             this.ultraTabSharedControlsPage4.Name = "ultraTabSharedControlsPage4";
             this.ultraTabSharedControlsPage4.Size = new System.Drawing.Size(220, 79);
-            // 
-            // ultraGridErnaehrung
-            // 
-            this.ultraGridErnaehrung.DataMember = "Gewicht";
-            this.ultraGridErnaehrung.DataSource = this.dataetGewichtBindingSource;
-            appearance10.BackColor = System.Drawing.Color.LightGray;
-            appearance10.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Appearance = appearance10;
-            this.ultraGridErnaehrung.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            ultraGridColumn1.Header.VisiblePosition = 0;
-            ultraGridColumn1.Width = 96;
-            ultraGridColumn2.Header.VisiblePosition = 1;
-            ultraGridColumn2.Width = 84;
-            ultraGridColumn3.Header.VisiblePosition = 2;
-            ultraGridColumn3.Width = 84;
-            ultraGridColumn4.Header.VisiblePosition = 3;
-            ultraGridColumn4.Width = 84;
-            ultraGridColumn5.Header.VisiblePosition = 4;
-            ultraGridColumn5.Width = 84;
-            ultraGridColumn6.Header.VisiblePosition = 5;
-            ultraGridColumn6.Width = 84;
-            ultraGridBand1.Columns.AddRange(new object[] {
-            ultraGridColumn1,
-            ultraGridColumn2,
-            ultraGridColumn3,
-            ultraGridColumn4,
-            ultraGridColumn5,
-            ultraGridColumn6});
-            this.ultraGridErnaehrung.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
-            appearance11.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance11.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance11.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance11.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraGridErnaehrung.DisplayLayout.GroupByBox.Appearance = appearance11;
-            this.ultraGridErnaehrung.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            appearance12.ForeColor = System.Drawing.Color.Black;
-            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveCellAppearance = appearance12;
-            appearance13.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance13.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveRowAppearance = appearance13;
-            appearance14.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Override.CellAppearance = appearance14;
-            appearance15.BackColor = System.Drawing.Color.DarkSeaGreen;
-            appearance15.BackColor2 = System.Drawing.Color.White;
-            appearance15.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance15.FontData.BoldAsString = "True";
-            this.ultraGridErnaehrung.DisplayLayout.Override.HeaderAppearance = appearance15;
-            this.ultraGridErnaehrung.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            appearance16.BackColor = System.Drawing.Color.Gainsboro;
-            appearance16.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Override.RowAlternateAppearance = appearance16;
-            appearance17.BackColor = System.Drawing.Color.LightGray;
-            appearance17.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Override.RowAppearance = appearance17;
-            this.ultraGridErnaehrung.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.Extended;
-            this.ultraGridErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ultraGridErnaehrung.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ultraGridErnaehrung.Location = new System.Drawing.Point(0, 0);
-            this.ultraGridErnaehrung.Name = "ultraGridErnaehrung";
-            this.ultraGridErnaehrung.Size = new System.Drawing.Size(537, 118);
-            this.ultraGridErnaehrung.TabIndex = 22;
             // 
             // splitContainerHauptForm
             // 
@@ -670,58 +898,10 @@
             this.labelKorpergroesse.TabIndex = 0;
             this.labelKorpergroesse.Text = "Körpergröße";
             // 
-            // ribbonButton4
-            // 
-            this.ribbonButton4.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.Image")));
-            this.ribbonButton4.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.ribbonButton4.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.SmallImage")));
-            this.ribbonButton4.Text = "ribbonButton4";
-            // 
-            // dataSetErnaehrung1BindingSource
-            // 
-            this.dataSetErnaehrung1BindingSource.AllowNew = true;
-            this.dataSetErnaehrung1BindingSource.DataSource = this.dataSetErnaehrung1;
-            this.dataSetErnaehrung1BindingSource.Position = 0;
-            // 
-            // dataSetErnaehrung1
-            // 
-            this.dataSetErnaehrung1.DataSetName = "DataSetErnaehrung";
-            this.dataSetErnaehrung1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataSetGewicht1
-            // 
-            this.dataSetGewicht1.DataSetName = "dataSetGewicht";
-            this.dataSetGewicht1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataetGewichtBindingSource
-            // 
-            this.dataetGewichtBindingSource.AllowNew = true;
-            this.dataetGewichtBindingSource.DataSource = this.dataSetGewicht1;
-            this.dataetGewichtBindingSource.Position = 0;
-            // 
-            // pictureBoxHauptForm
-            // 
-            this.pictureBoxHauptForm.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHauptForm.Image")));
-            this.pictureBoxHauptForm.Location = new System.Drawing.Point(83, 0);
-            this.pictureBoxHauptForm.Name = "pictureBoxHauptForm";
-            this.pictureBoxHauptForm.Size = new System.Drawing.Size(100, 22);
-            this.pictureBoxHauptForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxHauptForm.TabIndex = 27;
-            this.pictureBoxHauptForm.TabStop = false;
-            // 
-            // panelHauptForm
-            // 
-            this.panelHauptForm.Controls.Add(this.splitContainerHauptForm);
-            this.panelHauptForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHauptForm.Location = new System.Drawing.Point(0, 136);
-            this.panelHauptForm.Name = "panelHauptForm";
-            this.panelHauptForm.Size = new System.Drawing.Size(711, 243);
-            this.panelHauptForm.TabIndex = 28;
-            // 
             // ultraTabControlHauptForm
             // 
-            appearance18.BackColor = System.Drawing.Color.DarkGray;
-            this.ultraTabControlHauptForm.Appearance = appearance18;
+            appearance30.BackColor = System.Drawing.Color.DarkGray;
+            this.ultraTabControlHauptForm.Appearance = appearance30;
             this.ultraTabControlHauptForm.Controls.Add(this.ultraTabSharedControlsPage3);
             this.ultraTabControlHauptForm.Controls.Add(this.ultraTabPageControl1);
             this.ultraTabControlHauptForm.Controls.Add(this.ultraTabPageControl2);
@@ -748,113 +928,31 @@
             this.ultraTabSharedControlsPage3.Name = "ultraTabSharedControlsPage3";
             this.ultraTabSharedControlsPage3.Size = new System.Drawing.Size(543, 243);
             // 
-            // ultraTabPageControl1
+            // ribbonButton4
             // 
-            this.ultraTabPageControl1.Controls.Add(this.ultraGroupBoxErnaehrung);
-            this.ultraTabPageControl1.Location = new System.Drawing.Point(0, 0);
-            this.ultraTabPageControl1.Name = "ultraTabPageControl1";
-            this.ultraTabPageControl1.Size = new System.Drawing.Size(543, 243);
+            this.ribbonButton4.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.Image")));
+            this.ribbonButton4.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.ribbonButton4.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton4.SmallImage")));
+            this.ribbonButton4.Text = "ribbonButton4";
             // 
-            // ultraTabPageControl2
+            // pictureBoxHauptForm
             // 
-            this.ultraTabPageControl2.Controls.Add(this.ultraGroupBoxBlutDruck);
-            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
-            this.ultraTabPageControl2.Name = "ultraTabPageControl2";
-            this.ultraTabPageControl2.Size = new System.Drawing.Size(543, 243);
+            this.pictureBoxHauptForm.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHauptForm.Image")));
+            this.pictureBoxHauptForm.Location = new System.Drawing.Point(83, 0);
+            this.pictureBoxHauptForm.Name = "pictureBoxHauptForm";
+            this.pictureBoxHauptForm.Size = new System.Drawing.Size(100, 22);
+            this.pictureBoxHauptForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxHauptForm.TabIndex = 27;
+            this.pictureBoxHauptForm.TabStop = false;
             // 
-            // splitContainerErnaehrung
+            // panelHauptForm
             // 
-            this.splitContainerErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerErnaehrung.Location = new System.Drawing.Point(3, 16);
-            this.splitContainerErnaehrung.Name = "splitContainerErnaehrung";
-            this.splitContainerErnaehrung.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainerErnaehrung.Panel1
-            // 
-            this.splitContainerErnaehrung.Panel1.Controls.Add(this.zedGraphControlErnaehrung);
-            // 
-            // splitContainerErnaehrung.Panel2
-            // 
-            this.splitContainerErnaehrung.Panel2.Controls.Add(this.ultraGridErnaehrung);
-            this.splitContainerErnaehrung.Size = new System.Drawing.Size(537, 224);
-            this.splitContainerErnaehrung.SplitterDistance = 102;
-            this.splitContainerErnaehrung.TabIndex = 0;
-            // 
-            // splitContainerBlutDruck
-            // 
-            this.splitContainerBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerBlutDruck.Location = new System.Drawing.Point(3, 16);
-            this.splitContainerBlutDruck.Name = "splitContainerBlutDruck";
-            this.splitContainerBlutDruck.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainerBlutDruck.Panel2
-            // 
-            this.splitContainerBlutDruck.Panel2.Controls.Add(this.sliderBlutDruck);
-            this.splitContainerBlutDruck.Size = new System.Drawing.Size(537, 224);
-            this.splitContainerBlutDruck.SplitterDistance = 102;
-            this.splitContainerBlutDruck.TabIndex = 0;
-            // 
-            // ultraGroupBoxErnaehrung
-            // 
-            appearance19.BackColor = System.Drawing.Color.DimGray;
-            appearance19.BorderAlpha = Infragistics.Win.Alpha.Transparent;
-            this.ultraGroupBoxErnaehrung.Appearance = appearance19;
-            this.ultraGroupBoxErnaehrung.Controls.Add(this.splitContainerErnaehrung);
-            this.ultraGroupBoxErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ultraGroupBoxErnaehrung.ForeColor = System.Drawing.Color.RoyalBlue;
-            appearance20.FontData.BoldAsString = "True";
-            appearance20.ForeColor = System.Drawing.Color.WhiteSmoke;
-            appearance20.TextHAlignAsString = "Left";
-            appearance20.TextVAlignAsString = "Middle";
-            this.ultraGroupBoxErnaehrung.HeaderAppearance = appearance20;
-            this.ultraGroupBoxErnaehrung.Location = new System.Drawing.Point(0, 0);
-            this.ultraGroupBoxErnaehrung.Name = "ultraGroupBoxErnaehrung";
-            this.ultraGroupBoxErnaehrung.Size = new System.Drawing.Size(543, 243);
-            this.ultraGroupBoxErnaehrung.TabIndex = 0;
-            this.ultraGroupBoxErnaehrung.Text = "Gewicht";
-            // 
-            // ultraGroupBoxBlutDruck
-            // 
-            appearance21.BackColor = System.Drawing.Color.DimGray;
-            appearance21.BorderAlpha = Infragistics.Win.Alpha.Transparent;
-            this.ultraGroupBoxBlutDruck.Appearance = appearance21;
-            this.ultraGroupBoxBlutDruck.Controls.Add(this.splitContainerBlutDruck);
-            this.ultraGroupBoxBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ultraGroupBoxBlutDruck.ForeColor = System.Drawing.Color.RoyalBlue;
-            appearance22.FontData.BoldAsString = "True";
-            appearance22.ForeColor = System.Drawing.Color.WhiteSmoke;
-            appearance22.TextHAlignAsString = "Left";
-            appearance22.TextVAlignAsString = "Middle";
-            this.ultraGroupBoxBlutDruck.HeaderAppearance = appearance22;
-            this.ultraGroupBoxBlutDruck.Location = new System.Drawing.Point(0, 0);
-            this.ultraGroupBoxBlutDruck.Name = "ultraGroupBoxBlutDruck";
-            this.ultraGroupBoxBlutDruck.Size = new System.Drawing.Size(543, 243);
-            this.ultraGroupBoxBlutDruck.TabIndex = 1;
-            this.ultraGroupBoxBlutDruck.Text = "Blutdruck";
-            // 
-            // sliderBlutDruck
-            // 
-            this.sliderBlutDruck.AutoSize = false;
-            this.sliderBlutDruck.Location = new System.Drawing.Point(181, 52);
-            this.sliderBlutDruck.Name = "sliderBlutDruck";
-            this.sliderBlutDruck.Size = new System.Drawing.Size(174, 15);
-            this.sliderBlutDruck.TabIndex = 1;
-            // 
-            // zedGraphControlErnaehrung
-            // 
-            this.zedGraphControlErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.zedGraphControlErnaehrung.ForeColor = System.Drawing.Color.Black;
-            this.zedGraphControlErnaehrung.Location = new System.Drawing.Point(0, 0);
-            this.zedGraphControlErnaehrung.Name = "zedGraphControlErnaehrung";
-            this.zedGraphControlErnaehrung.ScrollGrace = 0D;
-            this.zedGraphControlErnaehrung.ScrollMaxX = 0D;
-            this.zedGraphControlErnaehrung.ScrollMaxY = 0D;
-            this.zedGraphControlErnaehrung.ScrollMaxY2 = 0D;
-            this.zedGraphControlErnaehrung.ScrollMinX = 0D;
-            this.zedGraphControlErnaehrung.ScrollMinY = 0D;
-            this.zedGraphControlErnaehrung.ScrollMinY2 = 0D;
-            this.zedGraphControlErnaehrung.Size = new System.Drawing.Size(537, 102);
-            this.zedGraphControlErnaehrung.TabIndex = 0;
+            this.panelHauptForm.Controls.Add(this.splitContainerHauptForm);
+            this.panelHauptForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelHauptForm.Location = new System.Drawing.Point(0, 136);
+            this.panelHauptForm.Name = "panelHauptForm";
+            this.panelHauptForm.Size = new System.Drawing.Size(711, 243);
+            this.panelHauptForm.TabIndex = 28;
             // 
             // HauptForm
             // 
@@ -868,11 +966,32 @@
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.ribbon1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(727, 441);
+            this.MinimumSize = new System.Drawing.Size(727, 441);
             this.Name = "HauptForm";
             this.Text = "BodyMed";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.sliderErnaehrung)).EndInit();
+            this.ultraTabPageControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).EndInit();
+            this.ultraGroupBoxErnaehrung.ResumeLayout(false);
+            this.splitContainerErnaehrung.Panel1.ResumeLayout(false);
+            this.splitContainerErnaehrung.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerErnaehrung)).EndInit();
+            this.splitContainerErnaehrung.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).EndInit();
+            this.ultraTabPageControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).EndInit();
+            this.ultraGroupBoxBlutDruck.ResumeLayout(false);
+            this.splitContainerBlutDruck.Panel1.ResumeLayout(false);
+            this.splitContainerBlutDruck.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBlutDruck)).EndInit();
+            this.splitContainerBlutDruck.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ultraGridBlutDruck)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).EndInit();
             this.ultraTabPageBlutDruck.ResumeLayout(false);
             this.ultraTabPageBlutDruck.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderFuegeModul)).EndInit();
@@ -882,34 +1001,15 @@
             this.ultraTabStripControlGewicht.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabStripBlutDruck)).EndInit();
             this.ultraTabStripBlutDruck.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).EndInit();
             this.splitContainerHauptForm.Panel1.ResumeLayout(false);
             this.splitContainerHauptForm.Panel1.PerformLayout();
             this.splitContainerHauptForm.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerHauptForm)).EndInit();
             this.splitContainerHauptForm.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHauptForm)).EndInit();
-            this.panelHauptForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabControlHauptForm)).EndInit();
             this.ultraTabControlHauptForm.ResumeLayout(false);
-            this.ultraTabPageControl1.ResumeLayout(false);
-            this.ultraTabPageControl2.ResumeLayout(false);
-            this.splitContainerErnaehrung.Panel1.ResumeLayout(false);
-            this.splitContainerErnaehrung.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerErnaehrung)).EndInit();
-            this.splitContainerErnaehrung.ResumeLayout(false);
-            this.splitContainerBlutDruck.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainerBlutDruck)).EndInit();
-            this.splitContainerBlutDruck.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).EndInit();
-            this.ultraGroupBoxErnaehrung.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).EndInit();
-            this.ultraGroupBoxBlutDruck.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHauptForm)).EndInit();
+            this.panelHauptForm.ResumeLayout(false);
             this.ResumeLayout(false);
 
       }
@@ -975,5 +1075,7 @@
         private Infragistics.Win.Misc.UltraGroupBox ultraGroupBoxBlutDruck;
         private System.Windows.Forms.TrackBar sliderBlutDruck;
         private ZedGraph.ZedGraphControl zedGraphControlErnaehrung;
+        public Infragistics.Win.UltraWinGrid.UltraGrid ultraGridBlutDruck;
+        public ZedGraph.ZedGraphControl zedGraphControlBlutDruck;
     }
 }

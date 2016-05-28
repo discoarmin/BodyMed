@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dataSetGewicht" targetNamespace="http://tempuri.org/dataSetGewicht.xsd" xmlns:mstns="http://tempuri.org/dataSetGewicht.xsd" xmlns="http://tempuri.org/dataSetGewicht.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dataSetGewicht" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dataSetGewicht" msprop:Generator_DataSetName="dataSetGewicht">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Gewicht" msprop:Generator_TableClassName="GewichtDataTable" msprop:Generator_TableVarName="tableGewicht" msprop:Generator_TablePropName="Gewicht" msprop:Generator_RowDeletingName="GewichtRowDeleting" msprop:Generator_RowChangingName="GewichtRowChanging" msprop:Generator_RowEvHandlerName="GewichtRowChangeEventHandler" msprop:Generator_RowDeletedName="GewichtRowDeleted" msprop:Generator_UserTableName="Gewicht" msprop:Generator_RowChangedName="GewichtRowChanged" msprop:Generator_RowEvArgName="GewichtRowChangeEvent" msprop:Generator_RowClassName="GewichtRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Datum" msprop:Generator_ColumnVarNameInTable="columnDatum" msprop:Generator_ColumnPropNameInRow="Datum" msprop:Generator_ColumnPropNameInTable="DatumColumn" msprop:Generator_UserColumnName="Datum" type="xs:dateTime" />
+              <xs:element name="KG" msprop:Generator_ColumnVarNameInTable="columnKG" msprop:Generator_ColumnPropNameInRow="KG" msprop:Generator_ColumnPropNameInTable="KGColumn" msprop:Generator_UserColumnName="KG" type="xs:decimal" />
+              <xs:element name="FM" msprop:Generator_ColumnVarNameInTable="columnFM" msprop:Generator_ColumnPropNameInRow="FM" msprop:Generator_ColumnPropNameInTable="FMColumn" msprop:Generator_UserColumnName="FM" type="xs:decimal" />
+              <xs:element name="FFM" msprop:Generator_ColumnVarNameInTable="columnFFM" msprop:Generator_ColumnPropNameInRow="FFM" msprop:Generator_ColumnPropNameInTable="FFMColumn" msprop:Generator_UserColumnName="FFM" type="xs:decimal" />
+              <xs:element name="KW" msprop:Generator_ColumnVarNameInTable="columnKW" msprop:Generator_ColumnPropNameInRow="KW" msprop:Generator_ColumnPropNameInTable="KWColumn" msprop:Generator_UserColumnName="KW" type="xs:decimal" />
+              <xs:element name="BMI" msprop:Generator_ColumnVarNameInTable="columnBMI" msprop:Generator_ColumnPropNameInRow="BMI" msprop:Generator_ColumnPropNameInTable="BMIColumn" msprop:Generator_UserColumnName="BMI" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
