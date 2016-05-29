@@ -16,8 +16,6 @@ namespace BodyMed
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            //Application.Run(new BlackForm());
             Application.Run(new HauptForm());
         }
     }

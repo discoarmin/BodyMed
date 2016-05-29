@@ -81,6 +81,24 @@ namespace BodyMed.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler : ähnelt.
+        /// </summary>
+        internal static string HauptForm_GetDataConnection_Fehler__ {
+            get {
+                return ResourceManager.GetString("HauptForm_GetDataConnection_Fehler__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verbindung zur Datenbankfehlgeschlagen ähnelt.
+        /// </summary>
+        internal static string HauptForm_GetDataConnection_Verbindung_zur_Datenbankfehlgeschlagen {
+            get {
+                return ResourceManager.GetString("HauptForm_GetDataConnection_Verbindung_zur_Datenbankfehlgeschlagen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap newdocument32 {

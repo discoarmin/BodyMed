@@ -33,12 +33,13 @@
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Gewicht", -1);
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Datum");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn2 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KG");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn3 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FM");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn4 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FFM");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn5 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KW");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("BMI");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Index");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Datum");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KG");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FM");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FFM");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KW");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn12 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("BMI");
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
@@ -50,10 +51,12 @@
             Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand2 = new Infragistics.Win.UltraWinGrid.UltraGridBand("BlutdruckDaten", -1);
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Systolisch");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Diastolisch");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Puls");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Pulsdruck");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn14 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Index");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn15 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Systolisch");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Diastolisch");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Puls");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn18 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Pulsdruck");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn19 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Datum");
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
@@ -85,16 +88,18 @@
             this.splitContainerErnaehrung = new System.Windows.Forms.SplitContainer();
             this.zedGraphControlErnaehrung = new ZedGraph.ZedGraphControl();
             this.ultraGridErnaehrung = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.dataetGewichtBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetGewicht1 = new BodyMed.dataSetGewicht();
+            this.dataSetGewicht1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetGewicht1 = new BodyMed.DataSetGewicht();
             this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.ultraGroupBoxBlutDruck = new Infragistics.Win.Misc.UltraGroupBox();
             this.splitContainerBlutDruck = new System.Windows.Forms.SplitContainer();
             this.zedGraphControlBlutDruck = new ZedGraph.ZedGraphControl();
             this.ultraGridBlutDruck = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.dataSetErnaehrung1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetErnaehrung1 = new BodyMed.DataSetErnaehrung();
+            this.dataSetBlutDruck1BindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetBlutDruck1 = new BodyMed.DataSetBlutDruck();
             this.sliderBlutDruck = new System.Windows.Forms.TrackBar();
+            this.dataSetBlutDruck1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataetGewichtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ultraTabPageGewicht = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.ultraTabPageBlutDruck = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.sliderFuegeModul = new System.Windows.Forms.TrackBar();
@@ -123,6 +128,8 @@
             this.oleDbConnection1 = new System.Data.OleDb.OleDbConnection();
             this.oleDbInsertCommand1 = new System.Data.OleDb.OleDbCommand();
             this.oleDbDataAdapter1 = new System.Data.OleDb.OleDbDataAdapter();
+            this.oleDbDeleteCommand = new System.Data.OleDb.OleDbCommand();
+            this.oleDbUpdateCommand = new System.Data.OleDb.OleDbCommand();
             this.oleDbSelectCommand2 = new System.Data.OleDb.OleDbCommand();
             this.oleDbInsertCommand2 = new System.Data.OleDb.OleDbCommand();
             this.oleDbDataAdapterGewicht = new System.Data.OleDb.OleDbDataAdapter();
@@ -140,6 +147,20 @@
             this.ribbonButton4 = new System.Windows.Forms.RibbonButton();
             this.pictureBoxHauptForm = new System.Windows.Forms.PictureBox();
             this.panelHauptForm = new System.Windows.Forms.Panel();
+            this.oleDbSelectCommand3 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbInsertCommand3 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbUpdateCommand1 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbDeleteCommand1 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbDataAdapterGroesse = new System.Data.OleDb.OleDbDataAdapter();
+            this.dataSetGroesse1 = new BodyMed.DataSetGroesse();
+            this.dataSetBlutDruck1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.oleDbSelectCommand4 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbInsertCommand4 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbUpdateCommand2 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbDeleteCommand2 = new System.Data.OleDb.OleDbCommand();
+            this.oleDbDataAdapterBlutDruck = new System.Data.OleDb.OleDbDataAdapter();
+            this.bindingSourceGroesse = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetGroesseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.sliderErnaehrung)).BeginInit();
             this.ultraTabPageControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).BeginInit();
@@ -149,7 +170,7 @@
             this.splitContainerErnaehrung.Panel2.SuspendLayout();
             this.splitContainerErnaehrung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).BeginInit();
             this.ultraTabPageControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).BeginInit();
@@ -159,9 +180,11 @@
             this.splitContainerBlutDruck.Panel2.SuspendLayout();
             this.splitContainerBlutDruck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGridBlutDruck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).BeginInit();
             this.ultraTabPageBlutDruck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderFuegeModul)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBar)).BeginInit();
@@ -178,6 +201,10 @@
             this.ultraTabControlHauptForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHauptForm)).BeginInit();
             this.panelHauptForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGroesse1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGroesse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGroesseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // sliderErnaehrung
@@ -252,39 +279,33 @@
             // ultraGridErnaehrung
             // 
             this.ultraGridErnaehrung.DataMember = "Gewicht";
-            this.ultraGridErnaehrung.DataSource = this.dataetGewichtBindingSource;
+            this.ultraGridErnaehrung.DataSource = this.dataSetGewicht1BindingSource;
             appearance2.BackColor = System.Drawing.Color.LightGray;
             appearance2.BorderColor = System.Drawing.Color.Silver;
             this.ultraGridErnaehrung.DisplayLayout.Appearance = appearance2;
             this.ultraGridErnaehrung.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            ultraGridColumn1.Header.VisiblePosition = 0;
-            ultraGridColumn1.MaskDataMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeBoth;
-            ultraGridColumn1.MaskDisplayMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeBoth;
-            ultraGridColumn1.Style = Infragistics.Win.UltraWinGrid.ColumnStyle.Date;
-            ultraGridColumn1.Width = 122;
-            ultraGridColumn2.Header.VisiblePosition = 1;
-            ultraGridColumn2.MaskInput = "999,9";
-            ultraGridColumn2.Width = 95;
-            ultraGridColumn3.Header.VisiblePosition = 2;
-            ultraGridColumn3.MaskInput = "99,9";
-            ultraGridColumn3.Width = 99;
-            ultraGridColumn4.Header.VisiblePosition = 3;
-            ultraGridColumn4.MaskInput = "99,9";
-            ultraGridColumn4.Width = 98;
-            ultraGridColumn5.Header.VisiblePosition = 4;
-            ultraGridColumn5.MaskInput = "99,9";
-            ultraGridColumn5.Width = 103;
-            ultraGridColumn6.CellActivation = Infragistics.Win.UltraWinGrid.Activation.NoEdit;
-            ultraGridColumn6.Header.VisiblePosition = 5;
-            ultraGridColumn6.MaskInput = "99,9";
-            ultraGridColumn6.Width = 98;
+            ultraGridColumn6.Header.VisiblePosition = 0;
+            ultraGridColumn6.Width = 89;
+            ultraGridColumn7.Header.VisiblePosition = 1;
+            ultraGridColumn7.Width = 96;
+            ultraGridColumn8.Header.VisiblePosition = 2;
+            ultraGridColumn8.Width = 86;
+            ultraGridColumn9.Header.VisiblePosition = 3;
+            ultraGridColumn9.Width = 86;
+            ultraGridColumn10.Header.VisiblePosition = 4;
+            ultraGridColumn10.Width = 86;
+            ultraGridColumn11.Header.VisiblePosition = 5;
+            ultraGridColumn11.Width = 86;
+            ultraGridColumn12.Header.VisiblePosition = 6;
+            ultraGridColumn12.Width = 86;
             ultraGridBand1.Columns.AddRange(new object[] {
-            ultraGridColumn1,
-            ultraGridColumn2,
-            ultraGridColumn3,
-            ultraGridColumn4,
-            ultraGridColumn5,
-            ultraGridColumn6});
+            ultraGridColumn6,
+            ultraGridColumn7,
+            ultraGridColumn8,
+            ultraGridColumn9,
+            ultraGridColumn10,
+            ultraGridColumn11,
+            ultraGridColumn12});
             this.ultraGridErnaehrung.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             appearance3.BackColor = System.Drawing.SystemColors.ActiveBorder;
             appearance3.BackColor2 = System.Drawing.SystemColors.ControlDark;
@@ -322,15 +343,14 @@
             this.ultraGridErnaehrung.TabIndex = 22;
             this.ultraGridErnaehrung.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
             // 
-            // dataetGewichtBindingSource
+            // dataSetGewicht1BindingSource
             // 
-            this.dataetGewichtBindingSource.AllowNew = true;
-            this.dataetGewichtBindingSource.DataSource = this.dataSetGewicht1;
-            this.dataetGewichtBindingSource.Position = 0;
+            this.dataSetGewicht1BindingSource.DataSource = this.dataSetGewicht1;
+            this.dataSetGewicht1BindingSource.Position = 0;
             // 
             // dataSetGewicht1
             // 
-            this.dataSetGewicht1.DataSetName = "dataSetGewicht";
+            this.dataSetGewicht1.DataSetName = "DataSetGewicht";
             this.dataSetGewicht1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // ultraTabPageControl2
@@ -397,24 +417,36 @@
             // ultraGridBlutDruck
             // 
             this.ultraGridBlutDruck.DataMember = "BlutdruckDaten";
-            this.ultraGridBlutDruck.DataSource = this.dataSetErnaehrung1BindingSource;
+            this.ultraGridBlutDruck.DataSource = this.dataSetBlutDruck1BindingSource2;
             appearance12.BackColor = System.Drawing.Color.LightGray;
             appearance12.BorderColor = System.Drawing.Color.Silver;
             this.ultraGridBlutDruck.DisplayLayout.Appearance = appearance12;
             this.ultraGridBlutDruck.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            ultraGridColumn7.Header.VisiblePosition = 0;
-            ultraGridColumn7.Width = 168;
-            ultraGridColumn8.Header.VisiblePosition = 1;
-            ultraGridColumn8.Width = 173;
-            ultraGridColumn9.Header.VisiblePosition = 2;
-            ultraGridColumn9.Width = 109;
-            ultraGridColumn10.Header.VisiblePosition = 3;
-            ultraGridColumn10.Width = 159;
+            ultraGridColumn14.CellActivation = Infragistics.Win.UltraWinGrid.Activation.NoEdit;
+            ultraGridColumn14.Header.VisiblePosition = 0;
+            ultraGridColumn14.Hidden = true;
+            ultraGridColumn14.Width = 99;
+            ultraGridColumn15.Header.VisiblePosition = 2;
+            ultraGridColumn15.MaskInput = "999";
+            ultraGridColumn15.Width = 133;
+            ultraGridColumn16.Header.VisiblePosition = 3;
+            ultraGridColumn16.MaskInput = "999";
+            ultraGridColumn16.Width = 143;
+            ultraGridColumn17.Header.VisiblePosition = 4;
+            ultraGridColumn17.MaskInput = "999";
+            ultraGridColumn17.Width = 71;
+            ultraGridColumn18.Header.VisiblePosition = 5;
+            ultraGridColumn18.MaskInput = "999";
+            ultraGridColumn18.Width = 131;
+            ultraGridColumn19.Header.VisiblePosition = 1;
+            ultraGridColumn19.Width = 131;
             ultraGridBand2.Columns.AddRange(new object[] {
-            ultraGridColumn7,
-            ultraGridColumn8,
-            ultraGridColumn9,
-            ultraGridColumn10});
+            ultraGridColumn14,
+            ultraGridColumn15,
+            ultraGridColumn16,
+            ultraGridColumn17,
+            ultraGridColumn18,
+            ultraGridColumn19});
             this.ultraGridBlutDruck.DisplayLayout.BandsSerializer.Add(ultraGridBand2);
             appearance13.BackColor = System.Drawing.SystemColors.ActiveBorder;
             appearance13.BackColor2 = System.Drawing.SystemColors.ControlDark;
@@ -452,16 +484,15 @@
             this.ultraGridBlutDruck.TabIndex = 23;
             this.ultraGridBlutDruck.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
             // 
-            // dataSetErnaehrung1BindingSource
+            // dataSetBlutDruck1BindingSource2
             // 
-            this.dataSetErnaehrung1BindingSource.AllowNew = true;
-            this.dataSetErnaehrung1BindingSource.DataSource = this.dataSetErnaehrung1;
-            this.dataSetErnaehrung1BindingSource.Position = 0;
+            this.dataSetBlutDruck1BindingSource2.DataSource = this.dataSetBlutDruck1;
+            this.dataSetBlutDruck1BindingSource2.Position = 0;
             // 
-            // dataSetErnaehrung1
+            // dataSetBlutDruck1
             // 
-            this.dataSetErnaehrung1.DataSetName = "DataSetErnaehrung";
-            this.dataSetErnaehrung1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dataSetBlutDruck1.DataSetName = "DataSetBlutDruck";
+            this.dataSetBlutDruck1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // sliderBlutDruck
             // 
@@ -470,6 +501,15 @@
             this.sliderBlutDruck.Name = "sliderBlutDruck";
             this.sliderBlutDruck.Size = new System.Drawing.Size(174, 15);
             this.sliderBlutDruck.TabIndex = 1;
+            // 
+            // dataSetBlutDruck1BindingSource
+            // 
+            this.dataSetBlutDruck1BindingSource.DataMember = "BlutdruckDaten";
+            this.dataSetBlutDruck1BindingSource.DataSource = this.dataSetBlutDruck1;
+            // 
+            // dataetGewichtBindingSource
+            // 
+            this.dataetGewichtBindingSource.AllowNew = true;
             // 
             // ultraTabPageGewicht
             // 
@@ -598,7 +638,6 @@
             this.ribbonButtonFensterSchliessen.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.FlashImage")));
             this.ribbonButtonFensterSchliessen.FlashIntervall = 2000;
             this.ribbonButtonFensterSchliessen.Image = global::BodyMed.Properties.Resources.close32;
-            this.ribbonButtonFensterSchliessen.ShowFlashImage = true;
             this.ribbonButtonFensterSchliessen.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.SmallImage")));
             this.ribbonButtonFensterSchliessen.Text = "Fenster schließen";
             this.ribbonButtonFensterSchliessen.ToolTip = "Schließt ein Fenster";
@@ -610,6 +649,7 @@
             this.ribbonButtonEingabe.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.FlashImage")));
             this.ribbonButtonEingabe.FlashIntervall = 2000;
             this.ribbonButtonEingabe.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.Image")));
+            this.ribbonButtonEingabe.ShowFlashImage = true;
             this.ribbonButtonEingabe.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.SmallImage")));
             this.ribbonButtonEingabe.Tag = "Eingabe";
             this.ribbonButtonEingabe.Text = "Eingabe";
@@ -631,7 +671,6 @@
             this.ribbonButtonBlutdruck.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.FlashImage")));
             this.ribbonButtonBlutdruck.FlashIntervall = 2000;
             this.ribbonButtonBlutdruck.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.Image")));
-            this.ribbonButtonBlutdruck.ShowFlashImage = true;
             this.ribbonButtonBlutdruck.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.SmallImage")));
             this.ribbonButtonBlutdruck.Tag = "Blutdruck";
             this.ribbonButtonBlutdruck.Text = "Blutdruck";
@@ -751,24 +790,58 @@
             // 
             // oleDbInsertCommand1
             // 
-            this.oleDbInsertCommand1.CommandText = "INSERT INTO [BlutdruckDaten] ([Systolisch], [Diastolisch], [Puls]) VALUES (?, ?, " +
-    "?)";
+            this.oleDbInsertCommand1.CommandText = "INSERT INTO [BlutdruckDaten] ([Index], [Systolisch], [Diastolisch], [Puls]) VALUE" +
+    "S (?, ?, ?, ?)";
             this.oleDbInsertCommand1.Connection = this.oleDbConnection1;
             this.oleDbInsertCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Index", System.Data.OleDb.OleDbType.BigInt, 0, "Index"),
             new System.Data.OleDb.OleDbParameter("Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Systolisch"),
             new System.Data.OleDb.OleDbParameter("Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Diastolisch"),
             new System.Data.OleDb.OleDbParameter("Puls", System.Data.OleDb.OleDbType.SmallInt, 0, "Puls")});
             // 
             // oleDbDataAdapter1
             // 
+            this.oleDbDataAdapter1.DeleteCommand = this.oleDbDeleteCommand;
             this.oleDbDataAdapter1.InsertCommand = this.oleDbInsertCommand1;
             this.oleDbDataAdapter1.SelectCommand = this.oleDbSelectCommand1;
             this.oleDbDataAdapter1.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
             new System.Data.Common.DataTableMapping("Table", "BlutdruckDaten", new System.Data.Common.DataColumnMapping[] {
+                        new System.Data.Common.DataColumnMapping("Index", "Index"),
                         new System.Data.Common.DataColumnMapping("Systolisch", "Systolisch"),
                         new System.Data.Common.DataColumnMapping("Diastolisch", "Diastolisch"),
                         new System.Data.Common.DataColumnMapping("Puls", "Puls"),
                         new System.Data.Common.DataColumnMapping("Pulsdruck", "Pulsdruck")})});
+            this.oleDbDataAdapter1.UpdateCommand = this.oleDbUpdateCommand;
+            // 
+            // oleDbDeleteCommand
+            // 
+            this.oleDbDeleteCommand.CommandText = "DELETE FROM [BlutdruckDaten] WHERE (([Index] = ?) AND ([Systolisch] = ?) AND ([Di" +
+    "astolisch] = ?) AND ([Puls] = ?) AND ((? = 1 AND [Pulsdruck] IS NULL) OR ([Pulsd" +
+    "ruck] = ?)))";
+            this.oleDbDeleteCommand.Connection = this.oleDbConnection1;
+            this.oleDbDeleteCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Original_Index", System.Data.OleDb.OleDbType.BigInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Index", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Systolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Diastolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Puls", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Puls", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("IsNull_Pulsdruck", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, true, null),
+            new System.Data.OleDb.OleDbParameter("Original_Pulsdruck", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, null)});
+            // 
+            // oleDbUpdateCommand
+            // 
+            this.oleDbUpdateCommand.CommandText = resources.GetString("oleDbUpdateCommand.CommandText");
+            this.oleDbUpdateCommand.Connection = this.oleDbConnection1;
+            this.oleDbUpdateCommand.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Index", System.Data.OleDb.OleDbType.BigInt, 0, "Index"),
+            new System.Data.OleDb.OleDbParameter("Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Systolisch"),
+            new System.Data.OleDb.OleDbParameter("Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Diastolisch"),
+            new System.Data.OleDb.OleDbParameter("Puls", System.Data.OleDb.OleDbType.SmallInt, 0, "Puls"),
+            new System.Data.OleDb.OleDbParameter("Original_Index", System.Data.OleDb.OleDbType.BigInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Index", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Systolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Diastolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Puls", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Puls", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("IsNull_Pulsdruck", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, true, null),
+            new System.Data.OleDb.OleDbParameter("Original_Pulsdruck", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, null)});
             // 
             // oleDbSelectCommand2
             // 
@@ -910,6 +983,7 @@
             this.tbGroesse.Name = "tbGroesse";
             this.tbGroesse.Size = new System.Drawing.Size(73, 19);
             this.tbGroesse.TabIndex = 1;
+            this.tbGroesse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // labelKorpergroesse
             // 
@@ -979,6 +1053,129 @@
             this.panelHauptForm.Size = new System.Drawing.Size(776, 263);
             this.panelHauptForm.TabIndex = 28;
             // 
+            // oleDbSelectCommand3
+            // 
+            this.oleDbSelectCommand3.CommandText = "SELECT        Groesse.*\r\nFROM            Groesse";
+            this.oleDbSelectCommand3.Connection = this.oleDbConnection1;
+            // 
+            // oleDbInsertCommand3
+            // 
+            this.oleDbInsertCommand3.CommandText = "INSERT INTO [Groesse] ([Index], [Groesse]) VALUES (?, ?)";
+            this.oleDbInsertCommand3.Connection = this.oleDbConnection1;
+            this.oleDbInsertCommand3.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Index", System.Data.OleDb.OleDbType.BigInt, 0, "Index"),
+            new System.Data.OleDb.OleDbParameter("Groesse", System.Data.OleDb.OleDbType.SmallInt, 0, "Groesse")});
+            // 
+            // oleDbUpdateCommand1
+            // 
+            this.oleDbUpdateCommand1.CommandText = "UPDATE [Groesse] SET [Index] = ?, [Groesse] = ? WHERE (([Index] = ?) AND ([Groess" +
+    "e] = ?))";
+            this.oleDbUpdateCommand1.Connection = this.oleDbConnection1;
+            this.oleDbUpdateCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Index", System.Data.OleDb.OleDbType.BigInt, 0, "Index"),
+            new System.Data.OleDb.OleDbParameter("Groesse", System.Data.OleDb.OleDbType.SmallInt, 0, "Groesse"),
+            new System.Data.OleDb.OleDbParameter("Original_Index", System.Data.OleDb.OleDbType.BigInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Index", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Groesse", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Groesse", System.Data.DataRowVersion.Original, null)});
+            // 
+            // oleDbDeleteCommand1
+            // 
+            this.oleDbDeleteCommand1.CommandText = "DELETE FROM [Groesse] WHERE (([Index] = ?) AND ([Groesse] = ?))";
+            this.oleDbDeleteCommand1.Connection = this.oleDbConnection1;
+            this.oleDbDeleteCommand1.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Original_Index", System.Data.OleDb.OleDbType.BigInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Index", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Groesse", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Groesse", System.Data.DataRowVersion.Original, null)});
+            // 
+            // oleDbDataAdapterGroesse
+            // 
+            this.oleDbDataAdapterGroesse.DeleteCommand = this.oleDbDeleteCommand1;
+            this.oleDbDataAdapterGroesse.InsertCommand = this.oleDbInsertCommand3;
+            this.oleDbDataAdapterGroesse.SelectCommand = this.oleDbSelectCommand3;
+            this.oleDbDataAdapterGroesse.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+            new System.Data.Common.DataTableMapping("Table", "Groesse", new System.Data.Common.DataColumnMapping[] {
+                        new System.Data.Common.DataColumnMapping("Index", "Index"),
+                        new System.Data.Common.DataColumnMapping("Groesse", "Groesse")})});
+            this.oleDbDataAdapterGroesse.UpdateCommand = this.oleDbUpdateCommand1;
+            // 
+            // dataSetGroesse1
+            // 
+            this.dataSetGroesse1.DataSetName = "DataSetGroesse";
+            this.dataSetGroesse1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // oleDbSelectCommand4
+            // 
+            this.oleDbSelectCommand4.CommandText = "SELECT        BlutdruckDaten.*\r\nFROM            BlutdruckDaten";
+            this.oleDbSelectCommand4.Connection = this.oleDbConnection1;
+            // 
+            // oleDbInsertCommand4
+            // 
+            this.oleDbInsertCommand4.CommandText = "INSERT INTO [BlutdruckDaten] ([Index], [Datum], [Systolisch], [Diastolisch], [Pul" +
+    "s]) VALUES (?, ?, ?, ?, ?)";
+            this.oleDbInsertCommand4.Connection = this.oleDbConnection1;
+            this.oleDbInsertCommand4.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Index", System.Data.OleDb.OleDbType.BigInt, 0, "Index"),
+            new System.Data.OleDb.OleDbParameter("Datum", System.Data.OleDb.OleDbType.DBDate, 0, "Datum"),
+            new System.Data.OleDb.OleDbParameter("Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Systolisch"),
+            new System.Data.OleDb.OleDbParameter("Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Diastolisch"),
+            new System.Data.OleDb.OleDbParameter("Puls", System.Data.OleDb.OleDbType.SmallInt, 0, "Puls")});
+            // 
+            // oleDbUpdateCommand2
+            // 
+            this.oleDbUpdateCommand2.CommandText = resources.GetString("oleDbUpdateCommand2.CommandText");
+            this.oleDbUpdateCommand2.Connection = this.oleDbConnection1;
+            this.oleDbUpdateCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Index", System.Data.OleDb.OleDbType.BigInt, 0, "Index"),
+            new System.Data.OleDb.OleDbParameter("Datum", System.Data.OleDb.OleDbType.DBDate, 0, "Datum"),
+            new System.Data.OleDb.OleDbParameter("Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Systolisch"),
+            new System.Data.OleDb.OleDbParameter("Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, "Diastolisch"),
+            new System.Data.OleDb.OleDbParameter("Puls", System.Data.OleDb.OleDbType.SmallInt, 0, "Puls"),
+            new System.Data.OleDb.OleDbParameter("Original_Index", System.Data.OleDb.OleDbType.BigInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Index", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Datum", System.Data.OleDb.OleDbType.DBDate, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Datum", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Systolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Diastolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Puls", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Puls", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("IsNull_Pulsdruck", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, true, null),
+            new System.Data.OleDb.OleDbParameter("Original_Pulsdruck", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, null)});
+            // 
+            // oleDbDeleteCommand2
+            // 
+            this.oleDbDeleteCommand2.CommandText = "DELETE FROM [BlutdruckDaten] WHERE (([Index] = ?) AND ([Datum] = ?) AND ([Systoli" +
+    "sch] = ?) AND ([Diastolisch] = ?) AND ([Puls] = ?) AND ((? = 1 AND [Pulsdruck] I" +
+    "S NULL) OR ([Pulsdruck] = ?)))";
+            this.oleDbDeleteCommand2.Connection = this.oleDbConnection1;
+            this.oleDbDeleteCommand2.Parameters.AddRange(new System.Data.OleDb.OleDbParameter[] {
+            new System.Data.OleDb.OleDbParameter("Original_Index", System.Data.OleDb.OleDbType.BigInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Index", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Datum", System.Data.OleDb.OleDbType.DBDate, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Datum", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Systolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Systolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Diastolisch", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Diastolisch", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("Original_Puls", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Puls", System.Data.DataRowVersion.Original, null),
+            new System.Data.OleDb.OleDbParameter("IsNull_Pulsdruck", System.Data.OleDb.OleDbType.Integer, 0, System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, true, null),
+            new System.Data.OleDb.OleDbParameter("Original_Pulsdruck", System.Data.OleDb.OleDbType.SmallInt, 0, System.Data.ParameterDirection.Input, false, ((byte)(0)), ((byte)(0)), "Pulsdruck", System.Data.DataRowVersion.Original, null)});
+            // 
+            // oleDbDataAdapterBlutDruck
+            // 
+            this.oleDbDataAdapterBlutDruck.DeleteCommand = this.oleDbDeleteCommand2;
+            this.oleDbDataAdapterBlutDruck.InsertCommand = this.oleDbInsertCommand4;
+            this.oleDbDataAdapterBlutDruck.SelectCommand = this.oleDbSelectCommand4;
+            this.oleDbDataAdapterBlutDruck.TableMappings.AddRange(new System.Data.Common.DataTableMapping[] {
+            new System.Data.Common.DataTableMapping("Table", "BlutdruckDaten", new System.Data.Common.DataColumnMapping[] {
+                        new System.Data.Common.DataColumnMapping("Index", "Index"),
+                        new System.Data.Common.DataColumnMapping("Datum", "Datum"),
+                        new System.Data.Common.DataColumnMapping("Systolisch", "Systolisch"),
+                        new System.Data.Common.DataColumnMapping("Diastolisch", "Diastolisch"),
+                        new System.Data.Common.DataColumnMapping("Puls", "Puls"),
+                        new System.Data.Common.DataColumnMapping("Pulsdruck", "Pulsdruck")})});
+            this.oleDbDataAdapterBlutDruck.UpdateCommand = this.oleDbUpdateCommand2;
+            // 
+            // bindingSourceGroesse
+            // 
+            this.bindingSourceGroesse.DataMember = "Groesse";
+            this.bindingSourceGroesse.DataSource = this.dataSetGroesse1;
+            // 
+            // dataSetGroesseBindingSource
+            // 
+            this.dataSetGroesseBindingSource.DataMember = "Groesse";
+            this.dataSetGroesseBindingSource.DataSource = this.dataSetGroesse1;
+            // 
             // HauptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1009,7 +1206,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerErnaehrung)).EndInit();
             this.splitContainerErnaehrung.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).EndInit();
             this.ultraTabPageControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).EndInit();
@@ -1019,9 +1216,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerBlutDruck)).EndInit();
             this.splitContainerBlutDruck.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraGridBlutDruck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetErnaehrung1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).EndInit();
             this.ultraTabPageBlutDruck.ResumeLayout(false);
             this.ultraTabPageBlutDruck.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderFuegeModul)).EndInit();
@@ -1040,6 +1239,10 @@
             this.ultraTabControlHauptForm.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHauptForm)).EndInit();
             this.panelHauptForm.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGroesse1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGroesse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGroesseBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1073,14 +1276,11 @@
         private System.Data.OleDb.OleDbCommand oleDbSelectCommand1;
         private System.Data.OleDb.OleDbCommand oleDbInsertCommand1;
         private System.Data.OleDb.OleDbDataAdapter oleDbDataAdapter1;
-        private System.Windows.Forms.BindingSource dataSetErnaehrung1BindingSource;
-        private DataSetErnaehrung dataSetErnaehrung1;
         private System.Data.OleDb.OleDbConnection oleDbConnection1;
         private System.Data.OleDb.OleDbCommand oleDbSelectCommand2;
         private System.Data.OleDb.OleDbCommand oleDbInsertCommand2;
         private System.Data.OleDb.OleDbDataAdapter oleDbDataAdapterGewicht;
         private System.Windows.Forms.BindingSource dataetGewichtBindingSource;
-        private dataSetGewicht dataSetGewicht1;
         private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage2;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageGewicht;
         private Infragistics.Win.UltraWinTabControl.UltraTabStripControl ultraTabStripControlGewicht;
@@ -1108,5 +1308,26 @@
         private ZedGraph.ZedGraphControl zedGraphControlErnaehrung;
         public Infragistics.Win.UltraWinGrid.UltraGrid ultraGridBlutDruck;
         public ZedGraph.ZedGraphControl zedGraphControlBlutDruck;
+        private System.Data.OleDb.OleDbCommand oleDbDeleteCommand;
+        private System.Data.OleDb.OleDbCommand oleDbUpdateCommand;
+        private System.Windows.Forms.BindingSource dataSetGewicht1BindingSource;
+        private DataSetGewicht dataSetGewicht1;
+        private System.Windows.Forms.BindingSource dataSetBlutDruck1BindingSource;
+        private System.Data.OleDb.OleDbCommand oleDbSelectCommand3;
+        private System.Data.OleDb.OleDbCommand oleDbInsertCommand3;
+        private System.Data.OleDb.OleDbCommand oleDbUpdateCommand1;
+        private System.Data.OleDb.OleDbCommand oleDbDeleteCommand1;
+        private System.Data.OleDb.OleDbDataAdapter oleDbDataAdapterGroesse;
+        private DataSetGroesse dataSetGroesse1;
+        private System.Windows.Forms.BindingSource dataSetBlutDruck1BindingSource1;
+        private System.Data.OleDb.OleDbCommand oleDbSelectCommand4;
+        private System.Data.OleDb.OleDbCommand oleDbInsertCommand4;
+        private System.Data.OleDb.OleDbCommand oleDbUpdateCommand2;
+        private System.Data.OleDb.OleDbCommand oleDbDeleteCommand2;
+        private System.Data.OleDb.OleDbDataAdapter oleDbDataAdapterBlutDruck;
+        private DataSetBlutDruck dataSetBlutDruck1;
+        private System.Windows.Forms.BindingSource dataSetBlutDruck1BindingSource2;
+        private System.Windows.Forms.BindingSource bindingSourceGroesse;
+        private System.Windows.Forms.BindingSource dataSetGroesseBindingSource;
     }
 }

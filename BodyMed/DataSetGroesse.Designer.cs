@@ -20,17 +20,17 @@ namespace BodyMed {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSetErnaehrung")]
+    [global::System.Xml.Serialization.XmlRootAttribute("DataSetGroesse")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSetErnaehrung : global::System.Data.DataSet {
+    public partial class DataSetGroesse : global::System.Data.DataSet {
         
-        private BlutdruckDatenDataTable tableBlutdruckDaten;
+        private GroesseDataTable tableGroesse;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DataSetErnaehrung() {
+        public DataSetGroesse() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace BodyMed {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DataSetErnaehrung(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected DataSetGroesse(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace BodyMed {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["BlutdruckDaten"] != null)) {
-                    base.Tables.Add(new BlutdruckDatenDataTable(ds.Tables["BlutdruckDaten"]));
+                if ((ds.Tables["Groesse"] != null)) {
+                    base.Tables.Add(new GroesseDataTable(ds.Tables["Groesse"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace BodyMed {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public BlutdruckDatenDataTable BlutdruckDaten {
+        public GroesseDataTable Groesse {
             get {
-                return this.tableBlutdruckDaten;
+                return this.tableGroesse;
             }
         }
         
@@ -127,7 +127,7 @@ namespace BodyMed {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSetErnaehrung cln = ((DataSetErnaehrung)(base.Clone()));
+            DataSetGroesse cln = ((DataSetGroesse)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace BodyMed {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["BlutdruckDaten"] != null)) {
-                    base.Tables.Add(new BlutdruckDatenDataTable(ds.Tables["BlutdruckDaten"]));
+                if ((ds.Tables["Groesse"] != null)) {
+                    base.Tables.Add(new GroesseDataTable(ds.Tables["Groesse"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace BodyMed {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableBlutdruckDaten = ((BlutdruckDatenDataTable)(base.Tables["BlutdruckDaten"]));
+            this.tableGroesse = ((GroesseDataTable)(base.Tables["Groesse"]));
             if ((initTable == true)) {
-                if ((this.tableBlutdruckDaten != null)) {
-                    this.tableBlutdruckDaten.InitVars();
+                if ((this.tableGroesse != null)) {
+                    this.tableGroesse.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace BodyMed {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSetErnaehrung";
+            this.DataSetName = "DataSetGroesse";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DataSetErnaehrung.xsd";
+            this.Namespace = "http://tempuri.org/DataSetGroesse.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableBlutdruckDaten = new BlutdruckDatenDataTable();
-            base.Tables.Add(this.tableBlutdruckDaten);
+            this.tableGroesse = new GroesseDataTable();
+            base.Tables.Add(this.tableGroesse);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeBlutdruckDaten() {
+        private bool ShouldSerializeGroesse() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace BodyMed {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSetErnaehrung ds = new DataSetErnaehrung();
+            DataSetGroesse ds = new DataSetGroesse();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,27 +270,23 @@ namespace BodyMed {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void BlutdruckDatenRowChangeEventHandler(object sender, BlutdruckDatenRowChangeEvent e);
+        public delegate void GroesseRowChangeEventHandler(object sender, GroesseRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class BlutdruckDatenDataTable : global::System.Data.TypedTableBase<BlutdruckDatenRow> {
+        public partial class GroesseDataTable : global::System.Data.TypedTableBase<GroesseRow> {
             
-            private global::System.Data.DataColumn columnSystolisch;
+            private global::System.Data.DataColumn columnIndex;
             
-            private global::System.Data.DataColumn columnDiastolisch;
-            
-            private global::System.Data.DataColumn columnPuls;
-            
-            private global::System.Data.DataColumn columnPulsdruck;
+            private global::System.Data.DataColumn columnGroesse;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlutdruckDatenDataTable() {
-                this.TableName = "BlutdruckDaten";
+            public GroesseDataTable() {
+                this.TableName = "Groesse";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -298,7 +294,7 @@ namespace BodyMed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal BlutdruckDatenDataTable(global::System.Data.DataTable table) {
+            internal GroesseDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -315,40 +311,24 @@ namespace BodyMed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected BlutdruckDatenDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected GroesseDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn SystolischColumn {
+            public global::System.Data.DataColumn IndexColumn {
                 get {
-                    return this.columnSystolisch;
+                    return this.columnIndex;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DiastolischColumn {
+            public global::System.Data.DataColumn GroesseColumn {
                 get {
-                    return this.columnDiastolisch;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PulsColumn {
-                get {
-                    return this.columnPuls;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PulsdruckColumn {
-                get {
-                    return this.columnPulsdruck;
+                    return this.columnGroesse;
                 }
             }
             
@@ -363,48 +343,53 @@ namespace BodyMed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlutdruckDatenRow this[int index] {
+            public GroesseRow this[int index] {
                 get {
-                    return ((BlutdruckDatenRow)(this.Rows[index]));
+                    return ((GroesseRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event BlutdruckDatenRowChangeEventHandler BlutdruckDatenRowChanging;
+            public event GroesseRowChangeEventHandler GroesseRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event BlutdruckDatenRowChangeEventHandler BlutdruckDatenRowChanged;
+            public event GroesseRowChangeEventHandler GroesseRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event BlutdruckDatenRowChangeEventHandler BlutdruckDatenRowDeleting;
+            public event GroesseRowChangeEventHandler GroesseRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event BlutdruckDatenRowChangeEventHandler BlutdruckDatenRowDeleted;
+            public event GroesseRowChangeEventHandler GroesseRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddBlutdruckDatenRow(BlutdruckDatenRow row) {
+            public void AddGroesseRow(GroesseRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlutdruckDatenRow AddBlutdruckDatenRow(short Systolisch, short Diastolisch, short Puls, short Pulsdruck) {
-                BlutdruckDatenRow rowBlutdruckDatenRow = ((BlutdruckDatenRow)(this.NewRow()));
+            public GroesseRow AddGroesseRow(long Index, short Groesse) {
+                GroesseRow rowGroesseRow = ((GroesseRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Systolisch,
-                        Diastolisch,
-                        Puls,
-                        Pulsdruck};
-                rowBlutdruckDatenRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowBlutdruckDatenRow);
-                return rowBlutdruckDatenRow;
+                        Index,
+                        Groesse};
+                rowGroesseRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGroesseRow);
+                return rowGroesseRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GroesseRow FindByIndex(long Index) {
+                return ((GroesseRow)(this.Rows.Find(new object[] {
+                            Index})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                BlutdruckDatenDataTable cln = ((BlutdruckDatenDataTable)(base.Clone()));
+                GroesseDataTable cln = ((GroesseDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -412,59 +397,54 @@ namespace BodyMed {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new BlutdruckDatenDataTable();
+                return new GroesseDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnSystolisch = base.Columns["Systolisch"];
-                this.columnDiastolisch = base.Columns["Diastolisch"];
-                this.columnPuls = base.Columns["Puls"];
-                this.columnPulsdruck = base.Columns["Pulsdruck"];
+                this.columnIndex = base.Columns["Index"];
+                this.columnGroesse = base.Columns["Groesse"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnSystolisch = new global::System.Data.DataColumn("Systolisch", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSystolisch);
-                this.columnDiastolisch = new global::System.Data.DataColumn("Diastolisch", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDiastolisch);
-                this.columnPuls = new global::System.Data.DataColumn("Puls", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPuls);
-                this.columnPulsdruck = new global::System.Data.DataColumn("Pulsdruck", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPulsdruck);
-                this.columnSystolisch.AllowDBNull = false;
-                this.columnDiastolisch.AllowDBNull = false;
-                this.columnPuls.AllowDBNull = false;
-                this.columnPulsdruck.ReadOnly = true;
+                this.columnIndex = new global::System.Data.DataColumn("Index", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIndex);
+                this.columnGroesse = new global::System.Data.DataColumn("Groesse", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGroesse);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIndex}, true));
+                this.columnIndex.AllowDBNull = false;
+                this.columnIndex.Unique = true;
+                this.columnGroesse.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlutdruckDatenRow NewBlutdruckDatenRow() {
-                return ((BlutdruckDatenRow)(this.NewRow()));
+            public GroesseRow NewGroesseRow() {
+                return ((GroesseRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new BlutdruckDatenRow(builder);
+                return new GroesseRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(BlutdruckDatenRow);
+                return typeof(GroesseRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.BlutdruckDatenRowChanged != null)) {
-                    this.BlutdruckDatenRowChanged(this, new BlutdruckDatenRowChangeEvent(((BlutdruckDatenRow)(e.Row)), e.Action));
+                if ((this.GroesseRowChanged != null)) {
+                    this.GroesseRowChanged(this, new GroesseRowChangeEvent(((GroesseRow)(e.Row)), e.Action));
                 }
             }
             
@@ -472,8 +452,8 @@ namespace BodyMed {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.BlutdruckDatenRowChanging != null)) {
-                    this.BlutdruckDatenRowChanging(this, new BlutdruckDatenRowChangeEvent(((BlutdruckDatenRow)(e.Row)), e.Action));
+                if ((this.GroesseRowChanging != null)) {
+                    this.GroesseRowChanging(this, new GroesseRowChangeEvent(((GroesseRow)(e.Row)), e.Action));
                 }
             }
             
@@ -481,8 +461,8 @@ namespace BodyMed {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.BlutdruckDatenRowDeleted != null)) {
-                    this.BlutdruckDatenRowDeleted(this, new BlutdruckDatenRowChangeEvent(((BlutdruckDatenRow)(e.Row)), e.Action));
+                if ((this.GroesseRowDeleted != null)) {
+                    this.GroesseRowDeleted(this, new GroesseRowChangeEvent(((GroesseRow)(e.Row)), e.Action));
                 }
             }
             
@@ -490,14 +470,14 @@ namespace BodyMed {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.BlutdruckDatenRowDeleting != null)) {
-                    this.BlutdruckDatenRowDeleting(this, new BlutdruckDatenRowChangeEvent(((BlutdruckDatenRow)(e.Row)), e.Action));
+                if ((this.GroesseRowDeleting != null)) {
+                    this.GroesseRowDeleting(this, new GroesseRowChangeEvent(((GroesseRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveBlutdruckDatenRow(BlutdruckDatenRow row) {
+            public void RemoveGroesseRow(GroesseRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -506,7 +486,7 @@ namespace BodyMed {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSetErnaehrung ds = new DataSetErnaehrung();
+                DataSetGroesse ds = new DataSetGroesse();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -524,7 +504,7 @@ namespace BodyMed {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "BlutdruckDatenDataTable";
+                attribute2.FixedValue = "GroesseDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -568,76 +548,37 @@ namespace BodyMed {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class BlutdruckDatenRow : global::System.Data.DataRow {
+        public partial class GroesseRow : global::System.Data.DataRow {
             
-            private BlutdruckDatenDataTable tableBlutdruckDaten;
+            private GroesseDataTable tableGroesse;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal BlutdruckDatenRow(global::System.Data.DataRowBuilder rb) : 
+            internal GroesseRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableBlutdruckDaten = ((BlutdruckDatenDataTable)(this.Table));
+                this.tableGroesse = ((GroesseDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Systolisch {
+            public long Index {
                 get {
-                    return ((short)(this[this.tableBlutdruckDaten.SystolischColumn]));
+                    return ((long)(this[this.tableGroesse.IndexColumn]));
                 }
                 set {
-                    this[this.tableBlutdruckDaten.SystolischColumn] = value;
+                    this[this.tableGroesse.IndexColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Diastolisch {
+            public short Groesse {
                 get {
-                    return ((short)(this[this.tableBlutdruckDaten.DiastolischColumn]));
+                    return ((short)(this[this.tableGroesse.GroesseColumn]));
                 }
                 set {
-                    this[this.tableBlutdruckDaten.DiastolischColumn] = value;
+                    this[this.tableGroesse.GroesseColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Puls {
-                get {
-                    return ((short)(this[this.tableBlutdruckDaten.PulsColumn]));
-                }
-                set {
-                    this[this.tableBlutdruckDaten.PulsColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Pulsdruck {
-                get {
-                    try {
-                        return ((short)(this[this.tableBlutdruckDaten.PulsdruckColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Pulsdruck in Tabelle BlutdruckDaten ist DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableBlutdruckDaten.PulsdruckColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsPulsdruckNull() {
-                return this.IsNull(this.tableBlutdruckDaten.PulsdruckColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetPulsdruckNull() {
-                this[this.tableBlutdruckDaten.PulsdruckColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -645,22 +586,22 @@ namespace BodyMed {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class BlutdruckDatenRowChangeEvent : global::System.EventArgs {
+        public class GroesseRowChangeEvent : global::System.EventArgs {
             
-            private BlutdruckDatenRow eventRow;
+            private GroesseRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlutdruckDatenRowChangeEvent(BlutdruckDatenRow row, global::System.Data.DataRowAction action) {
+            public GroesseRowChangeEvent(GroesseRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public BlutdruckDatenRow Row {
+            public GroesseRow Row {
                 get {
                     return this.eventRow;
                 }
