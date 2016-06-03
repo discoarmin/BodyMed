@@ -1,0 +1,1711 @@
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HauptFormPart1.Cs" company="EST GmbH + CO.KG">
+//   Copyright (c) EST GmbH + CO.KG. All rights reserved.
+// </copyright>
+// <summary>
+//   Zusammenfassung für HauptForm, ausgelagerte Methoden.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+// <remarks>
+//     <para>Autor: Armin Brenner</para>
+//     <para>
+//        History : Datum     bearb.  Änderung
+//                  --------  ------  ------------------------------------
+//                  04.05.10  br      Grundversion
+//                  11.05.10  br      Fügemodul
+//                  06.07.10  br      Testprogramm Fügemodul + Schraubwerkzeug. Erhöhung Maximale Anzahl Lastzyklen bis Service
+//                  27.07.10  br      Kundenversion Fügemodul + Schraubwerkzeug
+//                  03.08.10  br      Datenvergleich + Abfrage Überschreiben alle Werkzeuge
+//                  15.10.10  br      Kein unbeabsichtigtes Verlassen des Editierfeldes mehr
+//                  09.12.11  br      Umstellung für E12 + Windows 7
+//                  05.0416   br      Abfangen Fehler, wenn Pfad zur Datenbank nicht existiert
+//      </para>
+// </remarks>
+// --------------------------------------------------------------------------------------------------------------------
+// ReSharper disable CatchAllClause
+namespace FlexChip
+{
+    using System;
+    using System.Collections;
+    using System.Data;
+    using System.Data.OleDb;
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.IO;
+    using System.Windows.Forms;
+    using Einstellungen;
+    using Infragistics.Win.UltraWinTabControl;
+
+    using Resources = Properties.Resources;
+
+    /// <summary>
+    /// Zusammenfassung für HauptForm.
+    /// </summary>
+    [SuppressMessage("ReSharper", "EmptyGeneralCatchClause")]
+    public partial class HauptForm
+    {
+        #region Datenbank-Komprimierung
+
+        /// <summary>
+        /// Methode zum Komprimieren von Access-Datenbanken
+        /// !!WICHTIG!!
+        /// Es muss sichergestellt sein, dass keine
+        /// offene Verbindung zur Datenbank besteht, bevor
+        /// diese Methode aufgerufen wird
+        /// </summary>
+        /// <param name="connectionString">Verbindungszeichenfolge zur Datenbank</param>
+        /// <param name="mdbfilename">Dateiname mit Pfadangabe der MDB Datei, welche komprimiert werden soll</param>
+        private static void CompactAccessDb(string connectionString, string mdbfilename)
+        {
+            var typJro = Type.GetTypeFromProgID("JRO.JetEngine");               // Ruft den Typ ab, dem der angegebene Programmbezeichner zugeordnet ist
+            var datenBankPfad = Path.GetFullPath(mdbfilename);                  // Den Pfad aus dem Dateinamen abspalten
+            if (typJro == null)
+            {
+                // Vielleicht ist die JRO-Engine nicht registriert, dann Dll registrieren, falls sie vorhanden ist
+                var envstring = Environment.GetEnvironmentVariable("ProgramFiles");
+                if (!string.IsNullOrEmpty(envstring))
+                {
+                    var strMsjrodll = Path.Combine(envstring, @"Common Files\System\ado\msjro.dll");
+                    if (File.Exists(strMsjrodll))
+                    {
+                        // Prozess zum Registrieren der DLL starten
+                        var procRegisterMsjro = Process.Start("regsvr32.exe", string.Concat("/s \"", strMsjrodll, "\""));
+                        if (procRegisterMsjro != null)
+                        {
+                            procRegisterMsjro.WaitForExit();                    // Warten, bis Registrierung abgeschlossen ist
+                        }
+
+                        typJro = Type.GetTypeFromProgID("JRO.JetEngine");       // Nach der Registrierung nochmals den Typ abrufen, dem der angegebene Programmbezeichner zugeordnet ist
+                    }
+                }
+            }
+
+            // Überprüfen, ob beim Laden ein Fehler aufgetreten ist
+            if (typJro == null)
+            {
+                // Ausnahme auslösen, da Treiber nicht installiert ist
+                throw new InvalidOperationException("Das Jet Replikationsobjekt der JetEngine kann nicht erstellt werden... Bitte überprüfen Sie, ob sie installiert ist");
+            }
+
+            // Instanz des Jet Replication Objekts erstellen
+            var objJro = Activator.CreateInstance(typJro);
+
+            // Parameterarray füllen:
+            // folgender Eintrag  "Jet OLEDB:Engine Type=5" muss an die Datenbank angepasst werden
+            // oder, falls das JET4X Format (Access 2000,2002) verwendet wird, bleibt der Eintrag
+            // Folgende Typen der Quelldatenbank sind möglich:
+            // 1   Jet Version 1.0
+            // 2   Jet Version 1.1
+            // 3   Jet Version 2.x
+            // 4   Jet Version 3.x
+            // 5   Jet Version 4.x
+            var appDataFolderAllg = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData); // Allgemeines Datenverzeichnis für Anwendungen
+            var dataSource = Path.Combine(appDataFolderAllg, "tempdb.mdb");     // Temporäre Datenbank. Sie enthält die komprimierten Daten. Darf ab Windows 7 nicht im Anwendungsverzeichnis liegen
+            var objParams = new object[] { connectionString, "Provider=Microsoft.Jet.OLEDB.4.0;Data" + " Source=" + dataSource + ";Jet OLEDB:Engine Type=5" };
+
+            try
+            {
+                // Falls die temporäre Datenbank, welche beim Komprimieren erstellt
+                // wird, existiert, diese zuerst löschen
+                if (File.Exists(dataSource))
+                {
+                    File.Delete(dataSource);
+                }
+
+                // CompactDatabase Methode des JRO Objekts aufrufen
+                // Parameter-Array übergeben
+                objJro.GetType().InvokeMember(
+                    "CompactDatabase",
+                    System.Reflection.BindingFlags.InvokeMethod,
+                    null,
+                    objJro,
+                    objParams);
+
+                // Datenbank ist jetzt komprimiert ( in der Datei tempdb.mdb )
+                // Sie muss jetzt auf die alte Datenbankdatei kopiert und dann gelöscht werden
+                File.Delete(mdbfilename);                                       // Ursprüngliche Datenbank löschen, dass beim anschießenden Kopieren keine Abfrage kommt
+                File.Move(dataSource, mdbfilename);                             // Komprimierte Datenbank auf die ursprüngliche Datenbank bewegen, damit temporäre Datenbank gelöscht wird
+            }
+            catch (Exception ex)
+            {
+                // Beim Komprimieren ist ein Fehler aufgetraten, überprüfen, ob Datenbank überhaut erreichbar ist
+                if (datenBankPfad != string.Empty)
+                {
+                    // Falls das angegebene Datenbank-Verzeichnis nicht existiert, soll es erstellt werden
+                    if (!Directory.Exists(datenBankPfad))
+                    {
+                        try
+                        {
+                            Directory.CreateDirectory(datenBankPfad);
+                        }
+                        catch
+                        {
+                            var meldung = string.Format("Auf den Pfad {0} kann nicht zugegriffen werden, Bitte einen anderen auswählen!",
+                                datenBankPfad);
+                            MessageBox.Show(meldung);
+                        }
+                    }
+                    else
+                    {
+                        // Beim Komprimieren ist ein Fehler aufgetreten, diesen anzeigen
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+
+            // Aufräumungsarbeiten durchführen
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(objJro);
+        }
+
+        #endregion Datenbank-Komprimierung
+
+        #region DataConnection
+
+        /// <summary>
+        /// Verbindung zur Datenbank ermitteln.
+        /// </summary>
+        /// <exception cref="Exception">Wenn Verbindung fehlgeschlagen ist</exception>
+        private void GetDataConnection()
+        {
+            try
+            {
+                // a) Verbindung flexTool E05
+                    if (oleDbConnection1.State == ConnectionState.Open)
+                        this.oleDbConnection1.Close();
+                    oleDbConnection1.Open();                                                           // Verbindung zur Datenbank öffnen
+
+                if (oleDbConnection1.State == ConnectionState.Open)
+                {
+                    // Beide Grids mit Daten füllen
+                    dataSetFlexToolGeberDaten.Tables["Geberchip"].Clear();                         // Inhalt des Datensatzes für Geberdaten E05 löschen..
+                    oleDbDataAdapter1.Fill(dataSetFlexToolGeberDaten.Tables["Geberchip"]);         // .. und neue Daten einlesen
+                    dataSetFlexToolMotorDaten.Tables["Motorchip"].Clear();                         // Inhalt des Datensatzes für Motordaten E05 löschen..
+                    oleDbDataAdapter2.Fill(dataSetFlexToolMotorDaten.Tables["Motorchip"]);         // .. und neue Daten einlesen
+                }
+
+                // b) Verbindung Fügemodul
+                if (oleDbConnection3.State == ConnectionState.Open)
+                    this.oleDbConnection3.Close();
+                oleDbConnection3.Open();                                                            // Verbindung zur Datenbank für Fügemodul öffnen
+
+                if (oleDbConnection3.State == ConnectionState.Open)
+                {
+                    // Grid mit Daten füllen
+                    datasetFuegeModul.Tables["Chipinfos"].Clear();                                  // Inhalt des Datensatzes für Fügemoduldaten löschen..
+                    oleDbDataAdapter3.Fill(datasetFuegeModul.Tables["Chipinfos"]);                  // .. und neue Daten einlesen
+                }
+
+                // c) Verbindung flexTool E12
+                if (oleDbConnection4.State == ConnectionState.Open)
+                    this.oleDbConnection4.Close();
+                oleDbConnection4.Open();                                                            // Verbindung zur Datenbank öffnen
+
+                if (oleDbConnection4.State == ConnectionState.Open)
+                {
+                    // Beide Grids mit Daten füllen
+                    dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Clear();                       // Inhalt des Datensatzes für Geberdaten E12 löschen..
+                    oleDbDataAdapter4.Fill(dataSetFlexToolGeberDatenE12.Tables["Geberchip"]);       // .. und neue Daten einlesen
+                    dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Clear();                       // Inhalt des Datensatzes für Motordaten E12 löschen..
+                    oleDbDataAdapter5.Fill(dataSetFlexToolMotorDatenE12.Tables["Motorchip"]);       // .. und neue Daten einlesen
+                }
+            }
+            catch (Exception ex)
+            {
+                // Aufgetretene Ausnahme anzeigen
+                MessageBox.Show(
+                    Resources.HauptForm_GetDataConnection_Fehler___ + ex.Message,
+                    Resources.HauptForm_GetDataConnection_Verbindung_zur_Datenbank_fehlgeschlagen,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Application.Exit();                                             // Programm beenden
+            }
+        }
+
+        #endregion DataConnection
+
+        #region DatasetAction
+
+        /// <summary>
+        /// Bestimme die momentane Position im Datensatz und zeige sie in der Statusbar an
+        /// </summary>
+        private void DisplayRecordNumbers()
+        {
+            if (hochlauf || uebertragung)
+            {
+                // Beim Hochlauf und bei der Übertragung nicht auf die Bindmanager zugreifen
+                return;
+            }
+
+            var reglerEinstellen = true;                                        // Position im Bindmanager darf geändert werden
+
+            // Überprüfen, welches Werkzeug angewählt ist
+            switch (WerkzeugArt)
+            {
+                case (ushort)Werkzeug.FlexToolE05:
+                    {
+                        // Werkzeug ist ein FlexTool E05-Werkzeug, daher auswählen, ob Geber- oder Motorchip bearbeitet werden soll
+                        if (geberEingabe)
+                        {
+                            // Es handelt sich um Geberdaten
+                            if (bindManagerGeber != null)
+                            {
+                                // Geberdaten
+                                if (rowIndex >= 0)
+                                {
+                                    try
+                                    {
+                                        // Datensatzinfo in der Statuszeile anzeigen
+                                        if (!LeeresWerkZeug)
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeber.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_ + this.dataSetFlexToolGeberDaten.Tables["Geberchip"].Rows[rowIndex]["Seriennummer"];
+                                        }
+                                        else
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeber.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        reglerEinstellen = false;               // Position im Bindmanager nicht verstellen
+                                        statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeber.Count;
+                                    }
+                                }
+                                else
+                                {
+                                    reglerEinstellen = false;                   // Position im Bindmanager nicht verstellen
+                                    statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeber.Count;
+                                }
+
+                                if (bindManagerGeber.Count > 0)
+                                {
+                                    sliderFlexTool.Maximum = bindManagerGeber.Count - 1; // Maximalwert des Sliders festlegen
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Es handelt sich um Motordaten
+                            if (bindManagerMotor != null)
+                            {
+                                // Motordaten
+                                if (rowIndex >= 0)
+                                {
+                                    try
+                                    {
+                                        // Datensatzinfo in der Statuszeile anzeigen
+                                        if (!LeeresWerkZeug)
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotor.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_ + this.dataSetFlexToolMotorDaten.Tables["Motorchip"].Rows[rowIndex]["Seriennummer Spindel"];
+                                        }
+                                        else
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotor.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        reglerEinstellen = false;               // Position im Bindmanager nicht verstellen
+                                        statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotor.Count;
+                                    }
+                                }
+                                else
+                                {
+                                    reglerEinstellen = false;               // Position im Bindmanager nicht verstellen
+                                    statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotor.Count;
+                                }
+
+                                if (bindManagerMotor.Count > 0)
+                                {
+                                    sliderFlexTool.Maximum = bindManagerMotor.Count - 1; // Maximalwert des Sliders festlegen
+                                }
+                            }
+                        }
+
+                        // Slider auf ausgewählte Position stellen
+                        // Wenn kein Datensatz vorhanden ist, Slider ausblenden
+                        if (rowIndex >= 0)
+                        {
+                            // Falls der Index höher ist als die Anzahl Zeilen (kommt nach dem Löschen vor),
+                            // auf den Maximalwert setzen
+                            if (rowIndex > sliderFlexTool.Maximum)
+                            {
+                                rowIndex = sliderFlexTool.Maximum;
+                            }
+
+                            sliderFlexTool.Value = rowIndex;
+                            sliderFlexTool.Visible = true;
+                        }
+                        else
+                        {
+                            // Abfragen, ob Position im Bindmanager verändert werden darf
+                            if (reglerEinstellen)
+                            {
+                                // Position im Bindmanager darf verstellt werden
+                                sliderFlexTool.Value = sliderFlexTool.Minimum;
+                                sliderFlexTool.Visible = false;
+                            }
+                        }
+
+                        break;
+                    }
+
+                case (ushort)Werkzeug.FuegeModul:
+                    {
+                        // Werkzeug ist ein Fügemodul
+                        if (bindManagerFuegeModul != null)
+                        {
+                            // Fügemoduldaten
+                            if (rowIndex >= 0)
+                            {
+                                try
+                                {
+                                    // Datensatzinfo in der Statuszeile anzeigen
+                                    if (!LeeresWerkZeug)
+                                    {
+                                        statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____ +
+                                            (this.rowIndex + 1) +
+                                            Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerFuegeModul.Count +
+                                            Resources.HauptForm_DisplayRecordNumbers_ + this.datasetFuegeModul.Tables["Chipinfos"].Rows[rowIndex]["Seriennummer Spindel"];
+                                    }
+                                    else
+                                    {
+                                        statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____ +
+                                            (this.rowIndex + 1) +
+                                            Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerFuegeModul.Count +
+                                            Resources.HauptForm_DisplayRecordNumbers_;
+                                    }
+                                }
+                                catch
+                                {
+                                    reglerEinstellen = false;                   // Position im Bindmanager nicht verstellen
+                                    statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerFuegeModul.Count;
+                                }
+                            }
+                            else
+                            {
+                                reglerEinstellen = false;                       // Position im Bindmanager nicht verstellen
+                                statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerFuegeModul.Count;
+                            }
+
+                            if (bindManagerFuegeModul.Count > 0)
+                            {
+                                sliderFuegeModul.Maximum = bindManagerFuegeModul.Count - 1; // Maximalwert des Sliders festlegen
+                            }
+                        }
+
+                        // Slider auf ausgewählte Position stellen
+                        // Wenn kein Datensatz vorhanden ist, Slider ausblenden
+                        sliderFlexTool.Visible = false;                         // Slider für FlexTool-Werkzeug ausblenden
+                        if (rowIndex > 0)
+                        {
+                            // Falls der Index höher ist als die Anzahl Zeilen (kommt nach dem Löschen vor),
+                            // auf den Maximalwert setzen
+                            if (rowIndex > sliderFuegeModul.Maximum)
+                            {
+                                rowIndex = sliderFuegeModul.Maximum;
+                            }
+
+                            sliderFuegeModul.Value = rowIndex;
+                            sliderFuegeModul.Visible = true;
+                        }
+                        else
+                        {
+                            // Abfragen, ob Position im Bindmanager verändert werden darf
+                            if (reglerEinstellen)
+                            {
+                                sliderFuegeModul.Value = sliderFuegeModul.Minimum;
+                                sliderFuegeModul.Visible = false;
+                            }
+                        }
+
+                        break;
+                    }
+
+                case (ushort)Werkzeug.FlexToolE12:
+                    {
+                        // Werkzeug ist ein FlexTool E12-Werkzeug, daher auswählen, ob Geber- oder Motorchip bearbeitet werden soll
+                        if (geberEingabe)
+                        {
+                            // Es handelt sich um Geberdaten
+                            if (bindManagerGeberE12 != null)
+                            {
+                                // Geberdaten
+                                if (rowIndex >= 0)
+                                {
+                                    try
+                                    {
+                                        // Datensatzinfo in der Statuszeile anzeigen
+                                        if (!LeeresWerkZeug)
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeberE12.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_ + this.dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Rows[rowIndex]["Seriennummer"];
+                                        }
+                                        else
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeberE12.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        reglerEinstellen = false;               // Position im Bindmanager nicht verstellen
+                                        statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeberE12.Count;
+                                    }
+                                }
+                                else
+                                {
+                                    reglerEinstellen = false;                   // Position im Bindmanager nicht verstellen
+                                    statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerGeberE12.Count;
+                                }
+
+                                if (bindManagerGeberE12.Count > 0)
+                                {
+                                    sliderFlexToolE12.Maximum = bindManagerGeberE12.Count - 1; // Maximalwert des Sliders festlegen
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Es handelt sich um Motordaten
+                            if (bindManagerMotorE12 != null)
+                            {
+                                // Motordaten
+                                if (rowIndex >= 0)
+                                {
+                                    try
+                                    {
+                                        // Datensatzinfo in der Statuszeile anzeigen
+                                        if (!LeeresWerkZeug)
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotorE12.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_ + this.dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Rows[rowIndex]["Seriennummer Spindel"];
+                                        }
+                                        else
+                                        {
+                                            statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ +
+                                                (this.rowIndex + 1) +
+                                                Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotorE12.Count +
+                                                Resources.HauptForm_DisplayRecordNumbers_;
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        reglerEinstellen = false;               // Position im Bindmanager nicht verstellen
+                                        statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotorE12.Count;
+                                    }
+                                }
+                                else
+                                {
+                                    reglerEinstellen = false;                   // Position im Bindmanager nicht verstellen
+                                    statusBar.Panels["tcurrentDirectory"].Text = Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerMotorE12.Count;
+                                }
+
+                                if (bindManagerMotorE12.Count > 0)
+                                {
+                                    sliderFlexToolE12.Maximum = bindManagerMotorE12.Count - 1; // Maximalwert des Sliders festlegen
+                                }
+                            }
+                        }
+
+                        // Slider auf ausgewählte Position stellen
+                        // Wenn kein Datensatz vorhanden ist, Slider ausblenden
+                        if (rowIndex >= 0)
+                        {
+                            // Falls der Index höher ist als die Anzahl Zeilen (kommt nach dem Löschen vor),
+                            // auf den Maximalwert setzen
+                            if (rowIndex > sliderFlexToolE12.Maximum)
+                            {
+                                rowIndex = sliderFlexToolE12.Maximum;
+                            }
+
+                            sliderFlexToolE12.Value = rowIndex;
+                            sliderFlexToolE12.Visible = true;
+                        }
+                        else
+                        {
+                            // Abfragen, ob Position im Bindmanager verändert werden darf
+                            if (reglerEinstellen)
+                            {
+                                // Position im Bindmanager darf verstellt werden
+                                sliderFlexToolE12.Value = sliderFlexToolE12.Minimum;
+                                sliderFlexToolE12.Visible = false;
+                            }
+                        }
+
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// Index der aktiven Zeile ermitteln.
+        /// </summary>
+        private void GetRowIndex()
+        {
+            // Überprüfen, welches Werkzeug angewählt ist
+            switch (WerkzeugArt)
+            {
+                case (ushort)Werkzeug.FlexToolE05:
+                    {
+                        this.GetRowIndexFlexToolE05();                          // Index der aktiven Zeile bei FlexTool E05 ermitteln
+                        break;
+                    }
+
+                case (ushort)Werkzeug.FuegeModul:
+                    {
+                        this.GetRowIndexFuegemodul();                           // Index der aktiven Zeile bei Fügemodul ermitteln
+                        break;
+                    }
+
+                case (ushort)Werkzeug.FlexToolE12:
+                    {
+                        this.GetRowIndexFlexToolE12();                          // Index der aktiven Zeile bei FlexTool E12 ermitteln
+                        break;
+                    }
+            }
+
+            this.DisplayRecordNumbers();                                        // Momentane Position im Datensatz anzeigen
+        }
+
+        /// <summary>
+        /// Index der aktiven Zeile bei FlexTool E05 ermitteln.
+        /// </summary>
+        private void GetRowIndexFlexToolE05()
+        {
+            // Es ist ein flexTool E05-Werkzeug ausgewählt -> Überprüfen, welche Tabelle bearbeitet wird
+            if (geberEingabe)
+            {
+                // Es wird die Tabelle für Geberdaten bearbeitet
+                if (ultraGridGeber.ActiveRow == null)
+                {
+                    return;                                                     // Abbrechen, wenn keine aktive Zeile beim Grid für Geberdaten
+                }
+
+                if (bindManagerGeber != null)
+                {
+                    if (bindManagerGeber.Position < dataSetFlexToolGeberDaten.Tables["Geberchip"].Rows.Count && bindManagerGeber.Position >= 0)
+                    {
+                        var aktIndex = ultraGridGeber.ActiveRow.Index;          // Index der aktiven Zeile im Grid ermitteln
+                        this.indexNummerAktiveZeile = ultraGridGeber.Rows[aktIndex].Cells[0].Value.ToString(); // Zugehöriger Wert der Spalte 'Index' im Datensatz
+
+                        // Index im Bindmanager suchen, dazu alle Zeilen durchgehen
+                        for (var pos = 0; pos < bindManagerGeber.Count; pos++)
+                        {
+                            bindManagerGeber.Position = pos;                    // Auf eine Zeile im Bindmanager positionieren
+
+                            // Überprüfen, ob es sich um eine gelöschte Zeile handelt. Auf gelöschte Zeilen kann nicht zugegriffen werden
+                            if (dataSetFlexToolGeberDaten.Tables["Geberchip"].Rows[pos].RowState == DataRowState.Deleted)
+                            {
+                                continue;
+                            }
+
+                            var indexTest = Convert.ToInt32(dataSetFlexToolGeberDaten.Tables["Geberchip"].Rows[bindManagerGeber.Position][0]); // Index des Datensatzes ermitteln
+
+                            // Indizes vergleichen. Ist der BindingManager inaktiv, ist die Position negativ
+                            if (indexTest != Convert.ToInt32(this.indexNummerAktiveZeile) || bindManagerGeber.Position < 0)
+                            {
+                                continue;                                       // Index nicht gefunden, also weitersuchen
+                            }
+
+                            // Index des gesuchten Datensatzes gefunden, Position im Bindingmanager für Übertragung merken
+                            this.rowIndex = this.bindManagerGeber.Position;
+                            this.indexNummer = this.dataSetFlexToolGeberDaten.Tables["Geberchip"].Rows[this.bindManagerGeber.Position][0].ToString();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Es wird die Tabelle für Motordaten bearbeitet
+                if (ultraGridMotor.ActiveRow == null)
+                {
+                    return;                                                     // Abbrechen, wenn keine aktive Zeile beim Grid für Motordaten
+                }
+
+                if (bindManagerMotor != null)
+                {
+                    if (bindManagerMotor.Position < dataSetFlexToolMotorDaten.Tables["Motorchip"].Rows.Count && bindManagerMotor.Position >= 0)
+                    {
+                        var aktIndex = ultraGridMotor.ActiveRow.Index;          // Index der aktiven Zeile im Grid ermitteln
+                        this.indexNummerAktiveZeile = ultraGridMotor.Rows[aktIndex].Cells[0].Value.ToString(); // Zugehöriger Wert der Spalte 'Index' im Datensatz
+
+                        // Index im Bindmanager suchen, dazu alle Zeilen durchgehen
+                        for (var pos = 0; pos < bindManagerMotor.Count; pos++)
+                        {
+                            bindManagerMotor.Position = pos;                    // Auf eine Zeile im Bindmanager positionieren
+
+                            // Überprüfen, ob es sich um eine gelöschte Zeile handelt. Auf gelöschte Zeilen kann nicht zugegriffen werden
+                            if (dataSetFlexToolMotorDaten.Tables["Motorchip"].Rows[pos].RowState == DataRowState.Deleted)
+                            {
+                                continue;
+                            }
+
+                            var indexTest = Convert.ToInt32(dataSetFlexToolMotorDaten.Tables["Motorchip"].Rows[bindManagerMotor.Position][0]); // Index des Datensatzes ermitteln
+
+                            // Indizes vergleichen. Ist der BindingManager inaktiv, ist die Position negativ
+                            if (indexTest != Convert.ToInt32(this.indexNummerAktiveZeile) || bindManagerMotor.Position < 0)
+                            {
+                                continue;                                       // Index nicht gefunden, also weitersuchen
+                            }
+
+                            // Index des gesuchten Datensatzes gefunden, Position im Bindingmanager für Übertragung merken
+                            this.rowIndex = this.bindManagerMotor.Position;
+                            this.indexNummer = this.dataSetFlexToolMotorDaten.Tables["Motorchip"].Rows[this.bindManagerMotor.Position][0].ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Index der aktiven Zeile bei FlexTool E12 ermitteln.
+        /// </summary>
+        private void GetRowIndexFlexToolE12()
+        {
+            // Es ist ein flexTool E12-Werkzeug ausgewählt -> Überprüfen, welche Tabelle bearbeitet wird
+            if (geberEingabe)
+            {
+                // Es wird die Tabelle für Geberdaten bearbeitet
+                if (ultraGridGeberE12.ActiveRow == null)
+                {
+                    return;                                                     // Abbrechen, wenn keine aktive Zeile beim Grid für Geberdaten
+                }
+
+                if (bindManagerGeberE12 != null)
+                {
+                    if (bindManagerGeberE12.Position < dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Rows.Count && bindManagerGeberE12.Position >= 0)
+                    {
+                        var aktIndex = ultraGridGeberE12.ActiveRow.Index; // Index der aktiven Zeile im Grid ermitteln
+                        this.indexNummerAktiveZeile = ultraGridGeberE12.Rows[aktIndex].Cells[0].Value.ToString(); // Zugehöriger Wert der Spalte 'Index' im Datensatz
+
+                        // Index im Bindmanager suchen, dazu alle Zeilen durchgehen
+                        for (var pos = 0; pos < bindManagerGeberE12.Count; pos++)
+                        {
+                            bindManagerGeberE12.Position = pos;                 // Auf eine Zeile im Bindmanager positionieren
+
+                            // Überprüfen, ob es sich um eine gelöschte Zeile handelt. Auf gelöschte Zeilen kann nicht zugegriffen werden
+                            if (dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Rows[pos].RowState == DataRowState.Deleted)
+                            {
+                                continue;
+                            }
+
+                            var indexTest = Convert.ToInt32(dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Rows[bindManagerGeberE12.Position][0]); // Index des Datensatzes ermitteln
+
+                            // Indizes vergleichen. Ist der BindingManager inaktiv, ist die Position negativ
+                            if (indexTest != Convert.ToInt32(this.indexNummerAktiveZeile) || bindManagerGeberE12.Position < 0)
+                            {
+                                continue;                                       // Index nicht gefunden, also weitersuchen
+                            }
+
+                            // Index des gesuchten Datensatzes gefunden, Position im Bindingmanager für Übertragung merken
+                            this.rowIndex = this.bindManagerGeberE12.Position;
+                            this.indexNummer = this.dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Rows[this.bindManagerGeberE12.Position][0].ToString();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Es wird die Tabelle für Motordaten bearbeitet
+                if (ultraGridMotorE12.ActiveRow == null)
+                {
+                    return;                                                     // Abbrechen, wenn keine aktive Zeile beim Grid für Motordaten
+                }
+
+                if (bindManagerMotorE12 != null)
+                {
+                    if (bindManagerMotorE12.Position < dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Rows.Count && bindManagerMotorE12.Position >= 0)
+                    {
+                        var aktIndex = ultraGridMotorE12.ActiveRow.Index;       // Index der aktiven Zeile im Grid ermitteln
+                        this.indexNummerAktiveZeile = ultraGridMotorE12.Rows[aktIndex].Cells[0].Value.ToString(); // Zugehöriger Wert der Spalte 'Index' im Datensatz
+
+                        // Index im Bindmanager suchen, dazu alle Zeilen durchgehen
+                        for (var pos = 0; pos < bindManagerMotorE12.Count; pos++)
+                        {
+                            bindManagerMotorE12.Position = pos;                 // Auf eine Zeile im Bindmanager positionieren
+
+                            // Überprüfen, ob es sich um eine gelöschte Zeile handelt. Auf gelöschte Zeilen kann nicht zugegriffen werden
+                            if (dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Rows[pos].RowState == DataRowState.Deleted)
+                            {
+                                continue;
+                            }
+
+                            var indexTest = Convert.ToInt32(dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Rows[bindManagerMotorE12.Position][0]); // Index des Datensatzes ermitteln
+
+                            // Indizes vergleichen. Ist der BindingManager inaktiv, ist die Position negativ
+                            if (indexTest != Convert.ToInt32(this.indexNummerAktiveZeile) || bindManagerMotorE12.Position < 0)
+                            {
+                                continue;                                       // Index nicht gefunden, also weitersuchen
+                            }
+
+                            // Index des gesuchten Datensatzes gefunden, Position im Bindingmanager für Übertragung merken
+                            this.rowIndex = this.bindManagerMotorE12.Position;
+                            this.indexNummer = this.dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Rows[this.bindManagerMotorE12.Position][0].ToString();
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Index der aktiven Zeile bei Fügemodul ermitteln.
+        /// </summary>
+        private void GetRowIndexFuegemodul()
+        {
+            // Es ist ein Fügemodul-Werkzeug ausgewählt
+            if (this.ultraGridFuegemodul.ActiveRow == null)
+            {
+                return;                                                         // Abbruch, da keine aktive Zeile beim Grid für Fügemodul-Daten
+            }
+
+            if (this.bindManagerFuegeModul == null) return;
+            if (this.bindManagerFuegeModul.Position >= this.datasetFuegeModul.Tables["Chipinfos"].Rows.Count ||
+                this.bindManagerFuegeModul.Position < 0) return;
+            
+            var aktIndex = this.ultraGridFuegemodul.ActiveRow.Index; // Index der aktiven Zeile im Grid ermitteln
+            this.indexNummerAktiveZeile = ultraGridFuegemodul.Rows[aktIndex].Cells[0].Value.ToString(); // Zugehöriger Wert der Spalte 'Index' im Datensatz
+
+            // Index im Bindmanager suchen, dazu alle Zeilen durchgehen
+            for (var pos = 0; pos < this.bindManagerFuegeModul.Count; pos++)
+            {
+                this.bindManagerFuegeModul.Position = pos;       // Auf eine Zeile im Bindmanager positionieren
+
+                // Überprüfen, ob es sich um eine gelöschte Zeile handelt. Auf gelöschte Zeilen kann nicht zugegriffen werden
+                if (this.datasetFuegeModul.Tables["Chipinfos"].Rows[pos].RowState == DataRowState.Deleted)
+                {
+                    continue;
+                }
+
+                var indexTest = Convert.ToInt32(this.datasetFuegeModul.Tables["Chipinfos"].Rows[this.bindManagerFuegeModul.Position][0]); // Index des Datensatzes ermitteln
+
+                // Indizes vergleichen. Ist der BindingManager inaktiv, ist die Position negativ
+                if (indexTest != Convert.ToInt32(this.indexNummerAktiveZeile) || this.bindManagerFuegeModul.Position < 0)
+                {
+                    continue;                               // Index nicht gefunden, also weitersuchen
+                }
+
+                // Index des gesuchten Datensatzes gefunden, Position im Bindingmanager für Übertragung merken
+                this.rowIndex = this.bindManagerFuegeModul.Position;
+                this.indexNummer = this.datasetFuegeModul.Tables["Chipinfos"].Rows[this.bindManagerFuegeModul.Position][0].ToString();
+            }
+        }
+
+        /// <summary>
+        /// Abfrage auf Datenbank ausführen.
+        /// Die Verbindung zur Datenbank steht in der Variablen <see cref="oleDbConnection1" />
+        /// </summary>
+        /// <param name="strQuery">Der  Abfrageausdruck.</param>
+        /// <returns>Anzahl der betroffenen Zeilen, bei einem Fehler -1</returns>
+        /// <exception cref="Exception">Wenn Abfrage fehlgeschlagen ist</exception>
+        private int ExecuteQuery(string strQuery)
+        {
+            var ret = 0;
+            try
+            {
+                // Werkzeug ermitteln
+                switch (WerkzeugArt)
+                {
+                    case (ushort)Werkzeug.FlexToolE05:
+                        {
+                            // Es ist ein flexTool-Werkzeug für E05 ausgewählt
+                            this.oleDbCommand1 = new OleDbCommand(strQuery, this.oleDbConnection1) { CommandType = CommandType.Text }; // Neue Instanz des Abfragekommandos erzeugen
+                            ret = this.oleDbCommand1.ExecuteNonQuery();         // Abfrage durchführen
+                            break;
+                        }
+
+                    case (ushort)Werkzeug.FuegeModul:
+                        {
+                            // Es ist ein Fügemodul-Werkzeug ausgewählt
+                            this.oleDbCommand1 = new OleDbCommand(strQuery, this.oleDbConnection3) { CommandType = CommandType.Text }; // Neue Instanz des Abfragekommandos erzeugen
+                            ret = this.oleDbCommand1.ExecuteNonQuery();         // Abfrage durchführen
+                            break;
+                        }
+
+                    case (ushort)Werkzeug.FlexToolE12:
+                        {
+                            // Es ist ein flexTool-Werkzeug für E12 ausgewählt
+                            this.oleDbCommand1 = new OleDbCommand(strQuery, this.oleDbConnection4) { CommandType = CommandType.Text }; // Neue Instanz des Abfragekommandos erzeugen
+                            ret = this.oleDbCommand1.ExecuteNonQuery();         // Abfrage durchführen
+                            break;
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Falls schief gelaufen, Grund anzeigen
+                MessageBox.Show(ex.ToString(), Resources.HauptForm_ExecuteQuery_Fehler_beim_Speichern_der_Daten, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+           return ret;                                                          // Ergebnis zurückgeben                                          
+        }
+
+        /// <summary>
+        /// Datensätze im DataAdapter auffrischen.
+        /// </summary>
+        private void RefreshDataSet()
+        {
+            switch (WerkzeugArt)
+            {
+                case (ushort)Werkzeug.FlexToolE05:
+                    this.RefreshDataSetE05();                                   // Dataset für FlexTool E05-Werkzeug auffrischen
+                    break;
+                case (ushort)Werkzeug.FlexToolE12:
+                    this.RefreshDataSetE12();                                   // Dataset für FlexTool E12-Werkzeug auffrischen
+                    break;
+                case (ushort)Werkzeug.FuegeModul:
+                    this.RefreshDataSetFuegeModul();                            // Dataset für Fügemodul-Werkzeug auffrischen
+                    break;
+            }
+
+            this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
+        }
+
+        /// <summary>
+        /// Datensätze im DataAdapter für FlexTool E05 auffrischen.
+        /// </summary>
+        private void RefreshDataSetE05()
+        {
+            var index = -1;                                                     // Damit bei einem Fehler keine Zeile aktiviert wird
+
+            // Werkzeug ist ein flexTool
+            // Tabelle ermitteln
+            if (geberEingabe)
+            {
+                // Es handelt sich um eine Geberdateneingabe
+                if (ultraGridGeber.ActiveRow != null)
+                {
+                    index = ultraGridGeber.ActiveRow.Index;                     // Index der aktive Zeile des Grids ermitteln
+                }
+
+                dataSetFlexToolGeberDaten.Tables["Geberchip"].Clear();                  // Inhalt des Datensatzes für Geberdaten löschen..
+                oleDbDataAdapter1.Fill(dataSetFlexToolGeberDaten.Tables["Geberchip"]);  // .. und neu laden
+
+                if (index >= 0)
+                {
+                    if (index >= ultraGridGeber.Rows.Count)
+                    {
+                        index = ultraGridGeber.Rows.Count - 1;
+                    }
+
+                    // Falls Einfügen durch Fehler abgebrochen wurde, darf keine Zeile aktiviert werden
+                    if (index < 0)
+                    {
+                        return;
+                    }
+
+                    this.ultraGridGeber.Refresh();                              // Bildschirmanzeige auffrischen
+                    this.ultraGridGeber.Rows[index].Activate();                 // betroffene Zeile aktivieren      
+                }
+            }
+            else
+            {
+                // Es handelt sich um eine Motordateneingabe
+                if (ultraGridMotor.ActiveRow != null)
+                {
+                    index = ultraGridMotor.ActiveRow.Index;                     // Index der aktive Zeile des Grids ermitteln
+                }
+
+                dataSetFlexToolMotorDaten.Tables["Motorchip"].Clear();                 // Inhalt des Datensatzes für Motordaten löschen..
+                oleDbDataAdapter2.Fill(dataSetFlexToolMotorDaten.Tables["Motorchip"]); // .. und neu laden
+
+                if (index >= 0)
+                {
+                    if (index >= ultraGridMotor.Rows.Count)
+                    {
+                        index = ultraGridMotor.Rows.Count - 1;
+                    }
+
+                    // Falls Einfügen durch Fehler abgebrochen wurde, darf keine Zeile aktiviert werden
+                    if (index < 0)
+                    {
+                        return;
+                    }
+
+                    this.ultraGridMotor.Refresh();                              // Bildschirmanzeige auffrischen
+                    this.ultraGridMotor.Rows[index].Activate();                 // betroffene Zeile aktivieren      
+                }
+                
+                
+                if (index >= 0)
+                {
+                    if (index >= ultraGridMotor.Rows.Count)
+                    {
+                        index = ultraGridMotor.Rows.Count - 1;
+                    }
+
+                    ultraGridMotor.Rows[index].Activate();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Datensätze im DataAdapter für FlexTool E12 auffrischen.
+        /// </summary>
+        private void RefreshDataSetE12()
+        {
+            var index = -1;                                                     // Damit bei einem Fehler keine Zeile aktiviert wird
+
+            // Werkzeug ist ein flexTool
+            // Tabelle ermitteln
+            if (geberEingabe)
+            {
+                // Es handelt sich um eine Geberdateneingabe
+                if (ultraGridGeberE12.ActiveRow != null)
+                {
+                    index = ultraGridGeberE12.ActiveRow.Index;                  // Index der aktive Zeile des Grids ermitteln
+                }
+
+                dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Clear();                  // Inhalt des Datensatzes für Geberdaten löschen..
+                oleDbDataAdapter4.Fill(dataSetFlexToolGeberDatenE12.Tables["Geberchip"]);  // .. und neu laden
+
+                if (index >= 0)
+                {
+                    if (index >= ultraGridGeberE12.Rows.Count)
+                    {
+                        index = ultraGridGeberE12.Rows.Count - 1;
+                    }
+
+                    // Falls Einfügen durch Fehler abgebrochen wurde, darf keine Zeile aktiviert werden
+                    if (index < 0)
+                    {
+                        return;
+                    }
+
+                    this.ultraGridGeberE12.Refresh();                           // Bildschirmanzeige auffrischen
+                    this.ultraGridGeberE12.Rows[index].Activate();              // betroffene Zeile aktivieren      
+                }
+            }
+            else
+            {
+                // Es handelt sich um eine Motordateneingabe
+                if (ultraGridMotorE12.ActiveRow != null)
+                {
+                    index = ultraGridMotorE12.ActiveRow.Index;                  // Index der aktive Zeile des Grids ermitteln
+                }
+
+                dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Clear();                 // Inhalt des Datensatzes für Motordaten löschen..
+                oleDbDataAdapter5.Fill(dataSetFlexToolMotorDatenE12.Tables["Motorchip"]); // .. und neu laden
+                if (index >= 0)
+                {
+                    if (index >= ultraGridMotorE12.Rows.Count)
+                    {
+                        index = ultraGridMotorE12.Rows.Count - 1;
+                    }
+
+                    // Falls Einfügen durch Fehler abgebrochen wurde, darf keine Zeile aktiviert werden
+                    if (index < 0)
+                    {
+                        return;
+                    }
+
+                    this.ultraGridMotorE12.Refresh();                           // Bildschirmanzeige auffrischen
+                    this.ultraGridMotorE12.Rows[index].Activate();              // betroffene Zeile aktivieren      
+                }
+            }
+        }
+
+        /// <summary>
+        /// Datensätze im DataAdapter für FlexTool E12 auffrischen.
+        /// </summary>
+        private void RefreshDataSetFuegeModul()
+        {
+            var index = -1;                                                     // Damit bei einem Fehler keine Zeile aktiviert wird
+
+            // Werkzeug ermitteln
+            if (!this.fuegeModulEingabe)
+            {
+                return;                                                         // Abbruch, da keine Fügemoduleingabe
+            }
+
+            if (this.ultraGridFuegemodul.ActiveRow != null)
+            {
+                index = this.ultraGridFuegemodul.ActiveRow.Index;               // Index der aktive Zeile des Grids ermitteln
+            }
+
+            // Werkzeug ist ein Fügemodul
+            this.datasetFuegeModul.Tables["Chipinfos"].Clear();                 // Inhalt des Datensatzes für Fügemoduldaten löschen..
+            this.oleDbDataAdapter3.Fill(this.datasetFuegeModul.Tables["Chipinfos"]);  // .. und neu laden
+            if (index >= 0)
+            {
+                if (index >= ultraGridFuegemodul.Rows.Count)
+                {
+                    index = ultraGridFuegemodul.Rows.Count - 1;
+                }
+
+                // Falls Einfügen durch Fehler abgebrochen wurde, darf keine Zeile aktiviert werden
+                if (index < 0)
+                {
+                    return;
+                }
+
+                this.ultraGridFuegemodul.Refresh();                             // Bildschirmanzeige auffrischen
+                this.ultraGridFuegemodul.Rows[index].Activate();                // betroffene Zeile aktivieren      
+            }
+        }
+
+        #endregion DatasetAction
+
+        #region Datenbank laden
+
+        /// <summary>
+        /// Manager für Datenbankanbindungen zu den einzelnen Tabellen der Datenbank bereitstellen.
+        /// </summary>
+        private void LadeDatenBank()
+        {
+            this.GetDataConnection();                                           // Verbindung zur Datenbank herstellen
+
+            // a) FlexTool
+            bindManagerGeber = BindingContext[dataSetFlexToolGeberDaten.Tables["Geberchip"]]; // Verbindungsmanager für Geberdaten
+            bindManagerGeber.Position = 0;                                      // Auf 1. Datensatz positionieren
+
+            bindManagerMotor = BindingContext[dataSetFlexToolMotorDaten.Tables["Motorchip"]]; // Verbindungsmanager für Motordaten
+            bindManagerMotor.Position = 0;                                      // Auf 1. Datensatz positionieren
+            this.ParameterDateiEditor();
+
+            // b) Fügemodul
+            bindManagerFuegeModul = BindingContext[datasetFuegeModul.Tables["Chipinfos"]]; // Verbindungsmanager für Fügemodul-Daten
+            bindManagerFuegeModul.Position = 0;                                 // Auf 1. Datensatz positionieren
+
+            // c) FlexTool E12
+            bindManagerGeberE12 = BindingContext[dataSetFlexToolGeberDatenE12.Tables["Geberchip"]]; // Verbindungsmanager für Geberdaten
+            bindManagerGeberE12.Position = 0;                                      // Auf 1. Datensatz positionieren
+
+            bindManagerMotorE12 = BindingContext[dataSetFlexToolMotorDatenE12.Tables["Motorchip"]]; // Verbindungsmanager für Motordaten
+            bindManagerMotorE12.Position = 0;                                      // Auf 1. Datensatz positionieren
+
+            this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
+
+            // Neue Indexliste bereitstellen
+            this.indexListFlexToolE05 = new ArrayList();                        // Indexliste für FlexTool-Werkzeuge für E05 erstellen
+            this.indexListFuegeModul = new ArrayList();                         // Indexliste für Fügemodul-Werkzeuge erstellen
+            this.indexListFlexToolE12 = new ArrayList();                        // Indexliste für FlexTool-Werkzeuge für E12 erstellen
+        }
+
+        /// <summary>
+        /// Setzt für alle Zeilen der Motordaten für E05 den Editor 
+        /// für die Parameterdatei anhand der Version der Chipinfos.
+        /// </summary>
+        private void ParameterDateiEditor()
+        {
+            if (this.ultraGridMotor != null && this.ultraGridMotor.Rows != null)
+            {
+                // alle Zeilen durchgehen
+                var anzahlZeilen = this.bindManagerMotor.Count;
+                for (var row = 0; row < anzahlZeilen; row++)
+                {
+                    var version = Convert.ToInt32(this.ultraGridMotor.Rows[row].Cells["Version"].Value);
+                    this.SetzeMaskeParameterDatei(version, row);
+                }
+            }
+        }
+        #endregion Datenbank laden
+
+        #region Formular
+
+        /// <summary>
+        /// Behandelt das Load-Ereignis der Hauptform.
+        /// Hauptform wird geladen-
+        /// </summary>
+        // ReSharper disable once UnusedParameter.Local
+        private void HauptFormLoad(object sender, EventArgs eventArgs)
+        {
+            Theme.ColorTable = new RibbonProfesionalRendererColorTableBlack();
+            this.BackColor = Theme.ColorTable.RibbonBackground;                 // Hintergrundfarbe festlegen
+            this.StelleNeueDatenbankZurVerfuegung(false, null, null);           // Falls noch keine Datenbank vorhanden ist, leere zur Verfügung stellen
+            this.DatenBankUpdate();                                             // Vor dem Öffnen einer Datenbank muss FlexE12 aktualisiert werden, falls noch nicht geschehen
+            if (AbbruchDurchFehler) return;                                     // Abbrechen, falls beim Laden ein Fehler aufgetreten ist
+            this.LadeDatenBank();                                               // Manager für Datenverbindungen konfigurieren
+            // Auswahl der Ansicht der Grids auf "Sonstiges" setzen
+            this.ultraTabStripControlFlexTool.SelectedTab = this.ultraTabStripControlFlexTool.Tabs[0];
+            this.UltraTabStripControlE12SelectedTabChanged(null);
+            this.ultraTabStripFuegeModul.SelectedTab = this.ultraTabStripFuegeModul.Tabs[0];
+            // FlexTool E12-Werkzeug auswählen 
+            this.SetzeAufFlexToolE12();                                         // flexTool E12 als Werkzeug auswählen
+
+            // In der Kundenversion darf das Chip-Menü nicht angezeigt werden
+#if BMW
+                this.toolbarsManager.Tools["Chips"].SharedProps.Visible = false;
+#endif
+            this.hochlauf = false;                                              // Hochlauf ist beendet
+        }
+
+        /// <summary>
+        /// Behandelt das SelectedTabChanged-Ereignis des ultraTabStripControl1-Controls.
+        /// Tabulator wurde gewechselt
+        /// </summary>
+        /// <param name="e">Die <see cref="Infragistics.Win.UltraWinTabControl.SelectedTabChangedEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void UltraTabStripControl1SelectedTabChanged(TabEventArgs e)
+        {
+            // Zunächst alle Spalten beider Grids unsichtbar machen
+            int spalte;                                                         // Schleifenzähler
+            for (spalte = 0; spalte < ultraGridGeber.DisplayLayout.Bands[0].Columns.Count; spalte++)
+            {
+                ultraGridGeber.DisplayLayout.Bands[0].Columns[spalte].Hidden = true;
+            }
+
+            for (spalte = 0; spalte < ultraGridMotor.DisplayLayout.Bands[0].Columns.Count; spalte++)
+            {
+                ultraGridMotor.DisplayLayout.Bands[0].Columns[spalte].Hidden = true;
+            }
+
+
+            // Falls kein Tab übergeben wurde, Tab 0 vorgeben
+            var tab = e == null ? 0 : e.Tab.Index;
+            // Spalten je nach Tab-Auswahl (Art der anzuzeigenden Daten) anzeigen
+            switch (tab)
+            {
+                default:                                                         // Sonstige Daten
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Typbezeichnung"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Artikelnummer"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Seriennummer"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Version"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Auslieferdatum"].Hidden = false;
+
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Typbezeichnung"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Artikelnummer"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Seriennummer Spindel"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Seriennummer Motor"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Version"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Auslieferdatum"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Version Parameterdatei"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Servotyp"].Hidden = false;
+                    break;
+
+                case 1:                                                         // Drehmoment-Einstellungen
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Nennwert"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Md-Getriebefaktor"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Drehmoment invertiert"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Md-Übertragung"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Geberauflösung"].Hidden = false;
+
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Md-Max"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Einsatzbereich Min"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Einsatzbereich Max"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Drehmoment invertiert"].Hidden = false;
+                    break;
+
+                case 2:                                                         // Winkel-Einstellungen
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Winkelauflösung"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Winkelvorteiler"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Impulse/Geberumdrehung"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Wi-Getriebefaktor"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Winkel invertiert"].Hidden = false;
+
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Winkel invertiert"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Quelle Winkel"].Hidden = false;
+                    break;
+
+                case 3:                                                         // Drehzahl-Einstellungen
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Drehrichtungsumkehr"].Hidden = false;
+
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Nenndrehzahl"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Übersetzung Planetengetriebe"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Drehrichtungsumkehr"].Hidden = false;
+                    break;
+
+                case 4:                                                         // Strom-Einstellungen
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Strom Spitzenwert"].Hidden = false;
+                    break;
+
+                case 5:                                                         // Zyklenzähler-Einstellungen
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Zyklenzähler"].Hidden = false;
+                    this.ultraGridMotor.DisplayLayout.Bands[0].Columns["Lastzyklen"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Zyklenzähler"].Hidden = false;
+                    this.ultraGridGeber.DisplayLayout.Bands[0].Columns["Lastzyklen"].Hidden = false;
+                    break;
+            }
+
+        }
+
+        /// <summary>
+        /// Behandelt das SelectedTabChanged-Ereignis des ultraTabStripControlFuegeModul-Controls.
+        /// </summary>
+        /// <param name="e">Die <see cref="Infragistics.Win.UltraWinTabControl.SelectedTabChangedEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void UltraTabStripControlFuegeModulSelectedTabChanged(SelectedTabChangedEventArgs e)
+        {
+            // Zunächst alle Spalten des Grids unsichtbar machen
+            foreach (var col in this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns)
+            {
+                col.Hidden = true;                                              // Zunächst mal alle Spalten verstecken
+            }
+
+
+            // Falls kein Tab übergeben wurde, Tab 0 vorgeben
+            var tab = e == null ? 0 : e.Tab.Index;
+            // Spalten je nach Tab-Auswahl (Art der anzuzeigenden Daten) anzeigen
+            switch (tab)
+            {
+                default:                                                         // Sonstige Daten
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Typbezeichnung"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Artikelnummer Spindel"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Seriennummer Spindel"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Version Chipinfos"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Auslieferdatum"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Letzte Instandhaltung"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Version Parameterdatei"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Version Chipinfos Motorchip"].Hidden = false;
+                    break;
+
+                case 1:                                                         // Kraft-Einstellungen
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Geberauflösung Moment"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Gebernennwert Kraft"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Maximal zulässige Kraft"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Einsatzbereich Min"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Einsatzbereich Max"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Kraft invertiert"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Kraftübertragung"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Getriebebefaktor Kraft"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Richtung"].Hidden = false;
+                    break;
+
+                case 2:                                                         // Weg-Einstellungen
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Wegauflösung"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Teiler Wegauflösung"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Weg invertiert"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Steigung Kugelrollspindel"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Ende Verfahrweg oben"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Ende Verfahrweg unten"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Nullposition"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Maximaler Messwert Messstab"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Quelle Wegsignale"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Maximaler Sollwert Weg"].Hidden = false;
+                    break;
+
+                case 3:                                                         // Drehzahl-Einstellungen
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Nenndrehzahl Motor"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Übersetzung Getriebe"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Motordrehrichtung invertiert"].Hidden = false;
+                    break;
+
+                case 4:                                                         // Strom-Einstellungen
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Strom Spitzenwert"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Strombegrenzung"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Leistungsendstufe"].Hidden = false;
+                    break;
+
+                case 5:                                                         // Einstellungen Haltebremse
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Verknüpfungszeit"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Trennzeit"].Hidden = false;
+                    break;
+
+                case 6:                                                         // Einstellungen Zyklenzähler
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Status 1"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Status 2"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Status 3"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Status 4"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Zyklenzähler 1"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Zyklenzähler 2"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Zyklenzähler 3"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Zyklenzähler 4"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Max Zyklen bis Service"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Schreibzyklen 1"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Schreibzyklen 2"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Schreibzyklen 3"].Hidden = false;
+                    this.ultraGridFuegemodul.DisplayLayout.Bands[0].Columns["Schreibzyklen 4"].Hidden = false;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Behandelt das SelectedTabChanged-Ereignis des ultraTabStripControlFlexToolE12-Controls.
+        /// Tabulator wurde gewechselt
+        /// </summary>
+        /// <param name="e">Die <see cref="Infragistics.Win.UltraWinTabControl.SelectedTabChangedEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void UltraTabStripControlE12SelectedTabChanged(TabEventArgs e)
+        {
+            // Zunächst alle Spalten beider Grids unsichtbar machen
+            int spalte;                                                         // Schleifenzähler
+            for (spalte = 0; spalte < this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns.Count; spalte++)
+            {
+                this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns[spalte].Hidden = true;
+            }
+
+            for (spalte = 0; spalte < this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns.Count; spalte++)
+            {
+                this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns[spalte].Hidden = true;
+            }
+
+            // Falls kein Tab übergeben wurde, Tab 0 vorgeben
+            var tab = e == null ? 0 : e.Tab.Index;
+            if (this.hochlauf)
+            {
+                tab = 0;
+            }
+            // Spalten je nach Tab-Auswahl (Art der anzuzeigenden Daten) anzeigen
+            switch (tab)
+            {
+                default:                                                         // Sonstige Daten
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Typbezeichnung"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Artikelnummer"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Seriennummer"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Version"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Auslieferdatum"].Hidden = false;
+
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Typbezeichnung"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Artikelnummer"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Seriennummer Spindel"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Seriennummer Motor"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Version"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Auslieferdatum"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Version Parameterdatei"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Servotyp"].Hidden = false;
+                    break;
+
+                case 1:                                                         // Drehmoment-Einstellungen
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Nennwert"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Md-Getriebefaktor"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Drehmoment invertiert"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Md-Übertragung"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Geberauflösung"].Hidden = false;
+
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Md-Max"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Einsatzbereich Min"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Einsatzbereich Max"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Drehmoment invertiert"].Hidden = false;
+                    break;
+
+                case 2:                                                         // Winkel-Einstellungen
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Winkelauflösung"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Winkelvorteiler"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Impulse/Geberumdrehung"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Wi-Getriebefaktor"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Winkel invertiert"].Hidden = false;
+
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Winkel invertiert"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Quelle Winkel"].Hidden = false;
+                    break;
+
+                case 3:                                                         // Drehzahl-Einstellungen
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Drehrichtungsumkehr"].Hidden = false;
+
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Nenndrehzahl"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Übersetzung Planetengetriebe"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Drehrichtungsumkehr"].Hidden = false;
+                    break;
+
+                case 4:                                                         // Strom-Einstellungen
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Strom Spitzenwert"].Hidden = false;
+                    break;
+
+                case 5:                                                         // Zyklenzähler-Einstellungen
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Status 1"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Status 2"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Status 3"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Status 4"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Lastzyklen 1"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Lastzyklen 2"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Lastzyklen 3"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Lastzyklen 4"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Lastzyklen bis Service"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Schreibzyklen 1"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Schreibzyklen 2"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Schreibzyklen 3"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Schreibzyklen 4"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Erhöhung Lastzyklen"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Lastzyklen bei letztem Service"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Datum letzter Service"].Hidden = false;
+                    
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Lastzyklen bis Service"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Schreibzyklen"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Lastzyklen"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Erhöhung Lastzyklen"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Lastzyklen bei letztem Service"].Hidden = false;
+                    this.ultraGridGeberE12.DisplayLayout.Bands[0].Columns["Datum letzter Service"].Hidden = false;
+                    break;
+
+                case 6:                                                         // Synchronisation
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Seriennummer Geber"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Stand bei Aktual Geber"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Geberchipaktualisierung"].Hidden = false;
+                    this.ultraGridMotorE12.DisplayLayout.Bands[0].Columns["Stand bei Geberschreiben"].Hidden = false;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Behandelt das Executed-Ereignis des cmConfig-Controls.
+        /// Dialog zum Eingeben der Programmeinstellungen anzeigen
+        /// </summary>
+        private void CmConfigExecuted()
+        {
+            // Neue Instanz des Einstellungsdialogs erzeugen
+            var einstellungen = new FrmEinstellungen
+                                    {
+                                        DatenBankPfad = this.config.Sections["Datenbank"].Settings["Pfad"].Value,
+                                        SicherungsPfad = this.config.Sections["Datenbank"].Settings["Sicherung"].Value
+                                    };
+
+            // Bisherige Einstellungen im Dialog eintragen
+            var wert = Convert.ToDouble(config.Sections["MaxZyklen"].Settings["Erhöhung"].Value);
+            einstellungen.ErhoehungMaxZyklen = wert;
+
+            try
+            {
+                // Dialog anzeigen, abfragen, ob Daten gespeichert werden sollen
+                if (einstellungen.ShowDialog(this) != DialogResult.OK)
+                {
+                    // Einstelldialog wurde abgebrochen
+                    return;
+                }
+
+            }
+            catch {}
+
+            // Einstellungen speichern
+            this.config.Sections["Datenbank"].Settings["Pfad"].Value = einstellungen.DatenBankPfad;
+            this.config.Sections["Datenbank"].Settings["Sicherung"].Value = einstellungen.SicherungsPfad;
+            this.config.Sections["MaxZyklen"].Settings["Erhöhung"].Value = einstellungen.ErhoehungMaxZyklen.ToString(CultureInfo.InvariantCulture);
+            this.config.Save();
+
+            // Zyklenerhöhung im Hautformular ablegen
+            this.ErhoehungMaxZyklen = einstellungen.ErhoehungMaxZyklen;
+
+            if (FrmEinstellungen.DatenBankPfadIo)
+            {
+                // Bisherige Datenbanken schließen und neue öffnen
+                // a) für flexTool
+                try
+                {
+                    while (this.oleDbConnection1.State != ConnectionState.Closed)
+                    {
+                        if (this.oleDbConnection1.State == ConnectionState.Open)
+                        {
+                            // Datenbank schließen, falls sie geöffnet ist
+                            this.oleDbConnection1.Close();
+                        }
+                    }
+
+                    CompactAccessDb(this.oleDbConnection1.ConnectionString, this.oleDbConnection1.DataSource);
+                        // Datenbank komprimieren und reparieren (Access-Dienstprogramm)
+                }
+                catch
+                {
+                }
+
+                // b) für Fügemodul
+                try
+                {
+                    while (this.oleDbConnection3.State != ConnectionState.Closed)
+                    {
+                        // Datenbank schließen, falls sie geöffnet ist
+                        if (this.oleDbConnection3.State == ConnectionState.Open)
+                        {
+                            this.oleDbConnection3.Close();
+                        }
+                    }
+
+                    CompactAccessDb(this.oleDbConnection3.ConnectionString, this.oleDbConnection3.DataSource);
+                        // Datenbank schließen, falls sie geöffnet ist
+                }
+                catch
+                {
+                }
+
+                // c) für flexTool E12
+                try
+                {
+                    // Zuerst Verbindung zur Datenbank abbauen, falls noch eine besteht
+                    while (this.oleDbConnection4.State != ConnectionState.Closed)
+                    {
+                        if (this.oleDbConnection4.State == ConnectionState.Open)
+                        {
+                            this.oleDbConnection4.Close(); // Verbindung zur Datenbank schließen
+                        }
+                    }
+
+                    CompactAccessDb(this.oleDbConnection4.ConnectionString, this.oleDbConnection4.DataSource);
+                        // Zugehörige Datenbank komprimieren
+                }
+                catch
+                {
+                }
+
+                this.VerbindungsZeichenFolge(); // Verbindung zu den Datenbanken
+                try
+                {
+                    this.LadeDatenBank(); // Manager für Datenverbindungen bereitstellen
+
+                }
+                catch
+                {
+                }
+            }
+        }
+
+        /// <summary>
+        /// Behandelt das Executed-Ereignis des cmSicherung-Controls.
+        /// Datensicherung durchführen
+        /// </summary>
+        private void CmSicherungExecuted()
+        {
+            Cursor.Current = Cursors.WaitCursor;                                // Sanduhr einschalten
+            Application.DoEvents();
+            this.datenBankSicherung.Quelle = this.config.Sections["Datenbank"].Settings["Pfad"].Value;
+            this.datenBankSicherung.Ziel = this.config.Sections["Datenbank"].Settings["Sicherung"].Value;
+            this.datenBankSicherung.SichereDatenbanken();                       // Datenbanken sichern
+            Cursor.Current = Cursors.Default;                                   // Standard-Cursor
+        }
+
+        /// <summary>
+        /// Behandelt das Executed-Ereignis des cmRueckSicherung-Controls.
+        /// Datenrücksicherung durchführen
+        /// </summary>
+        private void CmRueckSicherungExecuted()
+        {
+            Cursor.Current = Cursors.WaitCursor;                                // Sanduhr einschalten
+            Application.DoEvents();
+            this.datenBankSicherung.Ziel = this.config.Sections["Datenbank"].Settings["Pfad"].Value;
+            this.datenBankSicherung.Quelle = this.config.Sections["Datenbank"].Settings["Sicherung"].Value;
+            this.datenBankSicherung.SichereDatenbanken();                       // Datenbanken sichern
+            Cursor.Current = Cursors.Default;                                   // Standard-Cursor
+        }
+
+        /// <summary>
+        /// Behandelt das Click-Ereignis des btUpdateMaxZyklen-Controls.
+        /// </summary>
+        private void BtUpdateMaxZyklenClick()
+        {
+#if !BMW
+            // Zuerst Daten aus Werkzeug auslesen
+            if (geberEingabe)
+            {
+                this.CmReceiveGeberExecuted();                                  // Daten aus Geberchip auslesen
+            }
+            else
+            {
+                this.CmReceiveMotorExecuted();                                  // Daten aus Motorchip auslesen
+            }
+
+            Application.DoEvents();                                             // Ereignisse abarbeiten
+
+            // Maximale Anzahl Lastzyklen setzen
+            var blockNr = 0;                                                    // 1. freier Block
+
+            // Überprüfen, welches Werkzeug angewählt ist
+            switch (WerkzeugArt)
+            {
+                case (ushort)Werkzeug.FuegeModul:
+                    {
+                        // Anzahl Ladezyklen des Blocks ermitteln
+                        if (!this.ErmittleAktiveAnzahlLadezyklen(ref blockNr))
+                        {
+                            this.ultraGridMotorE12.ActiveCell.EditorResolved.ExitEditMode(true, false);
+                            this.ultraGridMotorE12.ActiveCell = null;
+                            return;                                                         // Zyklenzähler kann nicht mehr erhöht werden
+                        }
+
+                        this.ErhoeheZyklenBisService(blockNr);                              // Maximale Anzahl Lastzyklen erhöhen
+                        this.UpdateZyklenZaehler();                                         // Zyklenzähler in Datenbank aktualisieren
+                        break;
+                    }
+
+                case (ushort)Werkzeug.FlexToolE12:
+                    {
+                        // Tabelle ermitteln
+                        if (geberEingabe)
+                        {
+                            this.ErhoeheZyklenBisServiceE12(-1);                                // Maximale Anzahl Lastzyklen erhöhen
+                            this.UpdateZyklenGeberE12();                                        // Zyklenzähler in Datenbank aktualisieren
+                        }
+                        else
+                        {
+                            // Anzahl Ladezyklen des Blocks ermitteln
+                            if (!this.ErmittleAktiveAnzahlLadezyklenE12(ref blockNr))
+                            {
+                                return;                                                         // Zyklenzähler kann nicht mehr erhöht werden
+                            }
+
+                            this.ErhoeheZyklenBisServiceE12(blockNr);                           // Maximale Anzahl Lastzyklen erhöhen
+                            this.UpdateZyklenMotorE12();                                        // Zyklenzähler in Datenbank aktualisieren
+                        }
+
+                        break;
+                    }
+            }
+
+            // Note: Schreiben der aktualisierten Lastzyklen soll nicht erfolgen
+            ////this.CmSendGeberExecuted();                                         // Geänderte Daten auf das Werkzeug schreiben
+#endif
+        }
+
+        /// <summary>
+        /// Zeigt die übergebene Zeichenkette als Statustext an.
+        /// </summary>
+        /// <param name="anzeigeText">Der anzuzeigende Text.</param>
+        private void AnzeigeStatusText(string anzeigeText)
+        {
+            this.statusBar.Panels["tCurrentDirectory"].Text = anzeigeText;      // Statustext in entsprechendes Panel eintragen
+        }
+
+        /// <summary>
+        /// Bedienbarkeit der Controls zum Manipulieren der Chipdaten sperren oder freigeben.
+        /// </summary>
+        /// <param name="bedienbar">falls auf <c>true</c> gesetzt, sind die Controls bedienbar.</param>
+        private void SetzeBedienbarkeit(bool bedienbar)
+        {
+            // Überprüfen, ob freigeben oder sperren
+            if (bedienbar)
+            {
+                // Bedienung freigeben
+                this.ribbonPanelDaten.Enabled = true;                           // Alle Datenoperationen freigeben
+                
+                // Bearbeiten der Chip-Operationen freigeben
+                this.ribbonPanelAllgChipDelete.Enabled = true;                  
+
+                //this.ribbonButtonGeberLesen.Enabled = true;
+                //this.ribbonButtonGeberSchreiben.Enabled = true;
+                //this.ribbonButtonNeuerDatensatzFlexTool.Enabled = true;
+                //this.ribbonButtonNeuerDatensatzFuegemodul.Enabled = true;
+                //this.ribbonButtonNeuerDatenSatzFlexToolE12.Enabled = true;
+
+                //toolBar.Tools["DeleteGeber"].SharedProps.Enabled = true;
+
+                //toolBar.Tools["MotorLesen"].SharedProps.Enabled = true;
+                //toolBar.Tools["MotorSchreiben"].SharedProps.Enabled = true;
+                //toolBar.Tools["NeuerMotor"].SharedProps.Enabled = true;
+                //toolBar.Tools["DeleteMotor"].SharedProps.Enabled = true;
+            }
+            else
+            {
+                // Bedienung sperren
+                this.ribbonPanelDaten.Enabled = false;                          // Alle Datenoperationen sperren
+
+                // Bearbeiten der Chip-Operationen sperren
+                this.ribbonPanelAllgChipDelete.Enabled = false;                  
+
+                //toolBar.Tools["GeberLesen"].SharedProps.Enabled = false;
+                //toolBar.Tools["GeberSchreiben"].SharedProps.Enabled = false;
+                //toolBar.Tools["NeuerGeber"].SharedProps.Enabled = false;
+                //toolBar.Tools["DeleteGeber"].SharedProps.Enabled = false;
+
+                //toolBar.Tools["MotorLesen"].SharedProps.Enabled = false;
+                //toolBar.Tools["MotorSchreiben"].SharedProps.Enabled = false;
+                //toolBar.Tools["NeuerMotor"].SharedProps.Enabled = false;
+                //toolBar.Tools["DeleteMotor"].SharedProps.Enabled = false;
+            }
+
+            Application.DoEvents();
+        }
+
+        #endregion Formular
+    }
+}
