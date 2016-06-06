@@ -96,6 +96,12 @@
     <Compile Include="HauptForm.Designer.cs">
       <DependentUpon>HauptForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HauptFormPart1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HauptFormVariablen.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

@@ -148,4 +148,16 @@
     <data name="HauptForm_GetDataConnection_Verbindung_zur_Datenbankfehlgeschlagen" xml:space="preserve">
     <value>Verbindung zur Datenbankfehlgeschlagen</value>
   </data>
+    <data name="HauptForm_ExecuteQuery_Fehler_beim_Speichern_der_Daten" xml:space="preserve">
+    <value>Fehler beim Speichern der Daten</value>
+  </data>
+    <data name="HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_" xml:space="preserve">
+    <value>Ernährung: Datensatz </value>
+  </data>
+    <data name="HauptForm_DisplayRecordNumbers__von_" xml:space="preserve">
+    <value> von </value>
+  </data>
+    <data name="HauptForm_DisplayRecordNumbers__" xml:space="preserve">
+    <value> </value>
+  </data>
 </root>

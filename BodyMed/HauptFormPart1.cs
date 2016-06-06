@@ -18,9 +18,17 @@
 // ReSharper disable CatchAllClause
 namespace BodyMed
 {
+    using System;
+    using System.Data;
+    using System.Data.OleDb;
     using System.Diagnostics.CodeAnalysis;
+    using System.Windows.Forms;
 
     using Infragistics.Win.UltraWinGrid;
+
+    using static HauptForm.Formular;
+
+    using Resources = Properties.Resources;
 
     /// <summary>
     /// Zusammenfassung für HauptForm.
@@ -34,12 +42,12 @@ namespace BodyMed
         /// Der Editiermodus im ultraGridMotor wurde beendet
         private void AfterExitEditMode(ref UltraGrid grid, string tabelle)
         {
-            this.GetRowIndex();                                                 // Index der aktiven Zeile ermitteln
-        
+            this.GetRowIndex(); // Index der aktiven Zeile ermitteln
+
             // Prüfen, ob eine Zeile Aktiv ist
             if (grid.ActiveRow == null)
             {
-                return;                                                         // Abbruch, da keine aktive Zeile
+                return; // Abbruch, da keine aktive Zeile
             }
 
             // Alle Zellen durchgehen, damit geänderte Zelle gefunden wird
@@ -52,125 +60,150 @@ namespace BodyMed
                     continue;
                 }
 
-                var aktuellerWert = grid.ActiveRow.Cells[colIndex].Value;       // geänderter Wert im Grid
+                var aktuellerWert = grid.ActiveRow.Cells[colIndex].Value; // geänderter Wert im Grid
 
                 // Nachschauen, ob ein zusätzlicher Editor für die Dateneingabe verwendet wird
                 // Wenn ja, Wert aus diesem Editor eintragen
                 var editor = grid.ActiveRow.Cells[colIndex].EditorResolved;
-                if (editor != null)
+                if (editor == null)
                 {
-                    try
+                    continue;
+                }
+                try
+                {
+                    if (editor.Value != null)
                     {
-                        if (editor.Value != null)
-                        {
-                            aktuellerWert = editor.Value;                       // Wert des Editors eintragen
-                        }
+                        aktuellerWert = editor.Value; // Wert des Editors eintragen
                     }
-                    catch
-                    {
-                        // ignorierd
-                    }
+                }
+                catch
+                {
+                    // ignoriert
+                }
 
                 // Spaltennamen und Datentyp der geänderten Zelle bestimmen
-                var spaltenName = dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Columns[colIndex].ToString();
-                var spaltenTyp = dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Rows[rowIndex][colIndex].GetType();
+                // Formular ermitteln
+                var spaltenName = string.Empty; // Name der Spalte
+                var spaltenTyp = typeof(DBNull); // Daten-Typ der Spalte
+                string table = $"{tabelle}"; // zum Zusammensetzen des Tabellen-Namens
+
+                // Überprüfen,Tabelle angewählt ist
+                switch (this.selectedTab)
+                {
+                    case (int)Ernaehrung:
+                        {
+                            // Es ist die Ernährungstabelle angewählt
+                            spaltenName = string.Format(
+                                this.dataSetGewicht1.Tables["{0}"].Columns[colIndex].ToString(),
+                                tabelle);
+                            spaltenTyp = this.dataSetGewicht1.Tables[table].Rows[this.rowIndex][colIndex].GetType();
+                            break;
+                        }
+
+                    case (int)BlutDruck:
+                        {
+                            // Es ist Blutdrucktabelle angewählt
+                            spaltenName =
+                                string.Format(
+                                    this.dataSetBlutDruck1.Tables["{0}"].Columns[colIndex].ToString(),
+                                    tabelle);
+                            spaltenTyp = this.dataSetBlutDruck1.Tables[table].Rows[this.rowIndex][colIndex].GetType();
+                            break;
+                        }
+                }
 
                 // Abfrage der Datentypen
-                string strUpdate;                                                   // Variable für Update-Kommando
+                string strUpdate; // Variable für Update-Kommando
                 if (spaltenTyp == typeof(string))
                 {
                     // Zeichenkette
-                    strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        aktuellerWert,
-                        indexNummerAktiveZeile
-                        tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]='{aktuellerWert}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else if (spaltenTyp == typeof(decimal))
                 {
                     // Dezimalzahl
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         Convert.ToDecimal(aktuellerWert),
-                        indexNummerAktiveZeile,
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
                 else if (spaltenTyp == typeof(ulong))
                 {
                     // DWORD
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         Convert.ToUInt64(aktuellerWert),
-                        indexNummerAktiveZeile,
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
                 else if (spaltenTyp == typeof(DateTime))
                 {
                     // Datum
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         Convert.ToDateTime(aktuellerWert),
-                        indexNummerAktiveZeile,
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
                 else if (spaltenTyp == typeof(bool))
                 {
                     // Ja/Nein
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         aktuellerWert,
-                        indexNummerAktiveZeile, 
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
                 else if (spaltenTyp == typeof(short))
                 {
                     // 16-Bit Integer
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         Convert.ToInt16(aktuellerWert),
-                        indexNummerAktiveZeile,
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
                 else if (spaltenTyp == typeof(byte))
                 {
                     // Byte
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         Convert.ToByte(aktuellerWert),
-                        indexNummerAktiveZeile,
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
                 else if (spaltenTyp == typeof(DBNull))
                 {
                     // Nicht vorhandener Wert
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         aktuellerWert,
-                        indexNummerAktiveZeile,
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
                 else
                 {
                     // 32-Bit Integer
                     strUpdate = string.Format(
-                        "Update {(3)} SET  [{0}]='{1}' WHERE ([Index]={2})",
+                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
                         spaltenName,
                         Convert.ToInt32(aktuellerWert),
-                        indexNummerAktiveZeile,
+                        this.indexNummerAktiveZeile,
                         tabelle);
                 }
 
                 this.ExecuteQuery(strUpdate);                                   // Update in Datenbank durchführen
             }
-        }   
+        }
 
         /// <summary>
         /// Abfrage auf Datenbank ausführen.
@@ -179,30 +212,14 @@ namespace BodyMed
         /// <param name="strQuery">Der  Abfrageausdruck.</param>
         /// <returns>Anzahl der betroffenen Zeilen, bei einem Fehler -1</returns>
         /// <exception cref="Exception">Wenn Abfrage fehlgeschlagen ist</exception>
+        // ReSharper disable once UnusedMethodReturnValue.Local
         private int ExecuteQuery(string strQuery)
         {
             var ret = 0;                                                        // Abfrage ist fehlgeschlagen vorgeben
             try
             {
-                // Werkzeug ermitteln
-                switch (this.selectedTab)
-                {
-                    case Formular.Ernaehrung:
-                    {
-                        // Es ist die Ernährungstabelle angewählt
-                        this.oleDbCommand1 = new OleDbCommand(strQuery, this.oleDbConnection1) { CommandType = CommandType.Text }; // Neue Instanz des Abfragekommandos erzeugen
-                        ret = this.oleDbCommand1.ExecuteNonQuery();             // Abfrage durchführen
-                        break;
-                    }
-
-                    case Formular.BlutDruck:
-                    {
-                        // Es ist ein Fügemodul-Werkzeug ausgewählt
-                        this.oleDbCommand1 = new OleDbCommand(strQuery, this.oleDbConnection3) { CommandType = CommandType.Text }; // Neue Instanz des Abfragekommandos erzeugen
-                        ret = this.oleDbCommand1.ExecuteNonQuery();             // Abfrage durchführen
-                        break;
-                    }
-                }
+                this.oleDbCommand1 = new OleDbCommand(strQuery, this.oleDbConnection1) { CommandType = CommandType.Text }; // Neue Instanz des Abfragekommandos erzeugen
+                ret = this.oleDbCommand1.ExecuteNonQuery();                     // Abfrage durchführen
             }
             catch (Exception ex)
             {

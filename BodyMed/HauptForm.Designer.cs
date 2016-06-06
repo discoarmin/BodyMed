@@ -161,6 +161,7 @@
             this.oleDbDataAdapterBlutDruck = new System.Data.OleDb.OleDbDataAdapter();
             this.bindingSourceGroesse = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetGroesseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.oleDbCommand1 = new System.Data.OleDb.OleDbCommand();
             ((System.ComponentModel.ISupportInitialize)(this.sliderErnaehrung)).BeginInit();
             this.ultraTabPageControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).BeginInit();
@@ -285,19 +286,25 @@
             this.ultraGridErnaehrung.DisplayLayout.Appearance = appearance2;
             this.ultraGridErnaehrung.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
             ultraGridColumn6.Header.VisiblePosition = 0;
+            ultraGridColumn6.Hidden = true;
             ultraGridColumn6.Width = 89;
             ultraGridColumn7.Header.VisiblePosition = 1;
-            ultraGridColumn7.Width = 96;
+            ultraGridColumn7.Width = 115;
             ultraGridColumn8.Header.VisiblePosition = 2;
-            ultraGridColumn8.Width = 86;
+            ultraGridColumn8.MaskInput = "999,9";
+            ultraGridColumn8.Width = 100;
             ultraGridColumn9.Header.VisiblePosition = 3;
-            ultraGridColumn9.Width = 86;
+            ultraGridColumn9.MaskInput = "99,9";
+            ultraGridColumn9.Width = 100;
             ultraGridColumn10.Header.VisiblePosition = 4;
-            ultraGridColumn10.Width = 86;
+            ultraGridColumn10.MaskInput = "99,9";
+            ultraGridColumn10.Width = 100;
             ultraGridColumn11.Header.VisiblePosition = 5;
-            ultraGridColumn11.Width = 86;
+            ultraGridColumn11.MaskInput = "99,9";
+            ultraGridColumn11.Width = 100;
             ultraGridColumn12.Header.VisiblePosition = 6;
-            ultraGridColumn12.Width = 86;
+            ultraGridColumn12.MaskInput = "99,9";
+            ultraGridColumn12.Width = 100;
             ultraGridBand1.Columns.AddRange(new object[] {
             ultraGridColumn6,
             ultraGridColumn7,
@@ -342,6 +349,7 @@
             this.ultraGridErnaehrung.Size = new System.Drawing.Size(636, 132);
             this.ultraGridErnaehrung.TabIndex = 22;
             this.ultraGridErnaehrung.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
+            this.ultraGridErnaehrung.AfterExitEditMode += new System.EventHandler(this.OnUltraGridErnaehrungAfterExitEditMode);
             // 
             // dataSetGewicht1BindingSource
             // 
@@ -374,6 +382,7 @@
             appearance20.TextVAlignAsString = "Middle";
             this.ultraGroupBoxBlutDruck.HeaderAppearance = appearance20;
             this.ultraGroupBoxBlutDruck.Location = new System.Drawing.Point(0, 0);
+            this.ultraGroupBoxBlutDruck.Margin = new System.Windows.Forms.Padding(0);
             this.ultraGroupBoxBlutDruck.Name = "ultraGroupBoxBlutDruck";
             this.ultraGroupBoxBlutDruck.Size = new System.Drawing.Size(636, 263);
             this.ultraGroupBoxBlutDruck.TabIndex = 1;
@@ -403,6 +412,7 @@
             this.zedGraphControlBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zedGraphControlBlutDruck.ForeColor = System.Drawing.Color.Black;
             this.zedGraphControlBlutDruck.Location = new System.Drawing.Point(0, 0);
+            this.zedGraphControlBlutDruck.Margin = new System.Windows.Forms.Padding(0);
             this.zedGraphControlBlutDruck.Name = "zedGraphControlBlutDruck";
             this.zedGraphControlBlutDruck.ScrollGrace = 0D;
             this.zedGraphControlBlutDruck.ScrollMaxX = 0D;
@@ -479,6 +489,7 @@
             this.ultraGridBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGridBlutDruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ultraGridBlutDruck.Location = new System.Drawing.Point(0, 0);
+            this.ultraGridBlutDruck.Margin = new System.Windows.Forms.Padding(0);
             this.ultraGridBlutDruck.Name = "ultraGridBlutDruck";
             this.ultraGridBlutDruck.Size = new System.Drawing.Size(630, 130);
             this.ultraGridBlutDruck.TabIndex = 23;
@@ -671,6 +682,7 @@
             this.ribbonButtonBlutdruck.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.FlashImage")));
             this.ribbonButtonBlutdruck.FlashIntervall = 2000;
             this.ribbonButtonBlutdruck.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.Image")));
+            this.ribbonButtonBlutdruck.ShowFlashImage = true;
             this.ribbonButtonBlutdruck.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.SmallImage")));
             this.ribbonButtonBlutdruck.Tag = "Blutdruck";
             this.ribbonButtonBlutdruck.Text = "Blutdruck";
@@ -1034,8 +1046,9 @@
             // 
             // pictureBoxHauptForm
             // 
+            this.pictureBoxHauptForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxHauptForm.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxHauptForm.Image")));
-            this.pictureBoxHauptForm.Location = new System.Drawing.Point(83, 0);
+            this.pictureBoxHauptForm.Location = new System.Drawing.Point(541, 0);
             this.pictureBoxHauptForm.Name = "pictureBoxHauptForm";
             this.pictureBoxHauptForm.Size = new System.Drawing.Size(100, 22);
             this.pictureBoxHauptForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1329,5 +1342,6 @@
         private System.Windows.Forms.BindingSource dataSetBlutDruck1BindingSource2;
         private System.Windows.Forms.BindingSource bindingSourceGroesse;
         private System.Windows.Forms.BindingSource dataSetGroesseBindingSource;
+        private System.Data.OleDb.OleDbCommand oleDbCommand1;
     }
 }

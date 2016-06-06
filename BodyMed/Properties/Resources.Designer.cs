@@ -81,6 +81,42 @@ namespace BodyMed.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die   ähnelt.
+        /// </summary>
+        internal static string HauptForm_DisplayRecordNumbers__ {
+            get {
+                return ResourceManager.GetString("HauptForm_DisplayRecordNumbers__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  von  ähnelt.
+        /// </summary>
+        internal static string HauptForm_DisplayRecordNumbers__von_ {
+            get {
+                return ResourceManager.GetString("HauptForm_DisplayRecordNumbers__von_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ernährung: Datensatz  ähnelt.
+        /// </summary>
+        internal static string HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_ {
+            get {
+                return ResourceManager.GetString("HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Speichern der Daten ähnelt.
+        /// </summary>
+        internal static string HauptForm_ExecuteQuery_Fehler_beim_Speichern_der_Daten {
+            get {
+                return ResourceManager.GetString("HauptForm_ExecuteQuery_Fehler_beim_Speichern_der_Daten", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Fehler : ähnelt.
         /// </summary>
         internal static string HauptForm_GetDataConnection_Fehler__ {

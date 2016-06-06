@@ -17,21 +17,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace BodyMed
 {
-    using System;
     using System.Collections;
-    using System.Drawing;
     using System.Windows.Forms;
-
-    using ComTools2.Hilfe;
-
-    using DatenbankVergleich;
-
-    using Datensicherung;
-    using Kommunikation;
-
-    using MeldungWerkzeug;
-
-    using Infragistics.Win.UltraWinGrid;
 
     /// <summary>
     /// Die Variablendeklaration.
@@ -76,7 +63,24 @@ namespace BodyMed
         /// <summary>Verwaltet die Datenanbindung der Blutdruckdaten</summary>
         private int selectedTab;
 
+        /// <summary>Merker, ob die Position bei den Ernährungsdaten geändert werden darf</summary>
+        private bool gewichtEinstellen;
+
+        /// <summary>Merker, ob die Position bei den Blutdruckdaten geändert werden darf</summary>
+        private bool blutDruckEinstellen;
+
+
         #endregion Membervariablen
+
+        /// <summary>Aufzählung für Formular</summary>
+        public enum Formular
+        {
+            /// <summary>Ernährungs</summary>
+            Ernaehrung = 0,
+
+            /// <summary>Blutdruck'</summary>
+            BlutDruck = 1
+        }
 
     }
 }
