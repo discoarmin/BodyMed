@@ -1,4 +1,21 @@
-﻿namespace BodyMed
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="HauptForm.Cs" company="Brenners Videotechnik">
+//   Copyright (c) Brenners Videotechnik. All rights reserved.
+// </copyright>
+// <summary>
+//   Zusammenfassung für HauptForm.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+// <remarks>
+//     <para>Autor: Armin Brenner</para>
+//     <para>
+//        History : Datum     bearb.  Änderung
+//                  --------  ------  ------------------------------------
+//                  02.04.16  br      Grundversion
+//      </para>
+// </remarks>
+// --------------------------------------------------------------------------------------------------------------------
+namespace BodyMed
 {
     using System;
     using System.Windows.Forms;
@@ -34,6 +51,7 @@
             this.selectedTab = 1;                                               // Gewichtseingabe ist beim Start aktiv
             this.gewichtEinstellen = true;                                      // Position bei den Ernährungsdaten darf geändert werden
             this.blutDruckEinstellen = true;                                    // Position bei den Blutdruckdaten darf geändert werden
+            this.auswahllisteLoeschen = true;                                   // Markierte Zeilen eines Grids dürfen neu ermittelt werden
         }
 
         /// <summary>
@@ -135,18 +153,13 @@
                 if (this.oleDbConnection1.State == ConnectionState.Open)
                 {
                     // Beide Grids mit Daten füllen
-                    this.dataSetGewicht1.Tables["Gewicht"].Clear();
-                        // Inhalt des Datensatzes für Gewichtsdaten löschen..
-                    this.oleDbDataAdapterGewicht.Fill(this.dataSetGewicht1.Tables["Gewicht"]);
-                        // .. und neue Daten einlesen
-                    this.dataSetBlutDruck1.Tables["BlutdruckDaten"].Clear();
-                        // Inhalt des Datensatzes für Blutdruck löschen..
-                    this.oleDbDataAdapterBlutDruck.Fill(this.dataSetBlutDruck1.Tables["BlutdruckDaten"]);
-                        // .. und neue Daten einlesen
+                    this.dataSetGewicht1.Tables["Gewicht"].Clear();             // Inhalt des Datensatzes für Gewichtsdaten löschen..
+                    this.oleDbDataAdapterGewicht.Fill(this.dataSetGewicht1.Tables["Gewicht"]); // .. und neue Daten einlesen
+                    this.dataSetBlutDruck1.Tables["BlutdruckDaten"].Clear();    // Inhalt des Datensatzes für Blutdruck löschen..
+                    this.oleDbDataAdapterBlutDruck.Fill(this.dataSetBlutDruck1.Tables["BlutdruckDaten"]); // .. und neue Daten einlesen
 
                     this.dataSetGroesse1.Tables["Groesse"].Clear(); // Inhalt des Datensatzes für die Größe löschen..
-                    this.oleDbDataAdapterGroesse.Fill(this.dataSetGroesse1.Tables["Groesse"]);
-                        // .. und neue Daten einlesen
+                    this.oleDbDataAdapterGroesse.Fill(this.dataSetGroesse1.Tables["Groesse"]); // .. und neue Daten einlesen
                 }
 
             }
@@ -162,15 +175,6 @@
             }
         }
 
-        /// <summary>
-        /// Behandelt das 'AfterExitEditMode' Ereignis des ultraGridErnaehrung Controls.
-        /// </summary>
-        /// Der Editiermodus im ultraGridMotor wurde beendet
-        private void OnUltraGridErnaehrungAfterExitEditMode(object sender, EventArgs e)
-        {
-            this.AfterExitEditMode(ref this.ultraGridErnaehrung, "Gewicht"); // Änderungen in Datenbank schreiben
-        }
-
         #region DatasetAction
 
         /// <summary>
@@ -178,8 +182,9 @@
         /// </summary>
         private void DisplayRecordNumbers()
         {
-            var nichtAendern = true;                                            // Position im Bindmanager darf geändert werden
-
+            // Position im Bindmanager darf geändert werden
+            this.blutDruckEinstellen = true;
+            this.gewichtEinstellen = true;
             // Überprüfen, welche Ansicht angewählt ist
             switch (this.selectedTab)
             {
@@ -227,272 +232,99 @@
                         // Slider auf ausgewählte Position stellen
                         // Wenn kein Datensatz vorhanden ist, Slider ausblenden
                         this.sliderErnaehrung.Visible = false;
-                        if (rowIndex >= 0)
+                        if (this.rowIndex >= 0)
                         {
                             // Falls der Index höher ist als die Anzahl Zeilen (kommt nach dem Löschen vor),
                             // auf den Maximalwert setzen
-                            if (rowIndex > sliderFlexTool.Maximum)
+                            if (this.rowIndex > this.sliderErnaehrung.Maximum)
                             {
-                                rowIndex = sliderFlexTool.Maximum;
+                                this.rowIndex = this.sliderErnaehrung.Maximum;
                             }
 
-                            sliderFlexTool.Value = rowIndex;
-                            sliderFlexTool.Visible = true;
-                            this.ultraNumericEditorNavigation.Value = rowIndex;
-                            this.ultraNumericEditorNavigation.Visible = true;
-
+                            this.sliderErnaehrung.Value = this.rowIndex;
+                            this.sliderErnaehrung.Visible = true;        
                         }
                         else
                         {
                             // Abfragen, ob Position im Bindmanager verändert werden darf
-                            if (reglerEinstellen)
+                            if (this.gewichtEinstellen)
                             {
                                 // Position im Bindmanager darf verstellt werden
-                                this.sliderFlexTool.Value = this.sliderFlexTool.Minimum;
-                                this.sliderFlexTool.Visible = false;
-                                this.ultraNumericEditorNavigation.Value = this.sliderFlexTool.Minimum;
-                                this.ultraNumericEditorNavigation.Visible = false;
+                                this.sliderErnaehrung.Value = this.sliderErnaehrung.Minimum;
+                                this.sliderErnaehrung.Visible = false;
                             }
                         }
                         break;
                     }
 
-                case (ushort)Werkzeug.FuegeModul:
+                case (int)BlutDruck:
                     {
-                        // Werkzeug ist ein Fügemodul
-                        if (bindManagerFuegeModul != null)
+                        // Ansicht zur Eingabe des Blutdrucks ist angewählt
+                        if (this.bindingManagerBlutDruck != null)
                         {
-                            // Fügemoduldaten
-                            if (rowIndex >= 0)
+                            // Blutdruck-Daten
+                            if (this.rowIndex >= 0)
                             {
                                 try
                                 {
                                     // Datensatzinfo in der Statuszeile anzeigen
-                                    if (!LeeresWerkZeug)
-                                    {
-                                        statusBar.Panels["tcurrentDirectory"].Text =
-                                            Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____
-                                            + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von__
-                                            + this.bindManagerFuegeModul.Count
-                                            + Resources.HauptForm_DisplayRecordNumbers_
-                                            + this.datasetFuegeModul.Tables["Chipinfos"].Rows[rowIndex][
-                                                "Seriennummer Spindel"];
-                                    }
-                                    else
-                                    {
-                                        statusBar.Panels["tcurrentDirectory"].Text =
-                                            Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____
-                                            + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von__
-                                            + this.bindManagerFuegeModul.Count
-                                            + Resources.HauptForm_DisplayRecordNumbers_;
-                                    }
+                                    this.statusBar.Panels["tcurrentDirectory"].Text =
+                                        Resources.HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_
+                                        + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von_
+                                        + this.bindingManagerBlutDruck.Count
+                                        + Resources.HauptForm_DisplayRecordNumbers__;
                                 }
                                 catch
                                 {
-                                    reglerEinstellen = false; // Position im Bindmanager nicht verstellen
-                                    statusBar.Panels["tcurrentDirectory"].Text =
-                                        Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____ + this.rowPos
-                                        + Resources.HauptForm_DisplayRecordNumbers__von__
-                                        + this.bindManagerFuegeModul.Count;
+                                    this.blutDruckEinstellen = false;           // Position im Bindmanager nicht verstellen
+                                    this.statusBar.Panels["tcurrentDirectory"].Text =
+                                        Resources.HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_
+                                        + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von_
+                                        + this.bindingManagerBlutDruck.Count
+                                        + Resources.HauptForm_DisplayRecordNumbers__;
                                 }
                             }
                             else
                             {
-                                reglerEinstellen = false; // Position im Bindmanager nicht verstellen
-                                statusBar.Panels["tcurrentDirectory"].Text =
-                                    Resources.HauptForm_DisplayRecordNumbers_Fügemodul_Datensatz____ + this.rowPos
-                                    + Resources.HauptForm_DisplayRecordNumbers__von__ + this.bindManagerFuegeModul.Count;
+                                this.blutDruckEinstellen = false;               // Position im Bindmanager nicht verstellen
+                                this.statusBar.Panels["tcurrentDirectory"].Text =
+                                    Resources.HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_
+                                    + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von_
+                                    + this.bindingManagerBlutDruck.Count
+                                    + Resources.HauptForm_DisplayRecordNumbers__;
                             }
 
-                            if (this.bindManagerFuegeModul.Count > 0)
+                            // Schieberegler einstellen
+                            if (this.bindingManagerGewicht.Count > 0)
                             {
-                                this.sliderFuegeModul.Maximum = this.bindManagerFuegeModul.Count - 1;
-                                    // Maximalwert des Sliders festlegen
-                                this.ultraNumericEditorNavigation.MaxValue = this.sliderFuegeModul.Maximum;
-                                    // Maximalwert des Editors festlegen
+                                this.sliderBlutDruck.Maximum = this.bindingManagerBlutDruck.Count - 1; // Maximalwert des Sliders festlegen
                             }
                         }
 
                         // Slider auf ausgewählte Position stellen
-                        // Wenn kein Datensatz vorhanden ist, Slider und Editor ausblenden
-                        this.sliderFlexTool.Visible = false;
-                        this.ultraNumericEditorNavigation.Visible = false;
-                        if (rowIndex > 0)
-                        {
-                            // Falls der Index höher ist als die Anzahl Zeilen (kommt nach dem Löschen vor),
-                            // auf den Maximalwert setzen
-                            if (rowIndex > sliderFuegeModul.Maximum)
-                            {
-                                rowIndex = sliderFuegeModul.Maximum;
-                            }
-
-                            this.sliderFuegeModul.Value = rowIndex;
-                            this.sliderFuegeModul.Visible = true;
-                            this.ultraNumericEditorNavigation.Value = rowIndex;
-                            this.ultraNumericEditorNavigation.Visible = true;
-                        }
-                        else
-                        {
-                            // Abfragen, ob Position im Bindmanager verändert werden darf
-                            if (reglerEinstellen)
-                            {
-                                this.sliderFuegeModul.Value = this.sliderFuegeModul.Minimum;
-                                this.sliderFuegeModul.Visible = false;
-                                this.ultraNumericEditorNavigation.Value = this.sliderFuegeModul.Minimum;
-                                this.ultraNumericEditorNavigation.Visible = false;
-                            }
-                        }
-                        break;
-                    }
-
-                case (ushort)Werkzeug.FlexToolE12:
-                    {
-                        // Werkzeug ist ein FlexTool E12-Werkzeug, daher auswählen, ob Geber- oder Motorchip bearbeitet werden soll
-                        if (geberEingabe)
-                        {
-                            // Es handelt sich um Geberdaten
-                            if (bindManagerGeberE12 != null)
-                            {
-                                // Geberdaten
-                                if (rowIndex >= 0)
-                                {
-                                    try
-                                    {
-                                        // Datensatzinfo in der Statuszeile anzeigen
-                                        if (!LeeresWerkZeug)
-                                        {
-                                            statusBar.Panels["tcurrentDirectory"].Text =
-                                                Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____
-                                                + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von__
-                                                + this.bindManagerGeberE12.Count
-                                                + Resources.HauptForm_DisplayRecordNumbers_
-                                                + this.dataSetFlexToolGeberDatenE12.Tables["Geberchip"].Rows[rowIndex][
-                                                    "Seriennummer"];
-                                        }
-                                        else
-                                        {
-                                            statusBar.Panels["tcurrentDirectory"].Text =
-                                                Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____
-                                                + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von__
-                                                + this.bindManagerGeberE12.Count
-                                                + Resources.HauptForm_DisplayRecordNumbers_;
-                                        }
-                                    }
-                                    catch
-                                    {
-                                        reglerEinstellen = false; // Position im Bindmanager nicht verstellen
-                                        statusBar.Panels["tcurrentDirectory"].Text =
-                                            Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____
-                                            + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__
-                                            + this.bindManagerGeberE12.Count;
-                                    }
-                                }
-                                else
-                                {
-                                    reglerEinstellen = false; // Position im Bindmanager nicht verstellen
-                                    statusBar.Panels["tcurrentDirectory"].Text =
-                                        Resources.HauptForm_DisplayRecordNumbers_Geberchip_Datensatz____ + this.rowPos
-                                        + Resources.HauptForm_DisplayRecordNumbers__von__
-                                        + this.bindManagerGeberE12.Count;
-                                }
-
-                                if (this.bindManagerGeberE12.Count > 0)
-                                {
-                                    this.sliderFlexToolE12.Maximum = this.bindManagerGeberE12.Count - 1;
-                                        // Maximalwert des Sliders festlegen
-                                    this.ultraNumericEditorNavigation.MaxValue = this.sliderFlexToolE12.Maximum;
-                                        // Maximalwert des Editors festlegen
-                                }
-                            }
-                        }
-                        else
-                        {
-                            // Es handelt sich um Motordaten
-                            if (bindManagerMotorE12 != null)
-                            {
-                                // Motordaten
-                                if (rowIndex >= 0)
-                                {
-                                    try
-                                    {
-                                        // Datensatzinfo in der Statuszeile anzeigen
-                                        if (!LeeresWerkZeug)
-                                        {
-                                            statusBar.Panels["tcurrentDirectory"].Text =
-                                                Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____
-                                                + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von__
-                                                + this.bindManagerMotorE12.Count
-                                                + Resources.HauptForm_DisplayRecordNumbers_
-                                                + this.dataSetFlexToolMotorDatenE12.Tables["Motorchip"].Rows[rowIndex][
-                                                    "Seriennummer Spindel"];
-                                        }
-                                        else
-                                        {
-                                            statusBar.Panels["tcurrentDirectory"].Text =
-                                                Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____
-                                                + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von__
-                                                + this.bindManagerMotorE12.Count
-                                                + Resources.HauptForm_DisplayRecordNumbers_;
-                                        }
-                                    }
-                                    catch
-                                    {
-                                        reglerEinstellen = false; // Position im Bindmanager nicht verstellen
-                                        statusBar.Panels["tcurrentDirectory"].Text =
-                                            Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____
-                                            + this.rowPos + Resources.HauptForm_DisplayRecordNumbers__von__
-                                            + this.bindManagerMotorE12.Count;
-                                    }
-                                }
-                                else
-                                {
-                                    reglerEinstellen = false; // Position im Bindmanager nicht verstellen
-                                    statusBar.Panels["tcurrentDirectory"].Text =
-                                        Resources.HauptForm_DisplayRecordNumbers_Motorchip_Datensatz____ + this.rowPos
-                                        + Resources.HauptForm_DisplayRecordNumbers__von__
-                                        + this.bindManagerMotorE12.Count;
-                                }
-
-                                if (bindManagerMotorE12.Count > 0)
-                                {
-                                    sliderFlexToolE12.Maximum = bindManagerMotorE12.Count - 1;
-                                        // Maximalwert des Sliders festlegen
-                                }
-                            }
-                        }
-
-                        // Slider auf ausgewählte Position stellen
-                        // Wenn kein Datensatz vorhanden ist, Slider und Editor ausblenden
-                        ////this.sliderFlexToolE12.Visible = false;
-                        ////this.ultraNumericEditorNavigation.Visible = false;
                         // Wenn kein Datensatz vorhanden ist, Slider ausblenden
-                        if (rowIndex >= 0)
+                        this.sliderBlutDruck.Visible = false;
+                        if (this.rowIndex > 0)
                         {
                             // Falls der Index höher ist als die Anzahl Zeilen (kommt nach dem Löschen vor),
                             // auf den Maximalwert setzen
-                            if (rowIndex > this.sliderFlexToolE12.Maximum)
+                            if (this.rowIndex > this.sliderBlutDruck.Maximum)
                             {
-                                rowIndex = this.sliderFlexToolE12.Maximum;
+                                this.rowIndex = this.sliderBlutDruck.Maximum;
                             }
 
-                            this.sliderFlexToolE12.Value = rowIndex;
-                            this.sliderFlexToolE12.Visible = true;
-                            this.ultraNumericEditorNavigation.Value = rowIndex;
-                            this.ultraNumericEditorNavigation.Visible = true;
+                            this.sliderBlutDruck.Value = this.rowIndex;
+                            this.sliderBlutDruck.Visible = true;
                         }
                         else
                         {
                             // Abfragen, ob Position im Bindmanager verändert werden darf
-                            if (reglerEinstellen)
+                            if (this.blutDruckEinstellen)
                             {
-                                // Position im Bindmanager darf verstellt werden
-                                this.sliderFlexToolE12.Value = this.sliderFlexToolE12.Minimum;
-                                this.sliderFlexToolE12.Visible = false;
-                                this.ultraNumericEditorNavigation.Value = this.sliderFlexToolE12.Minimum;
-                                this.ultraNumericEditorNavigation.Visible = false;
+                                this.sliderBlutDruck.Value = this.sliderBlutDruck.Minimum;
+                                this.sliderBlutDruck.Visible = false;
                             }
                         }
-
                         break;
                     }
             }
@@ -503,44 +335,43 @@
         /// </summary>
         private void GetRowIndex()
         {
-            UltraGrid grid = this.ultraGridErnaehrung; // Momentan aktives Grid 
-            var bindingManager = this.bindingManagerGewicht; // Verwaltet die Datenanbindung
-            var tabelle = string.Empty; // Name der Tabelle
-            string table = $"{tabelle}"; // zum Zusammensetzen des Tabellen-Namens
-            DataSet ds = this.dataSetGewicht1; // DataSet mit welchem gearbveitet wird
+            var grid = this.ultraGridErnaehrung;                                // Momentan aktives Grid 
+            var bindingManager = this.bindingManagerGewicht;                    // Verwaltet die Datenanbindung
+            var tabelle = string.Empty;                                         // Name der Tabelle
+            string table = $"{tabelle}";                                        // zum Zusammensetzen des Tabellen-Namens
+            DataSet ds = this.dataSetGewicht1;                                  // DataSet mit welchem gearbveitet wird
 
             // Überprüfen,Tabelle angewählt ist zum Einstellen der nötigen Variablen
             switch (this.selectedTab)
             {
                 case (int)Ernaehrung:
                     {
-                        grid = this.ultraGridErnaehrung; // Grid auswählen
-                        bindingManager = this.bindingManagerGewicht; // Verwaltet die Gewichts-Daten
-                        tabelle = "Gewicht"; // Name der Tabelle 
-                        ds = this.dataSetGewicht1; // Zugehöriges DataSet
+                        grid = this.ultraGridErnaehrung;                        // Grid auswählen
+                        bindingManager = this.bindingManagerGewicht;            // Verwaltet die Gewichts-Daten
+                        tabelle = "Gewicht";                                    // Name der Tabelle 
+                        ds = this.dataSetGewicht1;                              // Zugehöriges DataSet
                         break;
                     }
 
                 case (int)BlutDruck:
                     {
-                        grid = this.ultraGridBlutDruck; // Grid auswählen
-                        bindingManager = this.bindingManagerBlutDruck; // Verwaltet die Blutdruck-Daten 
-                        tabelle = "BlutdruckDaten"; // Name der Tabelle 
-                        ds = this.dataSetGewicht1; // Zugehöriges DataSet
+                        grid = this.ultraGridBlutDruck;                         // Grid auswählen
+                        bindingManager = this.bindingManagerBlutDruck;          // Verwaltet die Blutdruck-Daten 
+                        tabelle = "BlutdruckDaten";                             // Name der Tabelle 
+                        ds = this.dataSetGewicht1;                              // Zugehöriges DataSet
                         break;
                     }
             }
 
             if (bindingManager.Position < ds.Tables[tabelle].Rows.Count && bindingManager.Position >= 0)
             {
-                var aktIndex = grid.ActiveRow.Index; // Index der aktiven Zeile im Grid ermitteln
-                this.indexNummerAktiveZeile = grid.Rows[aktIndex].Cells[0].Value.ToString();
-                    // Zugehöriger Wert der Spalte 'Index' im Datensatz
+                var aktIndex = grid.ActiveRow.Index;                            // Index der aktiven Zeile im Grid ermitteln
+                this.indexNummerAktiveZeile = grid.Rows[aktIndex].Cells[0].Value.ToString(); // Zugehöriger Wert der Spalte 'Index' im Datensatz
 
                 // Index im Bindmanager suchen, dazu alle Zeilen durchgehen
                 for (var pos = 0; pos < bindingManager.Count; pos++)
                 {
-                    bindingManager.Position = pos; // Auf eine Zeile im Bindmanager positionieren
+                    bindingManager.Position = pos;                              // Auf eine Zeile im Bindmanager positionieren
 
                     // Überprüfen, ob es sich um eine gelöschte Zeile handelt. Auf gelöschte Zeilen kann nicht zugegriffen werden
                     if (ds.Tables[tabelle].Rows[pos].RowState == DataRowState.Deleted)
@@ -548,13 +379,12 @@
                         continue;
                     }
 
-                    var indexTest = Convert.ToInt32(ds.Tables[tabelle].Rows[bindingManager.Position][0]);
-                        // Index des Datensatzes ermitteln
+                    var indexTest = Convert.ToInt32(ds.Tables[tabelle].Rows[bindingManager.Position][0]); // Index des Datensatzes ermitteln
 
                     // Indizes vergleichen. Ist der BindingManager inaktiv, ist die Position negativ
                     if (indexTest != Convert.ToInt32(this.indexNummerAktiveZeile) || bindingManager.Position < 0)
                     {
-                        continue; // Index nicht gefunden, also weitersuchen
+                        continue;                                               // Index nicht gefunden, also weitersuchen
                     }
 
                     // Index des gesuchten Datensatzes gefunden, Position im Bindingmanager für Übertragung merken
@@ -565,7 +395,227 @@
 
             this.DisplayRecordNumbers();
         }
-
         #endregion DatasetAction
+
+        #region ultraGridErnaehrung
+        /// <summary>
+        /// Behandelt das 'AfterCellActivate' Ereignis des ultraGridErnaehrung Controls.
+        /// </summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungAfterCellActivate(object sender, EventArgs e)
+        {
+            this.UltraGridCellActivated();
+        }
+
+        /// <summary>
+        /// Behandelt das 'AfterRowActivate' Ereignis des ultraGridErnaehrung Controls.
+        /// </summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungAfterRowActivate(object sender, EventArgs e)
+        {
+            this.UltraGridAfterRowActivate(e);
+        }
+
+        /// <summary>
+        /// Behandelt das 'AfterExitEditMode' Ereignis des ultraGridErnaehrung Controls.
+        /// </summary>
+        /// Der Editiermodus im ultraGridErnaehrung wurde beendet
+        private void OnUltraGridErnaehrungAfterExitEditMode(object sender, EventArgs e)
+        {
+            this.AfterExitEditMode(ref this.ultraGridErnaehrung, "Gewicht");    // Änderungen in Datenbank schreiben
+        }
+
+        /// <summary>Behandelt das AfterRowInsert Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungAfterRowInsert(object sender, RowEventArgs e)
+        {
+            this.UltraGridAfterRowInsert();
+        }
+
+        /// <summary>Behandelt das AfterRowDeleted Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungAfterRowsDeleted(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das AfterSelectChange Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungAfterSelectChange(object sender, AfterSelectChangeEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das AfterSortChange Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungAfterSortChange(object sender, BandEventArgs e)
+        {
+
+        }
+ 
+        /// <summary>Behandelt das BeforeRowsDeleted Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungBeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das CellChange Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungCellChange(object sender, CellEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das InitializeLayout Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungInitializeLayout(object sender, InitializeLayoutEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das InitializePrint Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungInitializePrint(object sender, CancelablePrintEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das Leave Ereignis des ultraGridErnaehrung Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungLeave(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region ultraGridBlutDruck
+
+        /// <summary>
+        /// Behandelt das 'AfterCellActivate' Ereignis des ultraGridBlutDruck Controls.
+        /// </summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckAfterCellActivate(object sender, EventArgs e)
+        {
+            this.UltraGridCellActivated();
+        }
+
+        /// <summary>
+        /// Behandelt das 'AfterExitEditMode' Ereignis des ultraGridBlutDruck Controls.
+        /// </summary>
+        /// Der Editiermodus im ultraGridBlutDruck wurde beendet
+        private void OnUltraGridBlutDruckAfterExitEditMode(object sender, EventArgs e)
+        {
+            this.AfterExitEditMode(ref this.ultraGridBlutDruck, "Gewicht"); // Änderungen in Datenbank schreiben
+        }
+
+        /// <summary>Behandelt das AfterRowInsert Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckAfterRowInsert(object sender, RowEventArgs e)
+        {
+            this.UltraGridAfterRowInsert();
+        }
+
+        /// <summary>Behandelt das AfterRowDeleted Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckAfterRowsDeleted(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das AfterSelectChange Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckAfterSelectChange(object sender, AfterSelectChangeEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das AfterSortChange Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckAfterSortChange(object sender, BandEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das BeforeRowsDeleted Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraultraGridBlutDruckBeforeRowsDeleted(object sender, BeforeRowsDeletedEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das CellChange Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckCellChange(object sender, CellEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das InitializeLayout Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckInitializeLayout(object sender, InitializeLayoutEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das InitializePrint Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OultraGridBlutDruckInitializePrint(object sender, CancelablePrintEventArgs e)
+        {
+
+        }
+
+        /// <summary>Behandelt das Leave Ereignis des ultraGridBlutDruck Controls.</summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Behandelt das 'AfterRowActivate' Ereignis des ultraGridBlutDruck Controls.
+        /// </summary>
+        /// <param name="sender">Die Quelle des Ereignisses.</param>
+        /// <param name="e">Die <see cref="EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridBlutDruckAfterRowActivate(object sender, EventArgs e)
+        {
+            this.UltraGridAfterRowActivate(e);
+        }
+
+        #endregion
+
+        #region Navigation
+
+        /// <summary>
+        /// Wird aufgerufen, wenn der Schieberegler zum Positionieren im Datensatz bewegt wird.
+        /// </summary>
+        /// <param name="sender">Das aufrufende Element.</param>
+        /// <param name="e">Die <see cref="System.EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnSliderScroll(object sender, EventArgs e)
+        {
+            this.sliderScroll();
+        }
+        #endregion
     }
 }

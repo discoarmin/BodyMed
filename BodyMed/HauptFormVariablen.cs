@@ -36,8 +36,8 @@ namespace BodyMed
         /// <summary>Position der Zeile im Ernährungsdatensatz merken</summary>
         private int rowPosMerkErnaehrung;
 
-        /// <summary>Position der Zeile im Blutdatensatz merken</summary>
-        private int rowPosMerkBulDruck;
+        /// <summary>Position der Zeile im Blutdruckdatensatz merken</summary>
+        private int rowPosMerkBlutDruck;
 
         /// <summary>Position der Zeile im Datensatz </summary>
         private string indexNummer;
@@ -48,8 +48,8 @@ namespace BodyMed
         /// <summary>Index der aktiven Zeile </summary>
         private int rowIndex;
 
-        /// <summary>Indexliste mit den vorhandenen flexTool-Werkzeugen</summary>
-        private ArrayList indexListFlexToolE05;
+        /// <summary>Indexliste mit den ausgewählten Zeilen im ultraGridErnaehrung</summary>
+        private ArrayList indexListErnaehrung;
 
         /// <summary>Information über die Kultur zur korrekten Datumsanzeige </summary>
         private System.Globalization.CultureInfo culture;
@@ -68,6 +68,9 @@ namespace BodyMed
 
         /// <summary>Merker, ob die Position bei den Blutdruckdaten geändert werden darf</summary>
         private bool blutDruckEinstellen;
+
+        /// <summary>Merker, ob Auswahlliste neu ermittelt werden darf</summary>
+        private bool auswahllisteLoeschen;
 
 
         #endregion Membervariablen

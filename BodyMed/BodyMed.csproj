@@ -96,6 +96,9 @@
     <Compile Include="HauptForm.Designer.cs">
       <DependentUpon>HauptForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="HauptFormEreignisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HauptFormPart1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -135,6 +135,25 @@ namespace BodyMed.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Einfügefehler ähnelt.
+        /// </summary>
+        internal static string HauptForm_UltraGridAfterRowInsert_Einfügefehler {
+            get {
+                return ResourceManager.GetString("HauptForm_UltraGridAfterRowInsert_Einfügefehler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Einfügen eines neuen Datensatzes in die Gewichtstabelle:  ähnelt.
+        /// </summary>
+        internal static string HauptForm_UltraGridAfterRowInsert_Fehler_beim_Einfügen_eines_neuen_Datensatzes_in_die_Gewichtstabelle__ {
+            get {
+                return ResourceManager.GetString("HauptForm_UltraGridAfterRowInsert_Fehler_beim_Einfügen_eines_neuen_Datensatzes_in" +
+                        "_die_Gewichtstabelle__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap newdocument32 {

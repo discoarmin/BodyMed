@@ -160,4 +160,10 @@
     <data name="HauptForm_DisplayRecordNumbers__" xml:space="preserve">
     <value> </value>
   </data>
+    <data name="HauptForm_UltraGridAfterRowInsert_Fehler_beim_Einfügen_eines_neuen_Datensatzes_in_die_Gewichtstabelle__" xml:space="preserve">
+    <value>Fehler beim Einfügen eines neuen Datensatzes in die Gewichtstabelle: </value>
+  </data>
+    <data name="HauptForm_UltraGridAfterRowInsert_Einfügefehler" xml:space="preserve">
+    <value>Einfügefehler</value>
+  </data>
 </root>

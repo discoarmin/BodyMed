@@ -133,6 +133,7 @@
             this.oleDbSelectCommand2 = new System.Data.OleDb.OleDbCommand();
             this.oleDbInsertCommand2 = new System.Data.OleDb.OleDbCommand();
             this.oleDbDataAdapterGewicht = new System.Data.OleDb.OleDbDataAdapter();
+            this.oleDbCommand2 = new System.Data.OleDb.OleDbCommand();
             this.ultraTabSharedControlsPage2 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.ultraTabStripControlGewicht = new Infragistics.Win.UltraWinTabControl.UltraTabStripControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
@@ -215,11 +216,12 @@
             this.sliderErnaehrung.Name = "sliderErnaehrung";
             this.sliderErnaehrung.Size = new System.Drawing.Size(174, 15);
             this.sliderErnaehrung.TabIndex = 0;
+            this.sliderErnaehrung.Scroll += new System.EventHandler(this.OnSliderScroll);
             // 
             // ultraTabPageControl1
             // 
             this.ultraTabPageControl1.Controls.Add(this.ultraGroupBoxErnaehrung);
-            this.ultraTabPageControl1.Location = new System.Drawing.Point(0, 0);
+            this.ultraTabPageControl1.Location = new System.Drawing.Point(-10000, -10000);
             this.ultraTabPageControl1.Name = "ultraTabPageControl1";
             this.ultraTabPageControl1.Size = new System.Drawing.Size(636, 263);
             // 
@@ -349,7 +351,18 @@
             this.ultraGridErnaehrung.Size = new System.Drawing.Size(636, 132);
             this.ultraGridErnaehrung.TabIndex = 22;
             this.ultraGridErnaehrung.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
+            this.ultraGridErnaehrung.AfterCellActivate += new System.EventHandler(this.OnUltraGridErnaehrungAfterCellActivate);
+            this.ultraGridErnaehrung.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.OnUltraGridErnaehrungInitializeLayout);
             this.ultraGridErnaehrung.AfterExitEditMode += new System.EventHandler(this.OnUltraGridErnaehrungAfterExitEditMode);
+            this.ultraGridErnaehrung.AfterRowActivate += new System.EventHandler(this.OnUltraGridErnaehrungAfterRowActivate);
+            this.ultraGridErnaehrung.AfterRowsDeleted += new System.EventHandler(this.OnUltraGridErnaehrungAfterRowsDeleted);
+            this.ultraGridErnaehrung.AfterRowInsert += new Infragistics.Win.UltraWinGrid.RowEventHandler(this.OnUltraGridErnaehrungAfterRowInsert);
+            this.ultraGridErnaehrung.CellChange += new Infragistics.Win.UltraWinGrid.CellEventHandler(this.OnUltraGridErnaehrungCellChange);
+            this.ultraGridErnaehrung.AfterSelectChange += new Infragistics.Win.UltraWinGrid.AfterSelectChangeEventHandler(this.OnUltraGridErnaehrungAfterSelectChange);
+            this.ultraGridErnaehrung.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.OnUltraGridErnaehrungBeforeRowsDeleted);
+            this.ultraGridErnaehrung.InitializePrint += new Infragistics.Win.UltraWinGrid.InitializePrintEventHandler(this.OnUltraGridErnaehrungInitializePrint);
+            this.ultraGridErnaehrung.AfterSortChange += new Infragistics.Win.UltraWinGrid.BandEventHandler(this.OnUltraGridErnaehrungAfterSortChange);
+            this.ultraGridErnaehrung.Leave += new System.EventHandler(this.OnUltraGridErnaehrungLeave);
             // 
             // dataSetGewicht1BindingSource
             // 
@@ -364,7 +377,7 @@
             // ultraTabPageControl2
             // 
             this.ultraTabPageControl2.Controls.Add(this.ultraGroupBoxBlutDruck);
-            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl2.Location = new System.Drawing.Point(0, 0);
             this.ultraTabPageControl2.Name = "ultraTabPageControl2";
             this.ultraTabPageControl2.Size = new System.Drawing.Size(636, 263);
             // 
@@ -494,6 +507,18 @@
             this.ultraGridBlutDruck.Size = new System.Drawing.Size(630, 130);
             this.ultraGridBlutDruck.TabIndex = 23;
             this.ultraGridBlutDruck.UseOsThemes = Infragistics.Win.DefaultableBoolean.False;
+            this.ultraGridBlutDruck.AfterCellActivate += new System.EventHandler(this.OnUltraGridBlutDruckAfterCellActivate);
+            this.ultraGridBlutDruck.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.OnUltraGridBlutDruckInitializeLayout);
+            this.ultraGridBlutDruck.AfterExitEditMode += new System.EventHandler(this.OnUltraGridBlutDruckAfterExitEditMode);
+            this.ultraGridBlutDruck.AfterRowActivate += new System.EventHandler(this.OnUltraGridBlutDruckAfterRowActivate);
+            this.ultraGridBlutDruck.AfterRowsDeleted += new System.EventHandler(this.OnUltraGridBlutDruckAfterRowsDeleted);
+            this.ultraGridBlutDruck.AfterRowInsert += new Infragistics.Win.UltraWinGrid.RowEventHandler(this.OnUltraGridBlutDruckAfterRowInsert);
+            this.ultraGridBlutDruck.CellChange += new Infragistics.Win.UltraWinGrid.CellEventHandler(this.OnUltraGridBlutDruckCellChange);
+            this.ultraGridBlutDruck.AfterSelectChange += new Infragistics.Win.UltraWinGrid.AfterSelectChangeEventHandler(this.OnUltraGridBlutDruckAfterSelectChange);
+            this.ultraGridBlutDruck.BeforeRowsDeleted += new Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler(this.OnUltraultraGridBlutDruckBeforeRowsDeleted);
+            this.ultraGridBlutDruck.InitializePrint += new Infragistics.Win.UltraWinGrid.InitializePrintEventHandler(this.OultraGridBlutDruckInitializePrint);
+            this.ultraGridBlutDruck.AfterSortChange += new Infragistics.Win.UltraWinGrid.BandEventHandler(this.OnUltraGridBlutDruckAfterSortChange);
+            this.ultraGridBlutDruck.Leave += new System.EventHandler(this.OnUltraGridBlutDruckLeave);
             // 
             // dataSetBlutDruck1BindingSource2
             // 
@@ -512,6 +537,7 @@
             this.sliderBlutDruck.Name = "sliderBlutDruck";
             this.sliderBlutDruck.Size = new System.Drawing.Size(174, 15);
             this.sliderBlutDruck.TabIndex = 1;
+            this.sliderBlutDruck.Scroll += new System.EventHandler(this.OnSliderScroll);
             // 
             // dataSetBlutDruck1BindingSource
             // 
@@ -649,6 +675,7 @@
             this.ribbonButtonFensterSchliessen.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.FlashImage")));
             this.ribbonButtonFensterSchliessen.FlashIntervall = 2000;
             this.ribbonButtonFensterSchliessen.Image = global::BodyMed.Properties.Resources.close32;
+            this.ribbonButtonFensterSchliessen.ShowFlashImage = true;
             this.ribbonButtonFensterSchliessen.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.SmallImage")));
             this.ribbonButtonFensterSchliessen.Text = "Fenster schließen";
             this.ribbonButtonFensterSchliessen.ToolTip = "Schließt ein Fenster";
@@ -682,7 +709,6 @@
             this.ribbonButtonBlutdruck.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.FlashImage")));
             this.ribbonButtonBlutdruck.FlashIntervall = 2000;
             this.ribbonButtonBlutdruck.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.Image")));
-            this.ribbonButtonBlutdruck.ShowFlashImage = true;
             this.ribbonButtonBlutdruck.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.SmallImage")));
             this.ribbonButtonBlutdruck.Tag = "Blutdruck";
             this.ribbonButtonBlutdruck.Text = "Blutdruck";
@@ -885,6 +911,11 @@
                         new System.Data.Common.DataColumnMapping("FFM", "FFM"),
                         new System.Data.Common.DataColumnMapping("KW", "KW"),
                         new System.Data.Common.DataColumnMapping("BMI", "BMI")})});
+            this.oleDbDataAdapterGewicht.UpdateCommand = this.oleDbCommand2;
+            // 
+            // oleDbCommand2
+            // 
+            this.oleDbCommand2.CommandText = resources.GetString("oleDbCommand2.CommandText");
             // 
             // ultraTabSharedControlsPage2
             // 
@@ -1343,5 +1374,6 @@
         private System.Windows.Forms.BindingSource bindingSourceGroesse;
         private System.Windows.Forms.BindingSource dataSetGroesseBindingSource;
         private System.Data.OleDb.OleDbCommand oleDbCommand1;
+        private System.Data.OleDb.OleDbCommand oleDbCommand2;
     }
 }
