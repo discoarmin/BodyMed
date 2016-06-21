@@ -32,7 +32,7 @@ namespace BodyMed
 
     [SuppressMessage("ReSharper", "RedundantEmptyDefaultSwitchBranch")]
     [SuppressMessage("ReSharper", "SwitchStatementMissingSomeCases")]
-    public partial class HauptForm : RibbonForm
+    public partial class HauptForm
     {
 
         public HauptForm()
@@ -48,10 +48,11 @@ namespace BodyMed
         private void OnHauptFormLoad(object sender, EventArgs e)
         {
             this.LadeDatenBank();
-            this.selectedTab = 1;                                               // Gewichtseingabe ist beim Start aktiv
+            this.selectedTab = 0;                                               // Gewichtseingabe ist beim Start aktiv
             this.gewichtEinstellen = true;                                      // Position bei den Ernährungsdaten darf geändert werden
             this.blutDruckEinstellen = true;                                    // Position bei den Blutdruckdaten darf geändert werden
             this.auswahllisteLoeschen = true;                                   // Markierte Zeilen eines Grids dürfen neu ermittelt werden
+//            Application.DoEvents();
         }
 
         /// <summary>
@@ -79,10 +80,10 @@ namespace BodyMed
                     // Zuerst ermitteln, welche Eingabe aktiv ist
                     switch (this.selectedTab)
                     {
-                        case 1: // Gewichtseingabe
+                        case 0: // Gewichtseingabe
                             this.ultraGridErnaehrung.Rows.Band.AddNew(); // Neuen Datensatz hizufügen
                             break;
-                        case 2: // Eingabe Blutdruckdaten
+                        case 1: // Eingabe Blutdruckdaten
                             this.ultraGridBlutDruck.Rows.Band.AddNew(); // Neuen Datensatz hizufügen
                             break;
                     }
@@ -96,6 +97,7 @@ namespace BodyMed
         {
             this.ultraTabControlHauptForm.Tabs["Ernaehrung"].Selected = true; // Eingabe der Gewichtsdaten
             this.selectedTab = this.ultraTabControlHauptForm.SelectedTab.Index; // Nummer des ausgewählten Tabs merken
+            this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
         }
 
         /// <summary>Zeigt die Daten für die Blutdruckeingabe an.</summary>
@@ -103,6 +105,7 @@ namespace BodyMed
         {
             this.ultraTabControlHauptForm.Tabs["BlutDruck"].Selected = true; // Eingabe der Blutdruckdaten
             this.selectedTab = this.ultraTabControlHauptForm.SelectedTab.Index; // Nummer des ausgewählten Tabs merken
+            this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
         }
 
         /// <summary> Manager für Datenbankanbindungen zu den einzelnen Tabellen der Datenbank bereitstellen. </summary>
@@ -269,7 +272,7 @@ namespace BodyMed
                                 {
                                     // Datensatzinfo in der Statuszeile anzeigen
                                     this.statusBar.Panels["tcurrentDirectory"].Text =
-                                        Resources.HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_
+                                        Resources.HauptForm_DisplayRecordNumbers_Blutdruck__Datensatz__
                                         + (this.rowIndex + 1) + Resources.HauptForm_DisplayRecordNumbers__von_
                                         + this.bindingManagerBlutDruck.Count
                                         + Resources.HauptForm_DisplayRecordNumbers__;
@@ -358,7 +361,7 @@ namespace BodyMed
                         grid = this.ultraGridBlutDruck;                         // Grid auswählen
                         bindingManager = this.bindingManagerBlutDruck;          // Verwaltet die Blutdruck-Daten 
                         tabelle = "BlutdruckDaten";                             // Name der Tabelle 
-                        ds = this.dataSetGewicht1;                              // Zugehöriges DataSet
+                        ds = this.dataSetBlutDruck1;                            // Zugehöriges DataSet
                         break;
                     }
             }
@@ -518,7 +521,7 @@ namespace BodyMed
         /// Der Editiermodus im ultraGridBlutDruck wurde beendet
         private void OnUltraGridBlutDruckAfterExitEditMode(object sender, EventArgs e)
         {
-            this.AfterExitEditMode(ref this.ultraGridBlutDruck, "Gewicht"); // Änderungen in Datenbank schreiben
+            this.AfterExitEditMode(ref this.ultraGridBlutDruck, "BlutdruckDaten"); // Änderungen in Datenbank schreiben
         }
 
         /// <summary>Behandelt das AfterRowInsert Ereignis des ultraGridBlutDruck Controls.</summary>
@@ -614,8 +617,13 @@ namespace BodyMed
         /// <param name="e">Die <see cref="System.EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
         private void OnSliderScroll(object sender, EventArgs e)
         {
-            this.sliderScroll();
+            this.SliderScroll();
         }
         #endregion
+
+        private void ribbon1_ActiveTabChanged(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+        }
     }
 }

@@ -166,4 +166,16 @@
     <data name="HauptForm_UltraGridAfterRowInsert_Einfügefehler" xml:space="preserve">
     <value>Einfügefehler</value>
   </data>
+    <data name="HauptForm_UltraGridAfterRowInsert_Fehler_beim_Einfügen_eines_neuen_Datensatzes_in_die_Butdruck_Tabelle__" xml:space="preserve">
+    <value>Fehler beim Einfügen eines neuen Datensatzes in die Butdruck-Tabelle: </value>
+  </data>
+    <data name="HauptForm_DisplayRecordNumbers_Ernährung__Datensatz__" xml:space="preserve">
+    <value>Ernährung: Datensatz: </value>
+  </data>
+    <data name="HauptForm_DisplayRecordNumbers_Blutdruck__Datensatz__" xml:space="preserve">
+    <value>Blutdruck: Datensatz: </value>
+  </data>
+    <data name="HauptForm_BerechneBmi_Ergebnisse_werden_ungenau__Gewicht_ist_keine_gültige_Zahl_" xml:space="preserve">
+    <value>Ergebnisse werden ungenau. Gewicht ist keine gültige Zahl.</value>
+  </data>
 </root>

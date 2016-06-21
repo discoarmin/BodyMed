@@ -33,13 +33,14 @@
             Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand1 = new Infragistics.Win.UltraWinGrid.UltraGridBand("Gewicht", -1);
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn6 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Index");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn7 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Datum");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn8 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KG");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn9 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FM");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn10 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FFM");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn11 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KW");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn12 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("BMI");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn27 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Index");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn28 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Datum");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn29 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KG");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn30 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FM");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn31 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("FFM");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn32 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("KW");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn33 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("BMI");
+            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn1 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Groesse", 0);
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
@@ -50,13 +51,6 @@
             Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinGrid.UltraGridBand ultraGridBand2 = new Infragistics.Win.UltraWinGrid.UltraGridBand("BlutdruckDaten", -1);
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn14 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Index");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn15 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Systolisch");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn16 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Diastolisch");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn17 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Puls");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn18 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Pulsdruck");
-            Infragistics.Win.UltraWinGrid.UltraGridColumn ultraGridColumn19 = new Infragistics.Win.UltraWinGrid.UltraGridColumn("Datum");
             Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
@@ -88,7 +82,7 @@
             this.splitContainerErnaehrung = new System.Windows.Forms.SplitContainer();
             this.zedGraphControlErnaehrung = new ZedGraph.ZedGraphControl();
             this.ultraGridErnaehrung = new Infragistics.Win.UltraWinGrid.UltraGrid();
-            this.dataSetGewicht1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetGewicht1BindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetGewicht1 = new BodyMed.DataSetGewicht();
             this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.ultraGroupBoxBlutDruck = new Infragistics.Win.Misc.UltraGroupBox();
@@ -98,7 +92,7 @@
             this.dataSetBlutDruck1BindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetBlutDruck1 = new BodyMed.DataSetBlutDruck();
             this.sliderBlutDruck = new System.Windows.Forms.TrackBar();
-            this.dataSetBlutDruck1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetGewicht1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataetGewichtBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ultraTabPageGewicht = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.ultraTabPageBlutDruck = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
@@ -163,6 +157,8 @@
             this.bindingSourceGroesse = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetGroesseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oleDbCommand1 = new System.Data.OleDb.OleDbCommand();
+            this.dataSetBlutDruck1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetGewicht1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.sliderErnaehrung)).BeginInit();
             this.ultraTabPageControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).BeginInit();
@@ -172,7 +168,7 @@
             this.splitContainerErnaehrung.Panel2.SuspendLayout();
             this.splitContainerErnaehrung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).BeginInit();
             this.ultraTabPageControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).BeginInit();
@@ -185,7 +181,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).BeginInit();
             this.ultraTabPageBlutDruck.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sliderFuegeModul)).BeginInit();
@@ -207,21 +203,23 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGroesse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetGroesseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // sliderErnaehrung
             // 
             this.sliderErnaehrung.AutoSize = false;
-            this.sliderErnaehrung.Location = new System.Drawing.Point(242, 5);
+            this.sliderErnaehrung.Location = new System.Drawing.Point(328, 6);
             this.sliderErnaehrung.Name = "sliderErnaehrung";
-            this.sliderErnaehrung.Size = new System.Drawing.Size(174, 15);
+            this.sliderErnaehrung.Size = new System.Drawing.Size(174, 13);
             this.sliderErnaehrung.TabIndex = 0;
             this.sliderErnaehrung.Scroll += new System.EventHandler(this.OnSliderScroll);
             // 
             // ultraTabPageControl1
             // 
             this.ultraTabPageControl1.Controls.Add(this.ultraGroupBoxErnaehrung);
-            this.ultraTabPageControl1.Location = new System.Drawing.Point(-10000, -10000);
+            this.ultraTabPageControl1.Location = new System.Drawing.Point(0, 0);
             this.ultraTabPageControl1.Name = "ultraTabPageControl1";
             this.ultraTabPageControl1.Size = new System.Drawing.Size(636, 263);
             // 
@@ -282,39 +280,62 @@
             // ultraGridErnaehrung
             // 
             this.ultraGridErnaehrung.DataMember = "Gewicht";
-            this.ultraGridErnaehrung.DataSource = this.dataSetGewicht1BindingSource;
+            this.ultraGridErnaehrung.DataSource = this.dataSetGewicht1BindingSource2;
             appearance2.BackColor = System.Drawing.Color.LightGray;
             appearance2.BorderColor = System.Drawing.Color.Silver;
             this.ultraGridErnaehrung.DisplayLayout.Appearance = appearance2;
             this.ultraGridErnaehrung.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            ultraGridColumn6.Header.VisiblePosition = 0;
-            ultraGridColumn6.Hidden = true;
-            ultraGridColumn6.Width = 89;
-            ultraGridColumn7.Header.VisiblePosition = 1;
-            ultraGridColumn7.Width = 115;
-            ultraGridColumn8.Header.VisiblePosition = 2;
-            ultraGridColumn8.MaskInput = "999,9";
-            ultraGridColumn8.Width = 100;
-            ultraGridColumn9.Header.VisiblePosition = 3;
-            ultraGridColumn9.MaskInput = "99,9";
-            ultraGridColumn9.Width = 100;
-            ultraGridColumn10.Header.VisiblePosition = 4;
-            ultraGridColumn10.MaskInput = "99,9";
-            ultraGridColumn10.Width = 100;
-            ultraGridColumn11.Header.VisiblePosition = 5;
-            ultraGridColumn11.MaskInput = "99,9";
-            ultraGridColumn11.Width = 100;
-            ultraGridColumn12.Header.VisiblePosition = 6;
-            ultraGridColumn12.MaskInput = "99,9";
-            ultraGridColumn12.Width = 100;
+            ultraGridColumn27.Header.VisiblePosition = 0;
+            ultraGridColumn27.Width = 68;
+            ultraGridColumn28.Header.VisiblePosition = 1;
+            ultraGridColumn28.Width = 83;
+            ultraGridColumn29.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            ultraGridColumn29.CellDisplayStyle = Infragistics.Win.UltraWinGrid.CellDisplayStyle.FullEditorDisplay;
+            ultraGridColumn29.Header.VisiblePosition = 2;
+            ultraGridColumn29.MaskClipMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn29.MaskDataMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn29.MaskDisplayMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeBoth;
+            ultraGridColumn29.MaskInput = "999,9";
+            ultraGridColumn29.Width = 72;
+            ultraGridColumn30.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            ultraGridColumn30.CellDisplayStyle = Infragistics.Win.UltraWinGrid.CellDisplayStyle.FullEditorDisplay;
+            ultraGridColumn30.Header.VisiblePosition = 3;
+            ultraGridColumn30.MaskClipMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn30.MaskDataMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn30.MaskDisplayMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeBoth;
+            ultraGridColumn30.MaskInput = "99,9";
+            ultraGridColumn30.Width = 72;
+            ultraGridColumn31.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            ultraGridColumn31.CellDisplayStyle = Infragistics.Win.UltraWinGrid.CellDisplayStyle.FullEditorDisplay;
+            ultraGridColumn31.Header.VisiblePosition = 4;
+            ultraGridColumn31.MaskClipMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn31.MaskDataMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn31.MaskDisplayMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeBoth;
+            ultraGridColumn31.MaskInput = "99,9";
+            ultraGridColumn31.Width = 72;
+            ultraGridColumn32.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+            ultraGridColumn32.CellDisplayStyle = Infragistics.Win.UltraWinGrid.CellDisplayStyle.FullEditorDisplay;
+            ultraGridColumn32.Header.VisiblePosition = 5;
+            ultraGridColumn32.MaskClipMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn32.MaskDataMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiterals;
+            ultraGridColumn32.MaskDisplayMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeBoth;
+            ultraGridColumn32.MaskInput = "99,9";
+            ultraGridColumn32.Width = 72;
+            ultraGridColumn33.Header.VisiblePosition = 6;
+            ultraGridColumn33.Width = 72;
+            ultraGridColumn1.DataType = typeof(decimal);
+            ultraGridColumn1.Header.Caption = "Größe";
+            ultraGridColumn1.Header.VisiblePosition = 7;
+            ultraGridColumn1.Width = 104;
             ultraGridBand1.Columns.AddRange(new object[] {
-            ultraGridColumn6,
-            ultraGridColumn7,
-            ultraGridColumn8,
-            ultraGridColumn9,
-            ultraGridColumn10,
-            ultraGridColumn11,
-            ultraGridColumn12});
+            ultraGridColumn27,
+            ultraGridColumn28,
+            ultraGridColumn29,
+            ultraGridColumn30,
+            ultraGridColumn31,
+            ultraGridColumn32,
+            ultraGridColumn33,
+            ultraGridColumn1});
             this.ultraGridErnaehrung.DisplayLayout.BandsSerializer.Add(ultraGridBand1);
             appearance3.BackColor = System.Drawing.SystemColors.ActiveBorder;
             appearance3.BackColor2 = System.Drawing.SystemColors.ControlDark;
@@ -364,10 +385,10 @@
             this.ultraGridErnaehrung.AfterSortChange += new Infragistics.Win.UltraWinGrid.BandEventHandler(this.OnUltraGridErnaehrungAfterSortChange);
             this.ultraGridErnaehrung.Leave += new System.EventHandler(this.OnUltraGridErnaehrungLeave);
             // 
-            // dataSetGewicht1BindingSource
+            // dataSetGewicht1BindingSource2
             // 
-            this.dataSetGewicht1BindingSource.DataSource = this.dataSetGewicht1;
-            this.dataSetGewicht1BindingSource.Position = 0;
+            this.dataSetGewicht1BindingSource2.DataSource = this.dataSetGewicht1;
+            this.dataSetGewicht1BindingSource2.Position = 0;
             // 
             // dataSetGewicht1
             // 
@@ -377,7 +398,7 @@
             // ultraTabPageControl2
             // 
             this.ultraTabPageControl2.Controls.Add(this.ultraGroupBoxBlutDruck);
-            this.ultraTabPageControl2.Location = new System.Drawing.Point(0, 0);
+            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
             this.ultraTabPageControl2.Name = "ultraTabPageControl2";
             this.ultraTabPageControl2.Size = new System.Drawing.Size(636, 263);
             // 
@@ -445,32 +466,6 @@
             appearance12.BorderColor = System.Drawing.Color.Silver;
             this.ultraGridBlutDruck.DisplayLayout.Appearance = appearance12;
             this.ultraGridBlutDruck.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            ultraGridColumn14.CellActivation = Infragistics.Win.UltraWinGrid.Activation.NoEdit;
-            ultraGridColumn14.Header.VisiblePosition = 0;
-            ultraGridColumn14.Hidden = true;
-            ultraGridColumn14.Width = 99;
-            ultraGridColumn15.Header.VisiblePosition = 2;
-            ultraGridColumn15.MaskInput = "999";
-            ultraGridColumn15.Width = 133;
-            ultraGridColumn16.Header.VisiblePosition = 3;
-            ultraGridColumn16.MaskInput = "999";
-            ultraGridColumn16.Width = 143;
-            ultraGridColumn17.Header.VisiblePosition = 4;
-            ultraGridColumn17.MaskInput = "999";
-            ultraGridColumn17.Width = 71;
-            ultraGridColumn18.Header.VisiblePosition = 5;
-            ultraGridColumn18.MaskInput = "999";
-            ultraGridColumn18.Width = 131;
-            ultraGridColumn19.Header.VisiblePosition = 1;
-            ultraGridColumn19.Width = 131;
-            ultraGridBand2.Columns.AddRange(new object[] {
-            ultraGridColumn14,
-            ultraGridColumn15,
-            ultraGridColumn16,
-            ultraGridColumn17,
-            ultraGridColumn18,
-            ultraGridColumn19});
-            this.ultraGridBlutDruck.DisplayLayout.BandsSerializer.Add(ultraGridBand2);
             appearance13.BackColor = System.Drawing.SystemColors.ActiveBorder;
             appearance13.BackColor2 = System.Drawing.SystemColors.ControlDark;
             appearance13.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
@@ -539,10 +534,10 @@
             this.sliderBlutDruck.TabIndex = 1;
             this.sliderBlutDruck.Scroll += new System.EventHandler(this.OnSliderScroll);
             // 
-            // dataSetBlutDruck1BindingSource
+            // dataSetGewicht1BindingSource
             // 
-            this.dataSetBlutDruck1BindingSource.DataMember = "BlutdruckDaten";
-            this.dataSetBlutDruck1BindingSource.DataSource = this.dataSetBlutDruck1;
+            this.dataSetGewicht1BindingSource.DataSource = this.dataSetGewicht1;
+            this.dataSetGewicht1BindingSource.Position = 0;
             // 
             // dataetGewichtBindingSource
             // 
@@ -602,6 +597,7 @@
             this.ribbon1.TabsMargin = new System.Windows.Forms.Padding(12, 26, 20, 0);
             this.ribbon1.Text = "ribbon1";
             this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Black;
+            this.ribbon1.ActiveTabChanged += new System.EventHandler(this.ribbon1_ActiveTabChanged);
             // 
             // DropDownButton1
             // 
@@ -675,7 +671,6 @@
             this.ribbonButtonFensterSchliessen.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.FlashImage")));
             this.ribbonButtonFensterSchliessen.FlashIntervall = 2000;
             this.ribbonButtonFensterSchliessen.Image = global::BodyMed.Properties.Resources.close32;
-            this.ribbonButtonFensterSchliessen.ShowFlashImage = true;
             this.ribbonButtonFensterSchliessen.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.SmallImage")));
             this.ribbonButtonFensterSchliessen.Text = "Fenster schließen";
             this.ribbonButtonFensterSchliessen.ToolTip = "Schließt ein Fenster";
@@ -687,7 +682,6 @@
             this.ribbonButtonEingabe.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.FlashImage")));
             this.ribbonButtonEingabe.FlashIntervall = 2000;
             this.ribbonButtonEingabe.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.Image")));
-            this.ribbonButtonEingabe.ShowFlashImage = true;
             this.ribbonButtonEingabe.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.SmallImage")));
             this.ribbonButtonEingabe.Tag = "Eingabe";
             this.ribbonButtonEingabe.Text = "Eingabe";
@@ -785,6 +779,7 @@
             ultraStatusPanel2.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.ControlContainer;
             ultraStatusPanel2.ToolTipText = "Datensatz auswählen";
             ultraStatusPanel2.Width = 180;
+            appearance23.FontData.BoldAsString = "True";
             appearance23.TextHAlignAsString = "Center";
             appearance23.TextVAlignAsString = "Middle";
             ultraStatusPanel3.Appearance = appearance23;
@@ -792,11 +787,13 @@
             ultraStatusPanel3.KeyStateInfo.Key = Infragistics.Win.UltraWinStatusBar.KeyState.CapsLock;
             ultraStatusPanel3.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
             ultraStatusPanel3.Width = 50;
+            appearance24.FontData.BoldAsString = "True";
             appearance24.TextHAlignAsString = "Center";
             appearance24.TextVAlignAsString = "Middle";
             ultraStatusPanel4.Appearance = appearance24;
             ultraStatusPanel4.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
             ultraStatusPanel4.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
+            ultraStatusPanel4.Text = "NL";
             ultraStatusPanel4.Width = 50;
             appearance25.FontData.BoldAsString = "True";
             appearance25.TextHAlignAsString = "Left";
@@ -804,7 +801,6 @@
             ultraStatusPanel5.Appearance = appearance25;
             ultraStatusPanel5.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
             ultraStatusPanel5.Key = "Version";
-            ultraStatusPanel5.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
             ultraStatusPanel5.Text = "Vxx.xx.xx.xxxx";
             ultraStatusPanel5.Width = 150;
             this.statusBar.Panels.AddRange(new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel[] {
@@ -815,6 +811,7 @@
             ultraStatusPanel5});
             this.statusBar.Size = new System.Drawing.Size(776, 23);
             this.statusBar.TabIndex = 3;
+            this.statusBar.ViewStyle = Infragistics.Win.UltraWinStatusBar.ViewStyle.Office2007;
             // 
             // oleDbSelectCommand1
             // 
@@ -1220,6 +1217,16 @@
             this.dataSetGroesseBindingSource.DataMember = "Groesse";
             this.dataSetGroesseBindingSource.DataSource = this.dataSetGroesse1;
             // 
+            // dataSetBlutDruck1BindingSource
+            // 
+            this.dataSetBlutDruck1BindingSource.DataMember = "BlutdruckDaten";
+            this.dataSetBlutDruck1BindingSource.DataSource = this.dataSetBlutDruck1;
+            // 
+            // dataSetGewicht1BindingSource1
+            // 
+            this.dataSetGewicht1BindingSource1.DataSource = this.dataSetGewicht1;
+            this.dataSetGewicht1BindingSource1.Position = 0;
+            // 
             // HauptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1237,7 +1244,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BodyMed";
-            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.OnHauptFormLoad);
             this.ResizeEnd += new System.EventHandler(this.OnHauptFormResizeEnd);
@@ -1250,7 +1256,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerErnaehrung)).EndInit();
             this.splitContainerErnaehrung.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraGridErnaehrung)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1)).EndInit();
             this.ultraTabPageControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxBlutDruck)).EndInit();
@@ -1263,7 +1269,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sliderBlutDruck)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataetGewichtBindingSource)).EndInit();
             this.ultraTabPageBlutDruck.ResumeLayout(false);
             this.ultraTabPageBlutDruck.PerformLayout();
@@ -1287,6 +1293,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceGroesse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetGroesseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetBlutDruck1BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetGewicht1BindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1375,5 +1383,7 @@
         private System.Windows.Forms.BindingSource dataSetGroesseBindingSource;
         private System.Data.OleDb.OleDbCommand oleDbCommand1;
         private System.Data.OleDb.OleDbCommand oleDbCommand2;
+        private System.Windows.Forms.BindingSource dataSetGewicht1BindingSource2;
+        private System.Windows.Forms.BindingSource dataSetGewicht1BindingSource1;
     }
 }

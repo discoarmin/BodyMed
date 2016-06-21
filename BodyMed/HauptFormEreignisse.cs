@@ -54,6 +54,8 @@ namespace BodyMed
                 this.gewichtEinstellen = false;                                 // keine Gewichtseingabe
                 this.GetRowIndex();                                             // Index der aktiven Zeile ermitteln
             }
+
+//            SendKeys.Send("+{HOME}");                                           // Tastenkombination für Eingabefeld markieren senden
         }
 
         /// <summary>Bearbeitet die Aktivierung einer Zeile .</summary>
@@ -105,7 +107,7 @@ namespace BodyMed
                 try
                 {
                     strInsert = "INSERT INTO[Gewicht] ([Datum], [KG], [FM], [FFM], [KW], [BMI])" + " VALUES("
-                                + DateTime.Now + "," + "0.0 , 0.0, 0.0, 0.0,  )";   // leeren Datensatz einfügen
+                                + "'" + DateTime.Now + "'" + "," + "0.0 , 0.0, 0.0, 0.0, NULL )";   // leeren Datensatz einfügen
 
                     this.oleDbDataAdapterGewicht.InsertCommand.CommandText = strInsert;   // Einfügekommando an DataAdapter übergeben
                     this.oleDbDataAdapterGewicht.InsertCommand.ExecuteNonQuery();         // Einfügen durchführen
@@ -119,37 +121,32 @@ namespace BodyMed
                 }
 
                 this.RefreshDataSet(ref this.ultraGridErnaehrung, "Gewicht");   // Datensätze im DataAdapter auffrischen
-                this.geberChipInsert = true;                                        // Merker: Datensatz bei den Geberdaten hinzugefügt
-
-                if (!NeuesWerkZeug && !LeeresWerkZeug)
-                {
-                    // Kein neues Werkzeug -> gespeicherten Datensatz anzeigen
-                    var dataRow = chipdaten.ultraDataSourceFlexToolE05.Rows[0];     // Bei den Root-Daten gibt es nur eine Zeile
-                    var childBandChildRows = dataRow.GetChildRows("Sonstige Daten");
-                    dataRow = childBandChildRows[2];                                // Auf Seriennummer positionieren
-                    var snr = dataRow["Geberchip"].ToString();                      // Seriennummer des Geberchips
-                    this.SetzeGeberE05Ds(snr);                                      // Datensatz mit der gefundenen Seriennummer auswählen
-                }
-                else
-                {
-                    this.SetzeGeberE05Ds(" ");                                      // Leeren Datensatz auswählen
-                }
             }
             else
             {
                 // Es ist die Blutdruck-Tabelle angewählt
-                this.bindingManagerBlutDruck.Position = this.sliderBlutDruck.Value; // Datensatzposition der Blutdruckdaten auf die am Schieberegler eingestellte Position setzen
+                try
+                {
+                    strInsert = "INSERT INTO[BlutdruckDaten] ([Datum], [Systolisch], [Diastolisch], [Puls])" + " VALUES("
+                            + "'" + DateTime.Now + "'" + "," + "0 , 0, 0)";           // leeren Datensatz einfügen
 
-                // Aktive Zeile im Grid ermitteln
-                this.indexNummerAktiveZeile = Convert.ToString(this.dataSetBlutDruck1.Tables["BlutdruckDaten"].Rows[this.bindingManagerBlutDruck.Position]["Index"]);
-                this.LoescheAuswahl(this.ultraGridErnaehrung);                  // Zuerst alle Auswahlen zurücksetzen
-                this.SetzeAuswahl(this.ultraGridErnaehrung);                    // Falls eine aktive Zeile existiert, diese anzeigen
-                this.rowPosMerk = this.sliderErnaehrung.Value;                  // Jetzige Position im Datensatz merken
+                    this.oleDbDataAdapterBlutDruck.InsertCommand.CommandText = strInsert; // Einfügekommando an DataAdapter übergeben
+                    this.oleDbDataAdapterBlutDruck.InsertCommand.ExecuteNonQuery();       // Einfügen durchführen
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Resources.HauptForm_UltraGridAfterRowInsert_Fehler_beim_Einfügen_eines_neuen_Datensatzes_in_die_Butdruck_Tabelle__ + ex.Message,
+                        Resources.HauptForm_UltraGridAfterRowInsert_Einfügefehler,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+                this.RefreshDataSet(ref this.ultraGridBlutDruck, "BlutdruckDaten");   // Datensätze im DataAdapter auffrischen
             }
         }
 
         /// <summary>Bearbeitet das Einfügen einer Zeile .</summary>
-        private void sliderScroll()
+        private void SliderScroll()
         {
             // Individuelle Bearbeitung je nach ausgewählter Ansicht
             if (this.selectedTab == (int)Ernaehrung)

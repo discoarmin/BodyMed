@@ -23,6 +23,7 @@ namespace BodyMed
     using System.Data.OleDb;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Globalization;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -49,7 +50,7 @@ namespace BodyMed
             // Prüfen, ob eine Zeile Aktiv ist
             if (grid.ActiveRow == null)
             {
-                return; // Abbruch, da keine aktive Zeile
+                return;                                                         // Abbruch, da keine aktive Zeile
             }
 
             // Alle Zellen durchgehen, damit geänderte Zelle gefunden wird
@@ -62,7 +63,7 @@ namespace BodyMed
                     continue;
                 }
 
-                var aktuellerWert = grid.ActiveRow.Cells[colIndex].Value; // geänderter Wert im Grid
+                var aktuellerWert = grid.ActiveRow.Cells[colIndex].Value;       // geänderter Wert im Grid
 
                 // Nachschauen, ob ein zusätzlicher Editor für die Dateneingabe verwendet wird
                 // Wenn ja, Wert aus diesem Editor eintragen
@@ -75,7 +76,7 @@ namespace BodyMed
                 {
                     if (editor.Value != null)
                     {
-                        aktuellerWert = editor.Value; // Wert des Editors eintragen
+                        aktuellerWert = editor.Value;                           // Wert des Editors eintragen
                     }
                 }
                 catch
@@ -85,92 +86,71 @@ namespace BodyMed
 
                 // Spaltennamen und Datentyp der geänderten Zelle bestimmen
                 // Formular ermitteln
-                var spaltenName = string.Empty; // Name der Spalte
-                var spaltenTyp = typeof(DBNull); // Daten-Typ der Spalte
-                string table = $"{tabelle}"; // zum Zusammensetzen des Tabellen-Namens
+                var spaltenName = string.Empty;                                 // Name der Spalte
+                var spaltenTyp = typeof(DBNull);                                // Daten-Typ der Spalte
+                string table = $"{tabelle}";                                    // zum Zusammensetzen des Tabellen-Namens
 
                 // Überprüfen,Tabelle angewählt ist
-                switch (this.selectedTab)
+                if (this.selectedTab == (int)Ernaehrung)
                 {
-                    case (int)Ernaehrung:
-                        {
-                            // Es ist die Ernährungstabelle angewählt
-                            spaltenName = string.Format(
-                                this.dataSetGewicht1.Tables["{0}"].Columns[colIndex].ToString(),
-                                tabelle);
-                            spaltenTyp = this.dataSetGewicht1.Tables[table].Rows[this.rowIndex][colIndex].GetType();
-                            break;
-                        }
-
-                    case (int)BlutDruck:
-                        {
-                            // Es ist Blutdrucktabelle angewählt
-                            spaltenName =
-                                string.Format(
-                                    this.dataSetBlutDruck1.Tables["{0}"].Columns[colIndex].ToString(),
-                                    tabelle);
-                            spaltenTyp = this.dataSetBlutDruck1.Tables[table].Rows[this.rowIndex][colIndex].GetType();
-                            break;
-                        }
+                    // Es ist die Ernährungstabelle angewählt
+                    spaltenName = this.dataSetGewicht1.Tables[table].Columns[colIndex].ToString();
+                    spaltenTyp = this.dataSetGewicht1.Tables[table].Rows[this.rowIndex][colIndex].GetType();
+                }
+                else
+                {
+                    // Es ist Blutdrucktabelle angewählt
+                    spaltenName = this.dataSetBlutDruck1.Tables[table].Columns[colIndex].ToString();
+                    spaltenTyp = this.dataSetBlutDruck1.Tables[table].Rows[this.rowIndex][colIndex].GetType();
                 }
 
                 // Abfrage der Datentypen
-                string strUpdate; // Variable für Update-Kommando
+                string strUpdate;                                               // Variable für Update-Kommando
                 if (spaltenTyp == typeof(string))
                 {
                     // Zeichenkette
                     strUpdate =
-                        $"Update {tabelle} SET  [{spaltenName}]='{aktuellerWert}' WHERE ([Index]={this.indexNummerAktiveZeile})";
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{aktuellerWert}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else if (spaltenTyp == typeof(decimal))
                 {
                     // Dezimalzahl
-                    strUpdate = string.Format(
-                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        Convert.ToDecimal(aktuellerWert),
-                        this.indexNummerAktiveZeile,
-                        tabelle);
+                    // eventuell vorhandenes Komma durch Punkt ersetzen, damit Update-Kommando funktioniert
+                    var neuerWert = aktuellerWert.ToString();
+                    aktuellerWert = neuerWert.Replace(",", ".");
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{aktuellerWert}' WHERE ([Index]={this.indexNummerAktiveZeile})";
+
                 }
                 else if (spaltenTyp == typeof(ulong))
                 {
                     // DWORD
-                    strUpdate = string.Format(
-                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        Convert.ToUInt64(aktuellerWert),
-                        this.indexNummerAktiveZeile,
-                        tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{Convert.ToUInt64(aktuellerWert)}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else if (spaltenTyp == typeof(DateTime))
                 {
                     // Datum
-                    strUpdate = string.Format(
-                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        Convert.ToDateTime(aktuellerWert),
-                        this.indexNummerAktiveZeile,
-                        tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{Convert.ToDateTime(aktuellerWert)}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else if (spaltenTyp == typeof(bool))
                 {
                     // Ja/Nein
-                    strUpdate = string.Format(
-                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        aktuellerWert,
-                        this.indexNummerAktiveZeile,
-                        tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{aktuellerWert}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else if (spaltenTyp == typeof(short))
                 {
                     // 16-Bit Integer
-                    strUpdate = string.Format(
-                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        Convert.ToInt16(aktuellerWert),
-                        this.indexNummerAktiveZeile,
-                        tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{Convert.ToInt16(aktuellerWert)}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else if (spaltenTyp == typeof(byte))
                 {
@@ -181,30 +161,29 @@ namespace BodyMed
                         Convert.ToByte(aktuellerWert),
                         this.indexNummerAktiveZeile,
                         tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{Convert.ToByte(aktuellerWert)}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else if (spaltenTyp == typeof(DBNull))
                 {
                     // Nicht vorhandener Wert
-                    strUpdate = string.Format(
-                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        aktuellerWert,
-                        this.indexNummerAktiveZeile,
-                        tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{aktuellerWert}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
                 else
                 {
                     // 32-Bit Integer
-                    strUpdate = string.Format(
-                        "Update {3} SET  [{0}]='{1}' WHERE ([Index]={2})",
-                        spaltenName,
-                        Convert.ToInt32(aktuellerWert),
-                        this.indexNummerAktiveZeile,
-                        tabelle);
+                    strUpdate =
+                        $"Update {tabelle} SET  [{spaltenName}]="
+                        + $"'{Convert.ToInt32(aktuellerWert)}' WHERE ([Index]={this.indexNummerAktiveZeile})";
                 }
 
                 this.ExecuteQuery(strUpdate);                                   // Update in Datenbank durchführen
             }
+
+            // Falls das Gewicht eingegeben wurde, kann der BMI-Wert berechnet werden
         }
 
         /// <summary>
@@ -555,8 +534,8 @@ namespace BodyMed
             }
             else
             {
-                this.dataSetBlutDruck1.Tables["Gewicht"].Clear();                                           // Inhalt des Datensatzes für Ernährungs-Daten löschen..
-                index = this.oleDbDataAdapterGewicht.Fill(this.dataSetGewicht1.Tables["BlutdruckDaten"]);   // .. und neu laden
+                this.dataSetBlutDruck1.Tables["BlutdruckDaten"].Clear();                                           // Inhalt des Datensatzes für Ernährungs-Daten löschen..
+                index = this.oleDbDataAdapterBlutDruck.Fill(this.dataSetGewicht1.Tables["BlutdruckDaten"]);   // .. und neu laden
             }
 
             // aktive Zeile neu bestimmen
@@ -580,6 +559,48 @@ namespace BodyMed
             }
 
             this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
+        }
+
+        /// <summary>Berechnet denm BMI-Wert.</summary>
+        /// <param name="gewicht">das Gewicht.</param>
+        /// <param name="groesse">die Größe.</param>
+        private void BerechneBmi(string gewicht, string groesse)
+        {
+            var weght = string.IsNullOrEmpty(gewicht) ? 1 : double.Parse(gewicht);
+            var height = string.IsNullOrEmpty(groesse) ? 1 : double.Parse(groesse);
+
+            // 
+            if (Math.Abs(weght) < 0.1)
+            {
+                MessageBox.Show(Resources.HauptForm_BerechneBmi_Ergebnisse_werden_ungenau__Gewicht_ist_keine_gültige_Zahl_);
+            }
+
+            if (Math.Abs(height) < 0.1)
+            {
+                MessageBox.Show(Resources.HauptForm_BerechneBmi_Ergebnisse_werden_ungenau__Gewicht_ist_keine_gültige_Zahl_);
+            }
+
+            // Größenangabe muss in Meter sein, also durch 100 dividieren
+            height = height / 100; 
+            var bmi = Math.Round((weght / (height * height) * 10) / 10);
+
+            // Klassifizierung des BMI-Wertes
+            var bmiDescription = string.Empty;
+            if (bmi < 16.5)
+                bmiDescription = "severely underweight";
+            else if (bmi >= 16.5 && bmi < 18.5)
+                bmiDescription = "underweight";
+            else if (bmi >= 18.5 && bmi < 25)
+                bmiDescription = "normal";
+            else if (bmi >= 25 && bmi <= 30)
+                bmiDescription = "overweight";
+            else if (bmi > 30 && bmi <= 35)
+                bmiDescription = "obese";
+            else if (bmi > 35 && bmi <= 40)
+                bmiDescription = "clinically obese";
+            else
+                bmiDescription = "morbidly obese";
+            txtResult.Text = string.Format("Your Body Mass Index (BMI) is: {0}. This would be considered {1}.", bmi, bmiDescription);
         }
     }
 }

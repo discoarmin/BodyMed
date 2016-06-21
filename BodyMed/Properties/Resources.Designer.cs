@@ -81,6 +81,15 @@ namespace BodyMed.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ergebnisse werden ungenau. Gewicht ist keine gültige Zahl. ähnelt.
+        /// </summary>
+        internal static string HauptForm_BerechneBmi_Ergebnisse_werden_ungenau__Gewicht_ist_keine_gültige_Zahl_ {
+            get {
+                return ResourceManager.GetString("HauptForm_BerechneBmi_Ergebnisse_werden_ungenau__Gewicht_ist_keine_gültige_Zahl_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die   ähnelt.
         /// </summary>
         internal static string HauptForm_DisplayRecordNumbers__ {
@@ -99,11 +108,29 @@ namespace BodyMed.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Blutdruck: Datensatz:  ähnelt.
+        /// </summary>
+        internal static string HauptForm_DisplayRecordNumbers_Blutdruck__Datensatz__ {
+            get {
+                return ResourceManager.GetString("HauptForm_DisplayRecordNumbers_Blutdruck__Datensatz__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Ernährung: Datensatz  ähnelt.
         /// </summary>
         internal static string HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_ {
             get {
                 return ResourceManager.GetString("HauptForm_DisplayRecordNumbers_Ernährung__Datensatz_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ernährung: Datensatz:  ähnelt.
+        /// </summary>
+        internal static string HauptForm_DisplayRecordNumbers_Ernährung__Datensatz__ {
+            get {
+                return ResourceManager.GetString("HauptForm_DisplayRecordNumbers_Ernährung__Datensatz__", resourceCulture);
             }
         }
         
@@ -140,6 +167,16 @@ namespace BodyMed.Properties {
         internal static string HauptForm_UltraGridAfterRowInsert_Einfügefehler {
             get {
                 return ResourceManager.GetString("HauptForm_UltraGridAfterRowInsert_Einfügefehler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Einfügen eines neuen Datensatzes in die Butdruck-Tabelle:  ähnelt.
+        /// </summary>
+        internal static string HauptForm_UltraGridAfterRowInsert_Fehler_beim_Einfügen_eines_neuen_Datensatzes_in_die_Butdruck_Tabelle__ {
+            get {
+                return ResourceManager.GetString("HauptForm_UltraGridAfterRowInsert_Fehler_beim_Einfügen_eines_neuen_Datensatzes_in" +
+                        "_die_Butdruck_Tabelle__", resourceCulture);
             }
         }
         
