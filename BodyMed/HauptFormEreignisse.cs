@@ -54,8 +54,6 @@ namespace BodyMed
                 this.gewichtEinstellen = false;                                 // keine Gewichtseingabe
                 this.GetRowIndex();                                             // Index der aktiven Zeile ermitteln
             }
-
-//            SendKeys.Send("+{HOME}");                                           // Tastenkombination für Eingabefeld markieren senden
         }
 
         /// <summary>Bearbeitet die Aktivierung einer Zeile .</summary>

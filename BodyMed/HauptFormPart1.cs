@@ -564,17 +564,18 @@ namespace BodyMed
         /// <summary>Berechnet denm BMI-Wert.</summary>
         /// <param name="gewicht">das Gewicht.</param>
         /// <param name="groesse">die Größe.</param>
-        private void BerechneBmi(string gewicht, string groesse)
+        private string BerechneBmi(string gewicht, string groesse)
         {
             var weght = string.IsNullOrEmpty(gewicht) ? 1 : double.Parse(gewicht);
             var height = string.IsNullOrEmpty(groesse) ? 1 : double.Parse(groesse);
-
-            // 
+            
+            // Überprüfen, ob das Gewicht zur Berechnung verwendet werden kann
             if (Math.Abs(weght) < 0.1)
             {
                 MessageBox.Show(Resources.HauptForm_BerechneBmi_Ergebnisse_werden_ungenau__Gewicht_ist_keine_gültige_Zahl_);
             }
 
+            // Überprüfen, od die Grösse zur Berechnung verwendet werden kann
             if (Math.Abs(height) < 0.1)
             {
                 MessageBox.Show(Resources.HauptForm_BerechneBmi_Ergebnisse_werden_ungenau__Gewicht_ist_keine_gültige_Zahl_);
@@ -587,20 +588,21 @@ namespace BodyMed
             // Klassifizierung des BMI-Wertes
             var bmiDescription = string.Empty;
             if (bmi < 16.5)
-                bmiDescription = "severely underweight";
+                bmiDescription = "stark untergewichtig";
             else if (bmi >= 16.5 && bmi < 18.5)
-                bmiDescription = "underweight";
+                bmiDescription = "untergewichtig";
             else if (bmi >= 18.5 && bmi < 25)
                 bmiDescription = "normal";
             else if (bmi >= 25 && bmi <= 30)
-                bmiDescription = "overweight";
+                bmiDescription = "übergewichtig";
             else if (bmi > 30 && bmi <= 35)
-                bmiDescription = "obese";
+                bmiDescription = "fettleibig";
             else if (bmi > 35 && bmi <= 40)
-                bmiDescription = "clinically obese";
+                bmiDescription = "klinisch fettleibig";
             else
                 bmiDescription = "morbidly obese";
-            txtResult.Text = string.Format("Your Body Mass Index (BMI) is: {0}. This would be considered {1}.", bmi, bmiDescription);
+
+            return $"{bmi}:  {bmiDescription}.";
         }
     }
 }
