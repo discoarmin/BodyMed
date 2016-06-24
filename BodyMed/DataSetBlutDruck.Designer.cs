@@ -661,6 +661,8 @@ namespace BodyMed {
             
             private global::System.Data.DataColumn columnBMI;
             
+            private global::System.Data.DataColumn columnBemerkung;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GewichtDataTable() {
@@ -752,6 +754,14 @@ namespace BodyMed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn BemerkungColumn {
+                get {
+                    return this.columnBemerkung;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -787,7 +797,7 @@ namespace BodyMed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GewichtRow AddGewichtRow(System.DateTime Datum, double KG, decimal FM, decimal FFM, decimal KW, decimal BMI) {
+            public GewichtRow AddGewichtRow(System.DateTime Datum, double KG, decimal FM, decimal FFM, decimal KW, decimal BMI, string Bemerkung) {
                 GewichtRow rowGewichtRow = ((GewichtRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -796,7 +806,8 @@ namespace BodyMed {
                         FM,
                         FFM,
                         KW,
-                        BMI};
+                        BMI,
+                        Bemerkung};
                 rowGewichtRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowGewichtRow);
                 return rowGewichtRow;
@@ -833,6 +844,7 @@ namespace BodyMed {
                 this.columnFFM = base.Columns["FFM"];
                 this.columnKW = base.Columns["KW"];
                 this.columnBMI = base.Columns["BMI"];
+                this.columnBemerkung = base.Columns["Bemerkung"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -852,6 +864,8 @@ namespace BodyMed {
                 base.Columns.Add(this.columnKW);
                 this.columnBMI = new global::System.Data.DataColumn("BMI", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBMI);
+                this.columnBemerkung = new global::System.Data.DataColumn("Bemerkung", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBemerkung);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIndex}, true));
                 this.columnIndex.AutoIncrement = true;
@@ -1185,6 +1199,22 @@ namespace BodyMed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Bemerkung {
+                get {
+                    try {
+                        return ((string)(this[this.tableGewicht.BemerkungColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Der Wert für Spalte Bemerkung in Tabelle Gewicht ist DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGewicht.BemerkungColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsBMINull() {
                 return this.IsNull(this.tableGewicht.BMIColumn);
             }
@@ -1193,6 +1223,18 @@ namespace BodyMed {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetBMINull() {
                 this[this.tableGewicht.BMIColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsBemerkungNull() {
+                return this.IsNull(this.tableGewicht.BemerkungColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetBemerkungNull() {
+                this[this.tableGewicht.BemerkungColumn] = global::System.Convert.DBNull;
             }
         }
         

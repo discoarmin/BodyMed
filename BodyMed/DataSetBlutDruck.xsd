@@ -12,7 +12,7 @@
   <xs:element name="DataSetBlutDruck" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DataSetBlutDruck" msprop:Generator_UserDSName="DataSetBlutDruck">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="BlutdruckDaten" msprop:Generator_TableClassName="BlutdruckDatenDataTable" msprop:Generator_TableVarName="tableBlutdruckDaten" msprop:Generator_TablePropName="BlutdruckDaten" msprop:Generator_RowDeletingName="BlutdruckDatenRowDeleting" msprop:Generator_RowChangingName="BlutdruckDatenRowChanging" msprop:Generator_RowEvHandlerName="BlutdruckDatenRowChangeEventHandler" msprop:Generator_RowDeletedName="BlutdruckDatenRowDeleted" msprop:Generator_UserTableName="BlutdruckDaten" msprop:Generator_RowChangedName="BlutdruckDatenRowChanged" msprop:Generator_RowEvArgName="BlutdruckDatenRowChangeEvent" msprop:Generator_RowClassName="BlutdruckDatenRow">
+        <xs:element name="BlutdruckDaten" msprop:Generator_TableClassName="BlutdruckDatenDataTable" msprop:Generator_TableVarName="tableBlutdruckDaten" msprop:Generator_RowChangedName="BlutdruckDatenRowChanged" msprop:Generator_TablePropName="BlutdruckDaten" msprop:Generator_RowDeletingName="BlutdruckDatenRowDeleting" msprop:Generator_RowChangingName="BlutdruckDatenRowChanging" msprop:Generator_RowEvHandlerName="BlutdruckDatenRowChangeEventHandler" msprop:Generator_RowDeletedName="BlutdruckDatenRowDeleted" msprop:Generator_RowClassName="BlutdruckDatenRow" msprop:Generator_UserTableName="BlutdruckDaten" msprop:Generator_RowEvArgName="BlutdruckDatenRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Index" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnPropNameInTable="IndexColumn" msprop:Generator_UserColumnName="Index" type="xs:long" />
@@ -24,7 +24,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Gewicht" msprop:Generator_TableClassName="GewichtDataTable" msprop:Generator_TableVarName="tableGewicht" msprop:Generator_TablePropName="Gewicht" msprop:Generator_RowDeletingName="GewichtRowDeleting" msprop:Generator_RowChangingName="GewichtRowChanging" msprop:Generator_RowEvHandlerName="GewichtRowChangeEventHandler" msprop:Generator_RowDeletedName="GewichtRowDeleted" msprop:Generator_UserTableName="Gewicht" msprop:Generator_RowChangedName="GewichtRowChanged" msprop:Generator_RowEvArgName="GewichtRowChangeEvent" msprop:Generator_RowClassName="GewichtRow">
+        <xs:element name="Gewicht" msprop:Generator_TableClassName="GewichtDataTable" msprop:Generator_TableVarName="tableGewicht" msprop:Generator_RowChangedName="GewichtRowChanged" msprop:Generator_TablePropName="Gewicht" msprop:Generator_RowDeletingName="GewichtRowDeleting" msprop:Generator_RowChangingName="GewichtRowChanging" msprop:Generator_RowEvHandlerName="GewichtRowChangeEventHandler" msprop:Generator_RowDeletedName="GewichtRowDeleted" msprop:Generator_RowClassName="GewichtRow" msprop:Generator_UserTableName="Gewicht" msprop:Generator_RowEvArgName="GewichtRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Index" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnIndex" msprop:Generator_ColumnPropNameInRow="Index" msprop:Generator_ColumnPropNameInTable="IndexColumn" msprop:Generator_UserColumnName="Index" type="xs:long" />
@@ -34,6 +34,7 @@
               <xs:element name="FFM" msprop:Generator_ColumnVarNameInTable="columnFFM" msprop:Generator_ColumnPropNameInRow="FFM" msprop:Generator_ColumnPropNameInTable="FFMColumn" msprop:Generator_UserColumnName="FFM" type="xs:decimal" />
               <xs:element name="KW" msprop:Generator_ColumnVarNameInTable="columnKW" msprop:Generator_ColumnPropNameInRow="KW" msprop:Generator_ColumnPropNameInTable="KWColumn" msprop:Generator_UserColumnName="KW" type="xs:decimal" />
               <xs:element name="BMI" msprop:Generator_ColumnVarNameInTable="columnBMI" msprop:Generator_ColumnPropNameInRow="BMI" msprop:Generator_ColumnPropNameInTable="BMIColumn" msprop:Generator_UserColumnName="BMI" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Bemerkung" msprop:Generator_ColumnVarNameInTable="columnBemerkung" msprop:Generator_ColumnPropNameInRow="Bemerkung" msprop:Generator_ColumnPropNameInTable="BemerkungColumn" msprop:Generator_UserColumnName="Bemerkung" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

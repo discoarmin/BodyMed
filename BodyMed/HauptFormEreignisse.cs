@@ -18,14 +18,8 @@
 namespace BodyMed
 {
     using System;
-    using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.Drawing;
-    using System.Linq;
-    using System.Text;
     using System.Windows.Forms;
-
-    using Infragistics.Win.UltraWinGrid;
 
     using static HauptForm.Formular;
 
@@ -102,10 +96,14 @@ namespace BodyMed
             if (this.selectedTab == (int)Ernaehrung)
             {
                 // Es ist die Gewichts-Tabelle angewählt
+                // Es muss zuersrt die Grösse ermittelt werden . Die Grösse steht in der Textboc 'tbGroesse'
+                var groesse = this.tbGroesse.Text;
                 try
                 {
-                    strInsert = "INSERT INTO[Gewicht] ([Datum], [KG], [FM], [FFM], [KW], [BMI])" + " VALUES("
-                                + "'" + DateTime.Now + "'" + "," + "0.0 , 0.0, 0.0, 0.0, NULL )";   // leeren Datensatz einfügen
+                    strInsert = "INSERT INTO[Gewicht] ([Datum], [KG], [FM], [FFM], [KW], [BMI], [Bemerkung], [Grösse])" 
+                        + " VALUES("
+                        + "'" + DateTime.Now + "'" + "," + "0.0 , 0.0, 0.0, 0.0, NULL, NULL, "
+                        + groesse + ")";                                        // leeren Datensatz einfügen
 
                     this.oleDbDataAdapterGewicht.InsertCommand.CommandText = strInsert;   // Einfügekommando an DataAdapter übergeben
                     this.oleDbDataAdapterGewicht.InsertCommand.ExecuteNonQuery();         // Einfügen durchführen
@@ -126,7 +124,7 @@ namespace BodyMed
                 try
                 {
                     strInsert = "INSERT INTO[BlutdruckDaten] ([Datum], [Systolisch], [Diastolisch], [Puls])" + " VALUES("
-                            + "'" + DateTime.Now + "'" + "," + "0 , 0, 0)";           // leeren Datensatz einfügen
+                            + "'" + DateTime.Now + "'" + "," + "0 , 0, 0)";     // leeren Datensatz einfügen
 
                     this.oleDbDataAdapterBlutDruck.InsertCommand.CommandText = strInsert; // Einfügekommando an DataAdapter übergeben
                     this.oleDbDataAdapterBlutDruck.InsertCommand.ExecuteNonQuery();       // Einfügen durchführen

@@ -129,9 +129,6 @@
   <metadata name="dataSetBlutDruck1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>629, 93</value>
   </metadata>
-  <metadata name="dataSetGewicht1BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>620, 54</value>
-  </metadata>
   <metadata name="dataetGewichtBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>411, 54</value>
   </metadata>
@@ -699,7 +696,7 @@
     <value>False</value>
   </metadata>
   <data name="oleDbCommand2.CommandText" xml:space="preserve">
-    <value>UPDATE [Gewicht] SET [Index] = ?, [Datum] = ?, [KG] = ?, [FM] = ?, [FFM] = ?, [KW] = ?, [FFM] = ? WHERE (([Index] = ?) AND ([Datum] = ?) AND ([KG] = ?) AND ([FM] = ?) AND ([KW] = ?) AND ([FFM] = ?) AND ((? = 1 AND [BMI] IS NULL) OR ([BMI] = ?)))</value>
+    <value>UPDATE [Gewicht] SET [Index] = ?, [Datum] = ?, [KG] = ?, [FM] = ?, [FFM] = ?, [KW] = ?, [BMI] = ?, [FFM] = ?, [Bemerkung] = ? WHERE (([Index] = ?) AND ([Datum] = ?) AND ([KG] = ?) AND ([FM] = ?) AND ([KW] = ?) AND ([FFM] = ?) AND ((? = 1 AND [BMI] IS NULL) OR ([BMI] = ?)) AND ((? = 1 AND [Bemerkung] IS NULL) OR ([Bemerkung] = ?)))</value>
   </data>
   <data name="ribbonButton4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -892,6 +889,9 @@
   </metadata>
   <metadata name="dataSetBlutDruck1BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 93</value>
+  </metadata>
+  <metadata name="dataSetGewicht1BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>620, 54</value>
   </metadata>
   <metadata name="dataSetGewicht1BindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 171</value>

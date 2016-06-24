@@ -564,6 +564,7 @@ namespace BodyMed
         /// <summary>Berechnet denm BMI-Wert.</summary>
         /// <param name="gewicht">das Gewicht.</param>
         /// <param name="groesse">die Größe.</param>
+        /// <returns></returns>
         private string BerechneBmi(string gewicht, string groesse)
         {
             var weght = string.IsNullOrEmpty(gewicht) ? 1 : double.Parse(gewicht);

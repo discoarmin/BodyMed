@@ -621,9 +621,39 @@ namespace BodyMed
         }
         #endregion
 
-        private void ribbon1_ActiveTabChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Wird aufgerufen, wenn der aktive Tab im Ribbon gewechselt wird.
+        /// </summary>
+        /// <param name="sender">Das aufrufende Element.</param>
+        /// <param name="e">Die <see cref="System.EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnRibbon1ActiveTabChanged(object sender, EventArgs e)
         {
             Application.DoEvents();
+        }
+
+        /// <summary>
+        /// Wird aufgerufen, wenn im ultraGridErnaehrung eine Zelle deaktiviert wurde.
+        /// </summary>
+        /// <param name="sender">Das aufrufende Element.</param>
+        /// <param name="e">Die <see cref="System.EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnUltraGridErnaehrungBeforeCellDeactivate(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var grid = (UltraGrid)sender;                                       // aufrufendes Element ist ein Ultragrid
+
+            // Spaltenname der aktiven Zelle überprüfen. Ist die Spalte das Gewicht,
+            // kann der BMI-Wert berechnet werden
+            if (grid.ActiveCell.Column.Key == "KG")
+            {
+                //var zeile = grid.DisplayLayout.ActiveRow;                       // Nummer der Zeile ermitteln
+                //var spalte = grid.DisplayLayout.Bands["Gewicht"].co
+                //    (grid.ActiveCell.Column
+
+                // Gewicht und Grösse ermitteln
+                var gewicht = grid.ActiveCell.Text;                             // Gewicht
+                var groesse = this.tbGroesse.Text;                              // Grösse
+
+                this.BerechneBmi(gewicht, groesse);                             // BMI-Wert berechnen
+            }
         }
     }
 }
