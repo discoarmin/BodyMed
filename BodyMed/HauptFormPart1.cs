@@ -86,8 +86,8 @@ namespace BodyMed
 
                 // Spaltennamen und Datentyp der geänderten Zelle bestimmen
                 // Formular ermitteln
-                var spaltenName = string.Empty;                                 // Name der Spalte
-                var spaltenTyp = typeof(DBNull);                                // Daten-Typ der Spalte
+                string spaltenName;                                             // Name der Spalte
+                Type spaltenTyp;                                                // Daten-Typ der Spalte
                 string table = $"{tabelle}";                                    // zum Zusammensetzen des Tabellen-Namens
 
                 // Überprüfen,Tabelle angewählt ist
@@ -183,7 +183,7 @@ namespace BodyMed
                 this.ExecuteQuery(strUpdate);                                   // Update in Datenbank durchführen
             }
 
-            // Falls das Gewicht eingegeben wurde, kann der BMI-Wert berechnet werden
+            // Falls das Gewicht eingegeben wurde, kann der Bmi-Wert berechnet werden
         }
 
         /// <summary>
@@ -561,15 +561,18 @@ namespace BodyMed
             this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
         }
 
-        /// <summary>Berechnet denm BMI-Wert.</summary>
+        /// <summary>Berechnet denm Bmi-Wert.</summary>
         /// <param name="gewicht">das Gewicht.</param>
         /// <param name="groesse">die Größe.</param>
+        /// <param name="bmi">der errechnete Bmi-Wert.</param>
+        /// <param name="bmiDescription">Klassifizierung des Bmi-Werts.</param>
+        /// <param name="farbe">Die Farbe für die Klassifizierung.</param>
         /// <returns></returns>
-        private string BerechneBmi(string gewicht, string groesse)
+        private static int BerechneBmi(string gewicht, string groesse, out double bmi, out string bmiDescription, out Color farbe)
         {
             var weght = string.IsNullOrEmpty(gewicht) ? 1 : double.Parse(gewicht);
             var height = string.IsNullOrEmpty(groesse) ? 1 : double.Parse(groesse);
-            
+            var retWert = 0;                                                        
             // Überprüfen, ob das Gewicht zur Berechnung verwendet werden kann
             if (Math.Abs(weght) < 0.1)
             {
@@ -584,26 +587,60 @@ namespace BodyMed
 
             // Größenangabe muss in Meter sein, also durch 100 dividieren
             height = height / 100; 
-            var bmi = Math.Round((weght / (height * height) * 10) / 10);
+            bmi = Math.Round((weght / (height * height) * 10) / 10);
 
-            // Klassifizierung des BMI-Wertes
-            var bmiDescription = string.Empty;
+            // Klassifizierung des Bmi-Wertes ermittlen           
             if (bmi < 16.5)
+            {
+                // Stark untergewichtig
                 bmiDescription = "stark untergewichtig";
+                retWert = (int)Bmi.StarkUnterGewichtig;
+                farbe = Color.DeepPink;
+            }                
             else if (bmi >= 16.5 && bmi < 18.5)
+            {
+                // Untergewichtig
                 bmiDescription = "untergewichtig";
+                retWert = (int)Bmi.UnterGewichtig;
+                farbe = Color.HotPink;
+            }
             else if (bmi >= 18.5 && bmi < 25)
+            {
+                // Normal
                 bmiDescription = "normal";
+                retWert = (int)Bmi.Normal;
+                farbe = Color.LawnGreen;
+            }
             else if (bmi >= 25 && bmi <= 30)
+            {
+                // Übergewichtig
                 bmiDescription = "übergewichtig";
+                retWert = (int)Bmi.UeberGewichtig;
+                farbe = Color.OrangeRed;
+            }
             else if (bmi > 30 && bmi <= 35)
+            {
+                // Fettleibig
                 bmiDescription = "fettleibig";
+                retWert = (int)Bmi.FettLeibig;
+                farbe = Color.Crimson;
+            }
             else if (bmi > 35 && bmi <= 40)
+            {
+                // Klinisch fettleibig
                 bmiDescription = "klinisch fettleibig";
+                retWert = (int)Bmi.KlinischFettLeibig;
+                farbe = Color.DarkRed;
+            }
             else
-                bmiDescription = "morbidly obese";
+            {
+                // Krankhaft fettleibig
+                bmiDescription = "krankhaft fettleibig";
+                retWert = (int)Bmi.KKrakhaftFettLeibig;
+                farbe = Color.Red;
+            }
 
-            return $"{bmi}:  {bmiDescription}.";
+            return retWert;                                                     // ermittelte Klassifizierung zurückgeben
         }
     }
 }

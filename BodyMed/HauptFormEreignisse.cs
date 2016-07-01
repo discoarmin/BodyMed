@@ -100,7 +100,7 @@ namespace BodyMed
                 var groesse = this.tbGroesse.Text;
                 try
                 {
-                    strInsert = "INSERT INTO[Gewicht] ([Datum], [KG], [FM], [FFM], [KW], [BMI], [Bemerkung], [Grösse])" 
+                    strInsert = "INSERT INTO[Gewicht] ([Datum], [KG], [FM], [FFM], [KW], [Bmi], [Bemerkung], [Grösse])" 
                         + " VALUES("
                         + "'" + DateTime.Now + "'" + "," + "0.0 , 0.0, 0.0, 0.0, NULL, NULL, "
                         + groesse + ")";                                        // leeren Datensatz einfügen

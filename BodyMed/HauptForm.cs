@@ -21,6 +21,8 @@ namespace BodyMed
     using System.Windows.Forms;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
+    using System.Threading;
 
     using Infragistics.Win.UltraWinGrid;
 
@@ -52,7 +54,10 @@ namespace BodyMed
             this.gewichtEinstellen = true;                                      // Position bei den Ernährungsdaten darf geändert werden
             this.blutDruckEinstellen = true;                                    // Position bei den Blutdruckdaten darf geändert werden
             this.auswahllisteLoeschen = true;                                   // Markierte Zeilen eines Grids dürfen neu ermittelt werden
-//            Application.DoEvents();
+            // Die Buttons zur Fensterauswahl sollen bei einer Auswahl markiert werden
+            this.ribbonButtonEingabe.CheckOnClick = true;
+            this.ribbonButtonBlutdruck.CheckOnClick = true;
+            this.ribbonButtonEingabe.PerformClick();                            // Button 'Eingabe' betätigen
         }
 
         /// <summary>
@@ -63,28 +68,44 @@ namespace BodyMed
         private void OnRibbonButtonClick(object sender, EventArgs e)
         {
             string anzeigeText;
-            var btn = (RibbonButton)sender; // Der betätigte Button
+            var btn = (RibbonButton)sender;                                     // Der betätigte Button
 
+            Thread.Sleep(50);
             // Tastendruck oder Mausklick auf einen Menüpunkt auswerten
             switch (btn.Tag.ToString())
             {
                 default:
                     break;
-                case "Eingabe": // Ernährungsdaten eingaben
+                case "Eingabe":                                                 // Ernährungsdaten eingaben
                     this.SetzeAufErnaehrung();
+                    this.statusBar.Panels["Fenster"].Text = btn.Tag.ToString(); // Ausgewähltes Fenster in der Statusleiste anzeigen
+
+                    // Für den ausgewählten Button wird das Flaschen abgeschaltet
+                    this.ribbonButtonEingabe.FlashEnabled = false;
+                    this.ribbonButtonBlutdruck.Checked = false;
+                    this.ribbonButtonBlutdruck.FlashEnabled = true;
+                    this.ribbonButtonBlutdruck.FlashIntervall = 2000;
                     break;
-                case "Blutdruck": // Blutdruckdaten eingaben
+                case "Blutdruck":                                               // Blutdruckdaten eingaben
                     this.SetzeAufBlutDruck();
+                    this.statusBar.Panels["Fenster"].Text = btn.Tag.ToString(); // Ausgewähltes Fenster in der Statusleiste anzeigen
+
+                    // Für den ausgewählten Button wird das Flaschen abgeschaltet
+                    this.ribbonButtonEingabe.FlashEnabled = true;
+                    this.ribbonButtonBlutdruck.FlashEnabled = false;
+                    this.ribbonButtonEingabe.FlashIntervall = 2000;
+                    this.ribbonButtonEingabe.Checked = false;
+
                     break;
-                case "Neu": // Neuer Datensatz
+                case "Neu":                                                     // Neuer Datensatz
                     // Zuerst ermitteln, welche Eingabe aktiv ist
                     switch (this.selectedTab)
                     {
-                        case 0: // Gewichtseingabe
-                            this.ultraGridErnaehrung.Rows.Band.AddNew(); // Neuen Datensatz hizufügen
+                        case 0:                                                 // Gewichtseingabe
+                            this.ultraGridErnaehrung.Rows.Band.AddNew();        // Neuen Datensatz hizufügen
                             break;
-                        case 1: // Eingabe Blutdruckdaten
-                            this.ultraGridBlutDruck.Rows.Band.AddNew(); // Neuen Datensatz hizufügen
+                        case 1:                                                 // Eingabe Blutdruckdaten
+                            this.ultraGridBlutDruck.Rows.Band.AddNew();         // Neuen Datensatz hizufügen
                             break;
                     }
 
@@ -95,7 +116,7 @@ namespace BodyMed
         /// <summary>Zeigt die Daten für die Gewichtseingabe an.</summary>
         private void SetzeAufErnaehrung()
         {
-            this.ultraTabControlHauptForm.Tabs["Ernaehrung"].Selected = true; // Eingabe der Gewichtsdaten
+            this.ultraTabControlHauptForm.Tabs["Ernaehrung"].Selected = true;   // Eingabe der Gewichtsdaten
             this.selectedTab = this.ultraTabControlHauptForm.SelectedTab.Index; // Nummer des ausgewählten Tabs merken
             this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
         }
@@ -103,7 +124,7 @@ namespace BodyMed
         /// <summary>Zeigt die Daten für die Blutdruckeingabe an.</summary>
         private void SetzeAufBlutDruck()
         {
-            this.ultraTabControlHauptForm.Tabs["BlutDruck"].Selected = true; // Eingabe der Blutdruckdaten
+            this.ultraTabControlHauptForm.Tabs["BlutDruck"].Selected = true;    // Eingabe der Blutdruckdaten
             this.selectedTab = this.ultraTabControlHauptForm.SelectedTab.Index; // Nummer des ausgewählten Tabs merken
             this.DisplayRecordNumbers();                                        // Anzahl Datensätze in der Statusleiste anzeigen
         }
@@ -111,7 +132,7 @@ namespace BodyMed
         /// <summary> Manager für Datenbankanbindungen zu den einzelnen Tabellen der Datenbank bereitstellen. </summary>
         private void LadeDatenBank()
         {
-            this.GetDataConnection(); // Verbindung zur Datenbank herstellen
+            this.GetDataConnection();                                           // Verbindung zur Datenbank herstellen
 
 
             this.bindingManagerGewicht = this.BindingContext[this.dataSetGewicht1.Tables["Gewicht"]];
@@ -641,19 +662,33 @@ namespace BodyMed
             var grid = (UltraGrid)sender;                                       // aufrufendes Element ist ein Ultragrid
 
             // Spaltenname der aktiven Zelle überprüfen. Ist die Spalte das Gewicht,
-            // kann der BMI-Wert berechnet werden
-            if (grid.ActiveCell.Column.Key == "KG")
+            // kann der Bmi-Wert berechnet werden, sonst muss nichts getan werden
+            if (grid.ActiveCell.Column.Key != "KG")
             {
-                //var zeile = grid.DisplayLayout.ActiveRow;                       // Nummer der Zeile ermitteln
-                //var spalte = grid.DisplayLayout.Bands["Gewicht"].co
-                //    (grid.ActiveCell.Column
-
-                // Gewicht und Grösse ermitteln
-                var gewicht = grid.ActiveCell.Text;                             // Gewicht
-                var groesse = this.tbGroesse.Text;                              // Grösse
-
-                this.BerechneBmi(gewicht, groesse);                             // BMI-Wert berechnen
+                return;                                                         // Abbruch, da kein Gewichtswert
             }
+
+            // Gewicht und Grösse ermitteln
+            var gewicht = grid.ActiveCell.Text;                                 // Gewicht
+            var groesse = this.tbGroesse.Text;                                  // Grösse
+            string bmiDescription;                                              // Klassifizierung des errechneten Bmi-Wertes
+            double bmi;                                                         // Der errechnete BMI-Wert
+            Color farbe;                                                        // Hintergrundfarbe anhand der Klassifizierung
+
+            // Bmi-Wert berechnen und klassifizieren
+            var klassifizierung = BerechneBmi(gewicht, groesse, out bmi, out bmiDescription, out farbe);
+
+            // BMI-Wert und dessen Beschreibung in die Datenbank eintragen
+            var zeile = grid.DisplayLayout.ActiveRow;                           // Nummer der Zeile ermitteln
+            var spalte = grid.DisplayLayout.Bands["Gewicht"].Columns["BMI"].Index; // Nummer der Spalte für den BMI-Wert
+            grid.ActiveCell = zeile.Cells[spalte];
+            grid.ActiveCell.Value = bmi;                                        // BMI-Wert eintragen
+            grid.DisplayLayout.Bands["Gewicht"].Columns["BMI"].CellAppearance.BackColor = farbe; // Hintergrundfarbe je nach Klassifizierung des BMI-Werts einstellen
+
+            spalte = grid.DisplayLayout.Bands["Gewicht"].Columns["Bemerkung"].Index; // Nummer der Spalte für die Beschreibung des BMI-Werts
+            grid.ActiveCell = zeile.Cells[spalte];
+            grid.ActiveCell.Value = bmiDescription;                             // Beschreibung des BMI-Werts eintragen
+            this.AfterExitEditMode(ref grid, "Gewicht");                        // Damit die Datenbank aufgefrischt wird
         }
     }
 }

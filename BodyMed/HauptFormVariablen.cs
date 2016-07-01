@@ -85,5 +85,30 @@ namespace BodyMed
             BlutDruck = 1
         }
 
+        /// <summary>Aufzählung für die Klassifizierung des Bmi-Wertes</summary>
+        public enum Bmi
+        {
+            /// <summary>Stark untergewichtig</summary>
+            StarkUnterGewichtig = 1,
+
+            /// <summary>Untergewichtig</summary>
+            UnterGewichtig = 2,
+
+            /// <summary>Normal</summary>
+            Normal = 3,
+
+            /// <summary>Übergewichtig</summary>
+            UeberGewichtig = 4,
+
+            /// <summary>Fettleibig</summary>
+            FettLeibig = 5,
+
+            /// <summary>Klinisch fettleibig</summary>
+            KlinischFettLeibig = 6,
+
+            /// <summary>Krankhaft fettleibig</summary>
+            KKrakhaftFettLeibig = 7
+        }
+
     }
 }
