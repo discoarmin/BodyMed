@@ -67,7 +67,6 @@ namespace BodyMed
         /// <param name="e">Die <see cref="EventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
         private void OnRibbonButtonClick(object sender, EventArgs e)
         {
-            string anzeigeText;
             var btn = (RibbonButton)sender;                                     // Der betätigte Button
 
             Thread.Sleep(50);
@@ -84,7 +83,7 @@ namespace BodyMed
                     this.ribbonButtonEingabe.FlashEnabled = false;
                     this.ribbonButtonBlutdruck.Checked = false;
                     this.ribbonButtonBlutdruck.FlashEnabled = true;
-                    this.ribbonButtonBlutdruck.FlashIntervall = 2000;
+                    this.ribbonButtonBlutdruck.FlashIntervall = 1000;
                     break;
                 case "Blutdruck":                                               // Blutdruckdaten eingaben
                     this.SetzeAufBlutDruck();
@@ -93,7 +92,7 @@ namespace BodyMed
                     // Für den ausgewählten Button wird das Flaschen abgeschaltet
                     this.ribbonButtonEingabe.FlashEnabled = true;
                     this.ribbonButtonBlutdruck.FlashEnabled = false;
-                    this.ribbonButtonEingabe.FlashIntervall = 2000;
+                    this.ribbonButtonEingabe.FlashIntervall = 1000;
                     this.ribbonButtonEingabe.Checked = false;
 
                     break;
@@ -362,7 +361,6 @@ namespace BodyMed
             var grid = this.ultraGridErnaehrung;                                // Momentan aktives Grid 
             var bindingManager = this.bindingManagerGewicht;                    // Verwaltet die Datenanbindung
             var tabelle = string.Empty;                                         // Name der Tabelle
-            string table = $"{tabelle}";                                        // zum Zusammensetzen des Tabellen-Namens
             DataSet ds = this.dataSetGewicht1;                                  // DataSet mit welchem gearbveitet wird
 
             // Überprüfen,Tabelle angewählt ist zum Einstellen der nötigen Variablen
@@ -676,7 +674,7 @@ namespace BodyMed
             Color farbe;                                                        // Hintergrundfarbe anhand der Klassifizierung
 
             // Bmi-Wert berechnen und klassifizieren
-            var klassifizierung = BerechneBmi(gewicht, groesse, out bmi, out bmiDescription, out farbe);
+           BerechneBmi(gewicht, groesse, out bmi, out bmiDescription, out farbe);
 
             // BMI-Wert und dessen Beschreibung in die Datenbank eintragen
             var zeile = grid.DisplayLayout.ActiveRow;                           // Nummer der Zeile ermitteln
@@ -689,6 +687,11 @@ namespace BodyMed
             grid.ActiveCell = zeile.Cells[spalte];
             grid.ActiveCell.Value = bmiDescription;                             // Beschreibung des BMI-Werts eintragen
             this.AfterExitEditMode(ref grid, "Gewicht");                        // Damit die Datenbank aufgefrischt wird
+        }
+
+        private void HauptForm_MouseClick(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
