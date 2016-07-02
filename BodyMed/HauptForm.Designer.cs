@@ -596,6 +596,9 @@
             // 
             // ribbon1
             // 
+            this.ribbon1.BackColor = System.Drawing.Color.DimGray;
+            this.ribbon1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ribbon1.BackgroundImage")));
+            this.ribbon1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ribbon1.Cursor = System.Windows.Forms.Cursors.Default;
             this.ribbon1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ribbon1.Location = new System.Drawing.Point(0, 0);
@@ -620,7 +623,7 @@
             this.ribbon1.QuickAcessToolbar.DropDownButtonItems.Add(this.DropDownButton3);
             this.ribbon1.QuickAcessToolbar.DropDownButtonItems.Add(this.DropDownButton4);
             this.ribbon1.QuickAcessToolbar.Items.Add(this.RibbonButtonOpen);
-            this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
+            this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold);
             this.ribbon1.Size = new System.Drawing.Size(776, 136);
             this.ribbon1.TabIndex = 0;
             this.ribbon1.Tabs.Add(this.ribbonTabFenster);
@@ -700,8 +703,8 @@
             // 
             this.ribbonButtonFensterSchliessen.FlashEnabled = true;
             this.ribbonButtonFensterSchliessen.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.FlashImage")));
-            this.ribbonButtonFensterSchliessen.FlashIntervall = 2000;
             this.ribbonButtonFensterSchliessen.Image = global::BodyMed.Properties.Resources.close32;
+            this.ribbonButtonFensterSchliessen.ShowFlashImage = true;
             this.ribbonButtonFensterSchliessen.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.SmallImage")));
             this.ribbonButtonFensterSchliessen.Text = "Fenster schließen";
             this.ribbonButtonFensterSchliessen.ToolTip = "Schließt ein Fenster";
@@ -711,7 +714,6 @@
             // 
             this.ribbonButtonEingabe.FlashEnabled = true;
             this.ribbonButtonEingabe.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.FlashImage")));
-            this.ribbonButtonEingabe.FlashIntervall = 2000;
             this.ribbonButtonEingabe.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.Image")));
             this.ribbonButtonEingabe.ShowFlashImage = true;
             this.ribbonButtonEingabe.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.SmallImage")));
@@ -733,7 +735,6 @@
             // 
             this.ribbonButtonBlutdruck.FlashEnabled = true;
             this.ribbonButtonBlutdruck.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.FlashImage")));
-            this.ribbonButtonBlutdruck.FlashIntervall = 2000;
             this.ribbonButtonBlutdruck.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.Image")));
             this.ribbonButtonBlutdruck.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.SmallImage")));
             this.ribbonButtonBlutdruck.Tag = "Blutdruck";

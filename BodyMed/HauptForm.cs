@@ -22,9 +22,12 @@ namespace BodyMed
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
+    using System.Reflection;
     using System.Threading;
 
     using Infragistics.Win.UltraWinGrid;
+
+    using Microsoft.VisualBasic.ApplicationServices;
 
     using static HauptForm.Formular;
 
@@ -49,7 +52,18 @@ namespace BodyMed
         /// <param name="e">Die <see cref="System.EventArgs" /> Instanz, welche die Ereignisdaten enthält.</param>
         private void OnHauptFormLoad(object sender, EventArgs e)
         {
-            this.LadeDatenBank();
+            // Versions-Nr. in die Stausbar eintragen
+            var assemblyInfoMainApplication = new AssemblyInfo(Assembly.GetEntryAssembly());
+
+            this.statusBar.Panels["Version"].Text = !string.IsNullOrEmpty(assemblyInfoMainApplication.ProductName)
+                                      ? string.Concat(
+                                        assemblyInfoMainApplication.ProductName,
+                                        "  Ver. ",
+                                        assemblyInfoMainApplication.Version)
+                                      : "Nicht ermittelbar";                    // Version in der Statusbar eintragen
+
+                                                                                                                     
+            this.LadeDatenBank();                                               // Datenbank bereitstellen
             this.selectedTab = 0;                                               // Gewichtseingabe ist beim Start aktiv
             this.gewichtEinstellen = true;                                      // Position bei den Ernährungsdaten darf geändert werden
             this.blutDruckEinstellen = true;                                    // Position bei den Blutdruckdaten darf geändert werden
