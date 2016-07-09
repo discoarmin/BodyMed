@@ -23,7 +23,6 @@ namespace BodyMed
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
     using System.Reflection;
-    using System.Threading;
 
     using Infragistics.Win.UltraWinGrid;
 
@@ -62,7 +61,7 @@ namespace BodyMed
                                         assemblyInfoMainApplication.Version)
                                       : "Nicht ermittelbar";                    // Version in der Statusbar eintragen
 
-                                                                                                                     
+
             this.LadeDatenBank();                                               // Datenbank bereitstellen
             this.selectedTab = 0;                                               // Gewichtseingabe ist beim Start aktiv
             this.gewichtEinstellen = true;                                      // Position bei den Ernährungsdaten darf geändert werden
@@ -83,11 +82,12 @@ namespace BodyMed
         {
             var btn = (RibbonButton)sender;                                     // Der betätigte Button
 
-            Thread.Sleep(50);
             // Tastendruck oder Mausklick auf einen Menüpunkt auswerten
+            if (btn.Tag == null) return;                                        // Abbruch, wenn es keinen Tag gibbt
             switch (btn.Tag.ToString())
             {
                 default:
+//                    Application.DoEvents();
                     break;
                 case "Eingabe":                                                 // Ernährungsdaten eingaben
                     this.SetzeAufErnaehrung();
@@ -124,6 +124,8 @@ namespace BodyMed
 
                     break;
             }
+            Application.DoEvents();
+
         }
 
         /// <summary>Zeigt die Daten für die Gewichtseingabe an.</summary>
@@ -279,7 +281,7 @@ namespace BodyMed
                             }
 
                             this.sliderErnaehrung.Value = this.rowIndex;
-                            this.sliderErnaehrung.Visible = true;        
+                            this.sliderErnaehrung.Visible = true;
                         }
                         else
                         {
@@ -372,7 +374,7 @@ namespace BodyMed
         /// </summary>
         private void GetRowIndex()
         {
-            var grid = this.ultraGridErnaehrung;                                // Momentan aktives Grid 
+            var grid = this.ultraGridErnaehrung;                                // Momentan aktives Grid
             var bindingManager = this.bindingManagerGewicht;                    // Verwaltet die Datenanbindung
             var tabelle = string.Empty;                                         // Name der Tabelle
             DataSet ds = this.dataSetGewicht1;                                  // DataSet mit welchem gearbveitet wird
@@ -384,7 +386,7 @@ namespace BodyMed
                     {
                         grid = this.ultraGridErnaehrung;                        // Grid auswählen
                         bindingManager = this.bindingManagerGewicht;            // Verwaltet die Gewichts-Daten
-                        tabelle = "Gewicht";                                    // Name der Tabelle 
+                        tabelle = "Gewicht";                                    // Name der Tabelle
                         ds = this.dataSetGewicht1;                              // Zugehöriges DataSet
                         break;
                     }
@@ -392,8 +394,8 @@ namespace BodyMed
                 case (int)BlutDruck:
                     {
                         grid = this.ultraGridBlutDruck;                         // Grid auswählen
-                        bindingManager = this.bindingManagerBlutDruck;          // Verwaltet die Blutdruck-Daten 
-                        tabelle = "BlutdruckDaten";                             // Name der Tabelle 
+                        bindingManager = this.bindingManagerBlutDruck;          // Verwaltet die Blutdruck-Daten
+                        tabelle = "BlutdruckDaten";                             // Name der Tabelle
                         ds = this.dataSetBlutDruck1;                            // Zugehöriges DataSet
                         break;
                     }
@@ -494,7 +496,7 @@ namespace BodyMed
         {
 
         }
- 
+
         /// <summary>Behandelt das BeforeRowsDeleted Ereignis des ultraGridErnaehrung Controls.</summary>
         /// <param name="sender">Die Quelle des Ereignisses.</param>
         /// <param name="e">Die <see cref="RowEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
@@ -703,7 +705,15 @@ namespace BodyMed
             this.AfterExitEditMode(ref grid, "Gewicht");                        // Damit die Datenbank aufgefrischt wird
         }
 
-        private void HauptForm_MouseClick(object sender, MouseEventArgs e)
+        /// <summary>Wird aufgerufen, wenn in der Hauptform ein Mausklick ausgeführt wird.</summary>
+        /// <param name="sender">Das aufrufende Element</param>
+        /// <param name="e">Die <see cref="MouseEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void HauptFormMouseClick(object sender, MouseEventArgs e)
+        {
+            // Placebo-Funktion
+        }
+
+        private void RibbonTabFensterMouseEnter(object sender, MouseEventArgs e)
         {
 
         }
