@@ -188,7 +188,7 @@ namespace BodyMed
         {
             try
             {
-                this.oleDbConnection1.Open(); // Verbindung zur Datenbank öffnen
+                this.oleDbConnection1.Open();                                   // Verbindung zur Datenbank öffnen
                 if (this.oleDbConnection1.State == ConnectionState.Open)
                 {
                     // Beide Grids mit Daten füllen
@@ -705,17 +705,27 @@ namespace BodyMed
             this.AfterExitEditMode(ref grid, "Gewicht");                        // Damit die Datenbank aufgefrischt wird
         }
 
-        /// <summary>Wird aufgerufen, wenn in der Hauptform ein Mausklick ausgeführt wird.</summary>
-        /// <param name="sender">Das aufrufende Element</param>
-        /// <param name="e">Die <see cref="MouseEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
-        private void HauptFormMouseClick(object sender, MouseEventArgs e)
+         private void RibbonTabFensterMouseEnter(object sender, MouseEventArgs e)
         {
             // Placebo-Funktion
         }
 
-        private void RibbonTabFensterMouseEnter(object sender, MouseEventArgs e)
+        /// <summary>Wird aufgerufen, wenn die Hauptform geschlossen wurde. </summary>
+        /// <param name="sender">Das aufrufende Element</param>
+        /// <param name="e">Die <see cref="FormClosedEventArgs"/> Instanz, welche die Ereignisdaten enthält.</param>
+        private void OnHauptFormFormClosed(object sender, FormClosedEventArgs e)
         {
+            this.DatenbankVerbindungSchliessen();                               // Schließt die Verbindung zur Datenbank
 
+            // Speicher bereinigen
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+        }
+
+        private void OnHauptFormFormClosed(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

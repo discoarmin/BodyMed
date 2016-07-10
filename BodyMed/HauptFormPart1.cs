@@ -23,7 +23,7 @@ namespace BodyMed
     using System.Data.OleDb;
     using System.Diagnostics.CodeAnalysis;
     using System.Drawing;
-    using System.Globalization;
+    using Microsoft.SqlServer.Server;
     using System.Linq;
     using System.Windows.Forms;
 
@@ -572,7 +572,7 @@ namespace BodyMed
         {
             var weght = string.IsNullOrEmpty(gewicht) ? 1 : double.Parse(gewicht);
             var height = string.IsNullOrEmpty(groesse) ? 1 : double.Parse(groesse);
-            var retWert = 0;                                                        
+            var retWert = 0;
             // Überprüfen, ob das Gewicht zur Berechnung verwendet werden kann
             if (Math.Abs(weght) < 0.1)
             {
@@ -586,17 +586,17 @@ namespace BodyMed
             }
 
             // Größenangabe muss in Meter sein, also durch 100 dividieren
-            height = height / 100; 
+            height = height / 100;
             bmi = Math.Round((weght / (height * height) * 10) / 10);
 
-            // Klassifizierung des Bmi-Wertes ermittlen           
+            // Klassifizierung des Bmi-Wertes ermittlen
             if (bmi < 16.5)
             {
                 // Stark untergewichtig
                 bmiDescription = "stark untergewichtig";
                 retWert = (int)Bmi.StarkUnterGewichtig;
                 farbe = Color.DeepPink;
-            }                
+            }
             else if (bmi >= 16.5 && bmi < 18.5)
             {
                 // Untergewichtig
@@ -641,6 +641,26 @@ namespace BodyMed
             }
 
             return retWert;                                                     // ermittelte Klassifizierung zurückgeben
+        }
+
+        /// <summary>
+        /// Datenbankverbindungen schließen.
+        /// </summary>
+        private void DatenbankVerbindungSchliessen()
+        {
+            try
+            {
+                while (this.oleDbConnection1.State != ConnectionState.Closed)
+                {
+                    if (this.oleDbConnection1.State == ConnectionState.Open)
+                    {
+                        this.oleDbConnection1.Close();                          // Verbindung zur Datenbank schließen
+                    }
+                }
+            }
+            catch
+            {
+            }
         }
     }
 }

@@ -96,6 +96,7 @@
             this.SubMenuButton2 = new System.Windows.Forms.RibbonButton();
             this.DropDownButton3 = new System.Windows.Forms.RibbonButton();
             this.DropDownButton4 = new System.Windows.Forms.RibbonButton();
+            this.ribbonButtonExit = new System.Windows.Forms.RibbonButton();
             this.RibbonButtonOpen = new System.Windows.Forms.RibbonButton();
             this.ribbonTabFenster = new System.Windows.Forms.RibbonTab();
             this.ribbonPanelFenster = new System.Windows.Forms.RibbonPanel();
@@ -152,7 +153,6 @@
             this.dataSetBlutDruck1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetGewicht1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetGewicht1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.ribbonButtonExit = new System.Windows.Forms.RibbonButton();
             ((System.ComponentModel.ISupportInitialize)(this.sliderErnaehrung)).BeginInit();
             this.ultraTabPageControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraGroupBoxErnaehrung)).BeginInit();
@@ -526,8 +526,8 @@
             this.ribbon1.QuickAcessToolbar.DropDownButtonItems.Add(this.DropDownButton2);
             this.ribbon1.QuickAcessToolbar.DropDownButtonItems.Add(this.DropDownButton3);
             this.ribbon1.QuickAcessToolbar.DropDownButtonItems.Add(this.DropDownButton4);
-            this.ribbon1.QuickAcessToolbar.Items.Add(this.RibbonButtonOpen);
             this.ribbon1.QuickAcessToolbar.Items.Add(this.ribbonButtonExit);
+            this.ribbon1.QuickAcessToolbar.Items.Add(this.RibbonButtonOpen);
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold);
             this.ribbon1.Size = new System.Drawing.Size(776, 136);
             this.ribbon1.TabIndex = 0;
@@ -542,7 +542,7 @@
             // 
             this.DropDownButton1.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
             this.DropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("DropDownButton1.Image")));
-            this.DropDownButton1.SmallImage = global::BodyMed.Properties.Resources.unorderedlist16;
+            this.DropDownButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("DropDownButton1.SmallImage")));
             this.DropDownButton1.Text = "Some button";
             // 
             // DropDownButton2
@@ -581,14 +581,26 @@
             // 
             this.DropDownButton4.DropDownArrowDirection = System.Windows.Forms.RibbonArrowDirection.Left;
             this.DropDownButton4.Image = ((System.Drawing.Image)(resources.GetObject("DropDownButton4.Image")));
-            this.DropDownButton4.SmallImage = global::BodyMed.Properties.Resources.bold16;
+            this.DropDownButton4.SmallImage = ((System.Drawing.Image)(resources.GetObject("DropDownButton4.SmallImage")));
             this.DropDownButton4.Text = "Some other button";
+            // 
+            // ribbonButtonExit
+            // 
+            this.ribbonButtonExit.AltKey = "ALT + F4";
+            this.ribbonButtonExit.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonExit.Image")));
+            this.ribbonButtonExit.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.ribbonButtonExit.MinSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.ribbonButtonExit.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonExit.SmallImage")));
+            this.ribbonButtonExit.Tag = "Exit";
+            this.ribbonButtonExit.Text = "Exit";
+            this.ribbonButtonExit.ToolTip = "Beendet diese schöne Anwendung";
+            this.ribbonButtonExit.Click += new System.EventHandler(this.OnHauptFormFormClosed);
             // 
             // RibbonButtonOpen
             // 
             this.RibbonButtonOpen.Image = ((System.Drawing.Image)(resources.GetObject("RibbonButtonOpen.Image")));
             this.RibbonButtonOpen.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.RibbonButtonOpen.SmallImage = global::BodyMed.Properties.Resources.open16;
+            this.RibbonButtonOpen.SmallImage = ((System.Drawing.Image)(resources.GetObject("RibbonButtonOpen.SmallImage")));
             // 
             // ribbonTabFenster
             // 
@@ -609,7 +621,8 @@
             // 
             this.ribbonButtonFensterSchliessen.FlashEnabled = true;
             this.ribbonButtonFensterSchliessen.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.FlashImage")));
-            this.ribbonButtonFensterSchliessen.Image = global::BodyMed.Properties.Resources.close32;
+            this.ribbonButtonFensterSchliessen.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.Image")));
+            this.ribbonButtonFensterSchliessen.ShowFlashImage = true;
             this.ribbonButtonFensterSchliessen.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonFensterSchliessen.SmallImage")));
             this.ribbonButtonFensterSchliessen.Text = "Fenster schließen";
             this.ribbonButtonFensterSchliessen.ToolTip = "Schließt ein Fenster";
@@ -620,7 +633,6 @@
             this.ribbonButtonEingabe.FlashEnabled = true;
             this.ribbonButtonEingabe.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.FlashImage")));
             this.ribbonButtonEingabe.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.Image")));
-            this.ribbonButtonEingabe.ShowFlashImage = true;
             this.ribbonButtonEingabe.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.SmallImage")));
             this.ribbonButtonEingabe.Tag = "Eingabe";
             this.ribbonButtonEingabe.Text = "Eingabe";
@@ -641,6 +653,7 @@
             this.ribbonButtonBlutdruck.FlashEnabled = true;
             this.ribbonButtonBlutdruck.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.FlashImage")));
             this.ribbonButtonBlutdruck.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.Image")));
+            this.ribbonButtonBlutdruck.ShowFlashImage = true;
             this.ribbonButtonBlutdruck.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonBlutdruck.SmallImage")));
             this.ribbonButtonBlutdruck.Tag = "Blutdruck";
             this.ribbonButtonBlutdruck.Text = "Blutdruck";
@@ -663,7 +676,7 @@
             // 
             // ribbonButtonNeu
             // 
-            this.ribbonButtonNeu.Image = global::BodyMed.Properties.Resources.newdocument32;
+            this.ribbonButtonNeu.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonNeu.Image")));
             this.ribbonButtonNeu.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonNeu.SmallImage")));
             this.ribbonButtonNeu.Tag = "Neu";
             this.ribbonButtonNeu.Text = "Neu";
@@ -1180,12 +1193,6 @@
             this.dataSetGewicht1BindingSource1.DataSource = this.dataSetGewicht1;
             this.dataSetGewicht1BindingSource1.Position = 0;
             // 
-            // ribbonButtonExit
-            // 
-            this.ribbonButtonExit.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonExit.Image")));
-            this.ribbonButtonExit.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.ribbonButtonExit.Text = "ribbonButton1";
-            // 
             // HauptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1204,6 +1211,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BodyMed";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnHauptFormFormClosed);
             this.Load += new System.EventHandler(this.OnHauptFormLoad);
             this.ResizeEnd += new System.EventHandler(this.OnHauptFormResizeEnd);
             ((System.ComponentModel.ISupportInitialize)(this.sliderErnaehrung)).EndInit();
