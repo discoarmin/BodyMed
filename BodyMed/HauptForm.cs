@@ -154,6 +154,10 @@ namespace BodyMed
             this.bindingManagerBlutDruck = this.BindingContext[this.dataSetBlutDruck1.Tables["BlutdruckDaten"]];
 
             this.tbGroesse.DataBindings.Add("Text", this.dataSetGroesse1.Tables["Groesse"], "Groesse");
+
+            // Spalte 'Index' soll in beiden Grids nicht angezeigt werden
+            this.ultraGridErnaehrung.DisplayLayout.Bands[0].Columns["Index"].Hidden = true;
+            this.ultraGridBlutDruck.DisplayLayout.Bands[0].Columns["Index"].Hidden = true;
             //     DataBindings.Add("Text", this.bindingSourceGroesse, "Groesse");
         }
 
@@ -197,7 +201,7 @@ namespace BodyMed
                     this.dataSetBlutDruck1.Tables["BlutdruckDaten"].Clear();    // Inhalt des Datensatzes für Blutdruck löschen..
                     this.oleDbDataAdapterBlutDruck.Fill(this.dataSetBlutDruck1.Tables["BlutdruckDaten"]); // .. und neue Daten einlesen
 
-                    this.dataSetGroesse1.Tables["Groesse"].Clear(); // Inhalt des Datensatzes für die Größe löschen..
+                    this.dataSetGroesse1.Tables["Groesse"].Clear();             // Inhalt des Datensatzes für die Größe löschen..
                     this.oleDbDataAdapterGroesse.Fill(this.dataSetGroesse1.Tables["Groesse"]); // .. und neue Daten einlesen
                 }
 

@@ -29,46 +29,46 @@
       private void InitializeComponent()
       {
             this.components = new System.ComponentModel.Container();
-            Infragistics.Win.Appearance appearance32 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance41 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance33 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance34 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance35 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance36 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance37 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance38 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance39 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance40 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance42 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance51 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance43 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance44 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance45 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance46 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance47 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance48 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance49 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance50 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance10 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance11 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance20 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance12 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance13 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance16 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance17 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance18 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance19 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HauptForm));
-            Infragistics.Win.Appearance appearance52 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel7 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance53 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel8 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel9 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance54 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel10 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance55 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel11 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance56 = new Infragistics.Win.Appearance("Fenster");
-            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel12 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
-            Infragistics.Win.Appearance appearance57 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance58 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance59 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance21 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel1 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance22 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel2 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel3 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance23 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel4 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance24 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel5 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance25 = new Infragistics.Win.Appearance("Fenster");
+            Infragistics.Win.UltraWinStatusBar.UltraStatusPanel ultraStatusPanel6 = new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel();
+            Infragistics.Win.Appearance appearance26 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance27 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance28 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance29 = new Infragistics.Win.Appearance();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab3 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.Appearance appearance30 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance31 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             this.sliderErnaehrung = new System.Windows.Forms.TrackBar();
             this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.ultraGroupBoxErnaehrung = new Infragistics.Win.Misc.UltraGroupBox();
@@ -216,18 +216,18 @@
             // 
             // ultraGroupBoxErnaehrung
             // 
-            appearance32.BackColor = System.Drawing.Color.DimGray;
-            appearance32.BorderAlpha = Infragistics.Win.Alpha.Transparent;
-            this.ultraGroupBoxErnaehrung.Appearance = appearance32;
+            appearance1.BackColor = System.Drawing.Color.DimGray;
+            appearance1.BorderAlpha = Infragistics.Win.Alpha.Transparent;
+            this.ultraGroupBoxErnaehrung.Appearance = appearance1;
             this.ultraGroupBoxErnaehrung.BorderStyle = Infragistics.Win.Misc.GroupBoxBorderStyle.None;
             this.ultraGroupBoxErnaehrung.Controls.Add(this.splitContainerErnaehrung);
             this.ultraGroupBoxErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGroupBoxErnaehrung.ForeColor = System.Drawing.Color.RoyalBlue;
-            appearance41.FontData.BoldAsString = "True";
-            appearance41.ForeColor = System.Drawing.Color.WhiteSmoke;
-            appearance41.TextHAlignAsString = "Left";
-            appearance41.TextVAlignAsString = "Middle";
-            this.ultraGroupBoxErnaehrung.HeaderAppearance = appearance41;
+            appearance10.FontData.BoldAsString = "True";
+            appearance10.ForeColor = System.Drawing.Color.WhiteSmoke;
+            appearance10.TextHAlignAsString = "Left";
+            appearance10.TextVAlignAsString = "Middle";
+            this.ultraGroupBoxErnaehrung.HeaderAppearance = appearance10;
             this.ultraGroupBoxErnaehrung.Location = new System.Drawing.Point(0, 0);
             this.ultraGroupBoxErnaehrung.Name = "ultraGroupBoxErnaehrung";
             this.ultraGroupBoxErnaehrung.Size = new System.Drawing.Size(636, 263);
@@ -272,37 +272,37 @@
             // 
             this.ultraGridErnaehrung.DataMember = "Gewicht";
             this.ultraGridErnaehrung.DataSource = this.dataSetGewicht1BindingSource2;
-            appearance33.BackColor = System.Drawing.Color.LightGray;
-            appearance33.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Appearance = appearance33;
+            appearance2.BackColor = System.Drawing.Color.LightGray;
+            appearance2.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Appearance = appearance2;
             this.ultraGridErnaehrung.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            appearance34.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance34.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance34.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance34.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraGridErnaehrung.DisplayLayout.GroupByBox.Appearance = appearance34;
+            appearance3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance3.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance3.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance3.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraGridErnaehrung.DisplayLayout.GroupByBox.Appearance = appearance3;
             this.ultraGridErnaehrung.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            appearance35.ForeColor = System.Drawing.Color.Black;
-            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveCellAppearance = appearance35;
-            appearance36.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance36.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveRowAppearance = appearance36;
-            appearance37.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Override.CellAppearance = appearance37;
-            appearance38.BackColor = System.Drawing.Color.DarkSeaGreen;
-            appearance38.BackColor2 = System.Drawing.Color.White;
-            appearance38.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance38.FontData.BoldAsString = "True";
-            appearance38.FontData.SizeInPoints = 12F;
-            this.ultraGridErnaehrung.DisplayLayout.Override.HeaderAppearance = appearance38;
+            appearance4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            appearance4.ForeColor = System.Drawing.Color.Black;
+            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveCellAppearance = appearance4;
+            appearance5.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance5.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ultraGridErnaehrung.DisplayLayout.Override.ActiveRowAppearance = appearance5;
+            appearance6.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Override.CellAppearance = appearance6;
+            appearance7.BackColor = System.Drawing.Color.DarkSeaGreen;
+            appearance7.BackColor2 = System.Drawing.Color.White;
+            appearance7.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance7.FontData.BoldAsString = "True";
+            appearance7.FontData.SizeInPoints = 12F;
+            this.ultraGridErnaehrung.DisplayLayout.Override.HeaderAppearance = appearance7;
             this.ultraGridErnaehrung.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            appearance39.BackColor = System.Drawing.Color.Gainsboro;
-            appearance39.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Override.RowAlternateAppearance = appearance39;
-            appearance40.BackColor = System.Drawing.Color.LightGray;
-            appearance40.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridErnaehrung.DisplayLayout.Override.RowAppearance = appearance40;
+            appearance8.BackColor = System.Drawing.Color.Gainsboro;
+            appearance8.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Override.RowAlternateAppearance = appearance8;
+            appearance9.BackColor = System.Drawing.Color.LightGray;
+            appearance9.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridErnaehrung.DisplayLayout.Override.RowAppearance = appearance9;
             this.ultraGridErnaehrung.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.Extended;
             this.ultraGridErnaehrung.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGridErnaehrung.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -344,17 +344,17 @@
             // 
             // ultraGroupBoxBlutDruck
             // 
-            appearance42.BackColor = System.Drawing.Color.DimGray;
-            appearance42.BorderAlpha = Infragistics.Win.Alpha.Transparent;
-            this.ultraGroupBoxBlutDruck.Appearance = appearance42;
+            appearance11.BackColor = System.Drawing.Color.DimGray;
+            appearance11.BorderAlpha = Infragistics.Win.Alpha.Transparent;
+            this.ultraGroupBoxBlutDruck.Appearance = appearance11;
             this.ultraGroupBoxBlutDruck.Controls.Add(this.splitContainerBlutDruck);
             this.ultraGroupBoxBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGroupBoxBlutDruck.ForeColor = System.Drawing.Color.RoyalBlue;
-            appearance51.FontData.BoldAsString = "True";
-            appearance51.ForeColor = System.Drawing.Color.WhiteSmoke;
-            appearance51.TextHAlignAsString = "Left";
-            appearance51.TextVAlignAsString = "Middle";
-            this.ultraGroupBoxBlutDruck.HeaderAppearance = appearance51;
+            appearance20.FontData.BoldAsString = "True";
+            appearance20.ForeColor = System.Drawing.Color.WhiteSmoke;
+            appearance20.TextHAlignAsString = "Left";
+            appearance20.TextVAlignAsString = "Middle";
+            this.ultraGroupBoxBlutDruck.HeaderAppearance = appearance20;
             this.ultraGroupBoxBlutDruck.Location = new System.Drawing.Point(0, 0);
             this.ultraGroupBoxBlutDruck.Margin = new System.Windows.Forms.Padding(0);
             this.ultraGroupBoxBlutDruck.Name = "ultraGroupBoxBlutDruck";
@@ -402,37 +402,37 @@
             // 
             this.ultraGridBlutDruck.DataMember = "BlutdruckDaten";
             this.ultraGridBlutDruck.DataSource = this.dataSetBlutDruck1BindingSource2;
-            appearance43.BackColor = System.Drawing.Color.LightGray;
-            appearance43.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridBlutDruck.DisplayLayout.Appearance = appearance43;
+            appearance12.BackColor = System.Drawing.Color.LightGray;
+            appearance12.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Appearance = appearance12;
             this.ultraGridBlutDruck.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
-            appearance44.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            appearance44.BackColor2 = System.Drawing.SystemColors.ControlDark;
-            appearance44.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance44.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraGridBlutDruck.DisplayLayout.GroupByBox.Appearance = appearance44;
+            appearance13.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            appearance13.BackColor2 = System.Drawing.SystemColors.ControlDark;
+            appearance13.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance13.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraGridBlutDruck.DisplayLayout.GroupByBox.Appearance = appearance13;
             this.ultraGridBlutDruck.DisplayLayout.GroupByBox.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            appearance45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            appearance45.ForeColor = System.Drawing.Color.Black;
-            this.ultraGridBlutDruck.DisplayLayout.Override.ActiveCellAppearance = appearance45;
-            appearance46.BackColor = System.Drawing.SystemColors.Highlight;
-            appearance46.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.ultraGridBlutDruck.DisplayLayout.Override.ActiveRowAppearance = appearance46;
-            appearance47.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridBlutDruck.DisplayLayout.Override.CellAppearance = appearance47;
-            appearance48.BackColor = System.Drawing.Color.DarkSeaGreen;
-            appearance48.BackColor2 = System.Drawing.Color.White;
-            appearance48.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance48.FontData.BoldAsString = "True";
-            appearance48.FontData.SizeInPoints = 12F;
-            this.ultraGridBlutDruck.DisplayLayout.Override.HeaderAppearance = appearance48;
+            appearance14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            appearance14.ForeColor = System.Drawing.Color.Black;
+            this.ultraGridBlutDruck.DisplayLayout.Override.ActiveCellAppearance = appearance14;
+            appearance15.BackColor = System.Drawing.SystemColors.Highlight;
+            appearance15.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ultraGridBlutDruck.DisplayLayout.Override.ActiveRowAppearance = appearance15;
+            appearance16.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Override.CellAppearance = appearance16;
+            appearance17.BackColor = System.Drawing.Color.DarkSeaGreen;
+            appearance17.BackColor2 = System.Drawing.Color.White;
+            appearance17.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance17.FontData.BoldAsString = "True";
+            appearance17.FontData.SizeInPoints = 12F;
+            this.ultraGridBlutDruck.DisplayLayout.Override.HeaderAppearance = appearance17;
             this.ultraGridBlutDruck.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            appearance49.BackColor = System.Drawing.Color.Gainsboro;
-            appearance49.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridBlutDruck.DisplayLayout.Override.RowAlternateAppearance = appearance49;
-            appearance50.BackColor = System.Drawing.Color.LightGray;
-            appearance50.BorderColor = System.Drawing.Color.Silver;
-            this.ultraGridBlutDruck.DisplayLayout.Override.RowAppearance = appearance50;
+            appearance18.BackColor = System.Drawing.Color.Gainsboro;
+            appearance18.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Override.RowAlternateAppearance = appearance18;
+            appearance19.BackColor = System.Drawing.Color.LightGray;
+            appearance19.BorderColor = System.Drawing.Color.Silver;
+            this.ultraGridBlutDruck.DisplayLayout.Override.RowAppearance = appearance19;
             this.ultraGridBlutDruck.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.Extended;
             this.ultraGridBlutDruck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraGridBlutDruck.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -633,6 +633,7 @@
             this.ribbonButtonEingabe.FlashEnabled = true;
             this.ribbonButtonEingabe.FlashImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.FlashImage")));
             this.ribbonButtonEingabe.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.Image")));
+            this.ribbonButtonEingabe.ShowFlashImage = true;
             this.ribbonButtonEingabe.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButtonEingabe.SmallImage")));
             this.ribbonButtonEingabe.Tag = "Eingabe";
             this.ribbonButtonEingabe.Text = "Eingabe";
@@ -710,65 +711,65 @@
             // 
             // statusBar
             // 
-            appearance52.BackColor = System.Drawing.Color.DimGray;
-            appearance52.BackColor2 = System.Drawing.Color.LightGray;
-            appearance52.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            this.statusBar.Appearance = appearance52;
+            appearance21.BackColor = System.Drawing.Color.DimGray;
+            appearance21.BackColor2 = System.Drawing.Color.LightGray;
+            appearance21.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            this.statusBar.Appearance = appearance21;
             this.statusBar.Controls.Add(this.sliderErnaehrung);
             this.statusBar.Location = new System.Drawing.Point(0, 399);
             this.statusBar.Name = "statusBar";
-            appearance53.FontData.BoldAsString = "True";
-            ultraStatusPanel7.Appearance = appearance53;
-            ultraStatusPanel7.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
-            ultraStatusPanel7.Key = "tcurrentDirectory";
-            ultraStatusPanel7.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
-            ultraStatusPanel7.Text = "Bereit ...";
-            ultraStatusPanel8.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
-            ultraStatusPanel8.Control = this.sliderErnaehrung;
-            ultraStatusPanel8.Key = "slider";
-            ultraStatusPanel8.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Automatic;
-            ultraStatusPanel8.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.ControlContainer;
-            ultraStatusPanel8.ToolTipText = "Datensatz auswählen";
-            ultraStatusPanel8.Width = 180;
-            appearance54.FontData.BoldAsString = "True";
-            appearance54.TextHAlignAsString = "Center";
-            appearance54.TextVAlignAsString = "Middle";
-            ultraStatusPanel9.Appearance = appearance54;
-            ultraStatusPanel9.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
-            ultraStatusPanel9.KeyStateInfo.Key = Infragistics.Win.UltraWinStatusBar.KeyState.CapsLock;
-            ultraStatusPanel9.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
-            ultraStatusPanel9.Width = 50;
-            appearance55.FontData.BoldAsString = "True";
-            appearance55.TextHAlignAsString = "Center";
-            appearance55.TextVAlignAsString = "Middle";
-            ultraStatusPanel10.Appearance = appearance55;
-            ultraStatusPanel10.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
-            ultraStatusPanel10.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
-            ultraStatusPanel10.Text = "NL";
-            ultraStatusPanel10.Width = 50;
-            appearance56.FontData.BoldAsString = "True";
-            appearance56.TextHAlignAsString = "Left";
-            appearance56.TextVAlignAsString = "Middle";
-            ultraStatusPanel11.Appearance = appearance56;
-            ultraStatusPanel11.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
-            ultraStatusPanel11.Key = "Fenster";
-            ultraStatusPanel11.Text = "Fenster";
-            ultraStatusPanel11.ToolTipText = "Ausgewähltes Fenster";
-            appearance57.FontData.BoldAsString = "True";
-            appearance57.TextHAlignAsString = "Left";
-            appearance57.TextVAlignAsString = "Middle";
-            ultraStatusPanel12.Appearance = appearance57;
-            ultraStatusPanel12.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
-            ultraStatusPanel12.Key = "Version";
-            ultraStatusPanel12.Text = "Vxx.xx.xx.xxxx";
-            ultraStatusPanel12.Width = 150;
+            appearance22.FontData.BoldAsString = "True";
+            ultraStatusPanel1.Appearance = appearance22;
+            ultraStatusPanel1.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
+            ultraStatusPanel1.Key = "tcurrentDirectory";
+            ultraStatusPanel1.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Spring;
+            ultraStatusPanel1.Text = "Bereit ...";
+            ultraStatusPanel2.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
+            ultraStatusPanel2.Control = this.sliderErnaehrung;
+            ultraStatusPanel2.Key = "slider";
+            ultraStatusPanel2.SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.Automatic;
+            ultraStatusPanel2.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.ControlContainer;
+            ultraStatusPanel2.ToolTipText = "Datensatz auswählen";
+            ultraStatusPanel2.Width = 180;
+            appearance23.FontData.BoldAsString = "True";
+            appearance23.TextHAlignAsString = "Center";
+            appearance23.TextVAlignAsString = "Middle";
+            ultraStatusPanel3.Appearance = appearance23;
+            ultraStatusPanel3.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
+            ultraStatusPanel3.KeyStateInfo.Key = Infragistics.Win.UltraWinStatusBar.KeyState.CapsLock;
+            ultraStatusPanel3.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
+            ultraStatusPanel3.Width = 50;
+            appearance24.FontData.BoldAsString = "True";
+            appearance24.TextHAlignAsString = "Center";
+            appearance24.TextVAlignAsString = "Middle";
+            ultraStatusPanel4.Appearance = appearance24;
+            ultraStatusPanel4.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
+            ultraStatusPanel4.Style = Infragistics.Win.UltraWinStatusBar.PanelStyle.KeyState;
+            ultraStatusPanel4.Text = "NL";
+            ultraStatusPanel4.Width = 50;
+            appearance25.FontData.BoldAsString = "True";
+            appearance25.TextHAlignAsString = "Left";
+            appearance25.TextVAlignAsString = "Middle";
+            ultraStatusPanel5.Appearance = appearance25;
+            ultraStatusPanel5.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
+            ultraStatusPanel5.Key = "Fenster";
+            ultraStatusPanel5.Text = "Fenster";
+            ultraStatusPanel5.ToolTipText = "Ausgewähltes Fenster";
+            appearance26.FontData.BoldAsString = "True";
+            appearance26.TextHAlignAsString = "Left";
+            appearance26.TextVAlignAsString = "Middle";
+            ultraStatusPanel6.Appearance = appearance26;
+            ultraStatusPanel6.BorderStyle = Infragistics.Win.UIElementBorderStyle.Rounded4Thick;
+            ultraStatusPanel6.Key = "Version";
+            ultraStatusPanel6.Text = "Vxx.xx.xx.xxxx";
+            ultraStatusPanel6.Width = 150;
             this.statusBar.Panels.AddRange(new Infragistics.Win.UltraWinStatusBar.UltraStatusPanel[] {
-            ultraStatusPanel7,
-            ultraStatusPanel8,
-            ultraStatusPanel9,
-            ultraStatusPanel10,
-            ultraStatusPanel11,
-            ultraStatusPanel12});
+            ultraStatusPanel1,
+            ultraStatusPanel2,
+            ultraStatusPanel3,
+            ultraStatusPanel4,
+            ultraStatusPanel5,
+            ultraStatusPanel6});
             this.statusBar.Size = new System.Drawing.Size(776, 23);
             this.statusBar.TabIndex = 3;
             this.statusBar.ViewStyle = Infragistics.Win.UltraWinStatusBar.ViewStyle.Office2007;
@@ -883,23 +884,23 @@
             // 
             // ultraTabStripControlGewicht
             // 
-            appearance58.BackColor = System.Drawing.Color.DimGray;
-            appearance58.BackColor2 = System.Drawing.Color.DarkGray;
-            appearance58.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance58.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance58.FontData.BoldAsString = "True";
-            appearance58.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripControlGewicht.Appearance = appearance58;
+            appearance27.BackColor = System.Drawing.Color.DimGray;
+            appearance27.BackColor2 = System.Drawing.Color.DarkGray;
+            appearance27.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance27.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance27.FontData.BoldAsString = "True";
+            appearance27.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripControlGewicht.Appearance = appearance27;
             this.ultraTabStripControlGewicht.Controls.Add(this.ultraTabSharedControlsPage1);
             this.ultraTabStripControlGewicht.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ultraTabStripControlGewicht.Location = new System.Drawing.Point(0, 0);
             this.ultraTabStripControlGewicht.Name = "ultraTabStripControlGewicht";
-            appearance59.BackColor = System.Drawing.Color.Red;
-            appearance59.BackColor2 = System.Drawing.Color.Firebrick;
-            appearance59.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance59.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
-            appearance59.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripControlGewicht.SelectedTabAppearance = appearance59;
+            appearance28.BackColor = System.Drawing.Color.Red;
+            appearance28.BackColor2 = System.Drawing.Color.Firebrick;
+            appearance28.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance28.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
+            appearance28.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripControlGewicht.SelectedTabAppearance = appearance28;
             this.ultraTabStripControlGewicht.SharedControlsPage = this.ultraTabSharedControlsPage1;
             this.ultraTabStripControlGewicht.Size = new System.Drawing.Size(222, 52);
             this.ultraTabStripControlGewicht.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel;
@@ -914,22 +915,22 @@
             // 
             // ultraTabStripBlutDruck
             // 
-            appearance27.BackColor = System.Drawing.Color.DimGray;
-            appearance27.BackColor2 = System.Drawing.Color.DarkGray;
-            appearance27.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance27.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
-            appearance27.FontData.BoldAsString = "True";
-            appearance27.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripBlutDruck.Appearance = appearance27;
+            appearance29.BackColor = System.Drawing.Color.DimGray;
+            appearance29.BackColor2 = System.Drawing.Color.DarkGray;
+            appearance29.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance29.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            appearance29.FontData.BoldAsString = "True";
+            appearance29.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripBlutDruck.Appearance = appearance29;
             this.ultraTabStripBlutDruck.Controls.Add(this.ultraTabSharedControlsPage4);
             this.ultraTabStripBlutDruck.Location = new System.Drawing.Point(-262, -64);
             this.ultraTabStripBlutDruck.Name = "ultraTabStripBlutDruck";
-            appearance28.BackColor = System.Drawing.Color.Red;
-            appearance28.BackColor2 = System.Drawing.Color.Firebrick;
-            appearance28.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
-            appearance28.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
-            appearance28.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.ultraTabStripBlutDruck.SelectedTabAppearance = appearance28;
+            appearance30.BackColor = System.Drawing.Color.Red;
+            appearance30.BackColor2 = System.Drawing.Color.Firebrick;
+            appearance30.BackGradientAlignment = Infragistics.Win.GradientAlignment.Element;
+            appearance30.BackGradientStyle = Infragistics.Win.GradientStyle.VerticalWithGlassLeft50;
+            appearance30.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.ultraTabStripBlutDruck.SelectedTabAppearance = appearance30;
             this.ultraTabStripBlutDruck.SharedControlsPage = this.ultraTabSharedControlsPage4;
             this.ultraTabStripBlutDruck.Size = new System.Drawing.Size(222, 100);
             this.ultraTabStripBlutDruck.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Excel;
@@ -998,8 +999,8 @@
             // 
             // ultraTabControlHauptForm
             // 
-            appearance29.BackColor = System.Drawing.Color.DarkGray;
-            this.ultraTabControlHauptForm.Appearance = appearance29;
+            appearance31.BackColor = System.Drawing.Color.DarkGray;
+            this.ultraTabControlHauptForm.Appearance = appearance31;
             this.ultraTabControlHauptForm.Controls.Add(this.ultraTabSharedControlsPage3);
             this.ultraTabControlHauptForm.Controls.Add(this.ultraTabPageControl1);
             this.ultraTabControlHauptForm.Controls.Add(this.ultraTabPageControl2);
@@ -1010,15 +1011,15 @@
             this.ultraTabControlHauptForm.Size = new System.Drawing.Size(636, 263);
             this.ultraTabControlHauptForm.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Wizard;
             this.ultraTabControlHauptForm.TabIndex = 0;
-            ultraTab3.Key = "Ernaehrung";
-            ultraTab3.TabPage = this.ultraTabPageControl1;
-            ultraTab3.Text = "Ernährung";
-            ultraTab4.Key = "BlutDruck";
-            ultraTab4.TabPage = this.ultraTabPageControl2;
-            ultraTab4.Text = "BlutDruck";
+            ultraTab1.Key = "Ernaehrung";
+            ultraTab1.TabPage = this.ultraTabPageControl1;
+            ultraTab1.Text = "Ernährung";
+            ultraTab2.Key = "BlutDruck";
+            ultraTab2.TabPage = this.ultraTabPageControl2;
+            ultraTab2.Text = "BlutDruck";
             this.ultraTabControlHauptForm.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
-            ultraTab3,
-            ultraTab4});
+            ultraTab1,
+            ultraTab2});
             // 
             // ultraTabSharedControlsPage3
             // 

@@ -19,7 +19,9 @@ namespace BodyMed
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Drawing;
     using System.Windows.Forms;
+    using System.Windows.Forms.VisualStyles;
 
     using static HauptForm.Formular;
 
@@ -100,7 +102,7 @@ namespace BodyMed
                 var groesse = this.tbGroesse.Text;
                 try
                 {
-                    strInsert = "INSERT INTO[Gewicht] ([Datum], [KG], [FM], [FFM], [KW], [Bmi], [Bemerkung], [Grösse])" 
+                    strInsert = "INSERT INTO[Gewicht] ([Datum], [KG], [FM], [FFM], [KW], [Bmi], [Bemerkung], [Grösse])"
                         + " VALUES("
                         + "'" + DateTime.Now + "'" + "," + "0.0 , 0.0, 0.0, 0.0, NULL, NULL, "
                         + groesse + ")";                                        // leeren Datensatz einfügen
@@ -141,7 +143,7 @@ namespace BodyMed
             }
         }
 
-        /// <summary>Bearbeitet das Einfügen einer Zeile .</summary>
+        /// <summary>Bearbeitet das Scrollen zur Auswahl eines Datensatzes .</summary>
         private void SliderScroll()
         {
             // Individuelle Bearbeitung je nach ausgewählter Ansicht

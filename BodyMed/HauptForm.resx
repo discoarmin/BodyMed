@@ -117,20 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ultraGridErnaehrung.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
+  </metadata>
   <metadata name="dataSetGewicht1BindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 251</value>
   </metadata>
   <metadata name="dataSetGewicht1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>376, 134</value>
   </metadata>
-  <metadata name="dataSetGewicht1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>376, 134</value>
-  </metadata>
   <metadata name="dataSetBlutDruck1BindingSource2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>169, 212</value>
-  </metadata>
-  <metadata name="dataSetBlutDruck1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 212</value>
   </metadata>
   <metadata name="dataSetBlutDruck1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 212</value>
@@ -142,7 +139,7 @@
   <data name="ribbon1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAhkAAAHDCAYAAACJVwhfAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAAAAd0SU1FB+AHAhMrIwjONIsAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
+        vAAADrwBlbxySQAAAAd0SU1FB+AHAhMrIwjONIsAAAAHdEVYdEF1dGhvcgCprsxIAAAADHRFWHREZXNj
         cmlwdGlvbgATCSEjAAAACnRFWHRDb3B5cmlnaHQArA/MOgAAAAl0RVh0U29mdHdhcmUAXXD/OgAAAAd0
         RVh0U291cmNlAPX/g+sAAAAIdEVYdENvbW1lbnQA9syWvwAAAAZ0RVh0VGl0bGUAqO7SJwAA/xBJREFU
         eF7M/cmvLduWn4fts+vi1HVdF7e+9713X5n5smBmislHZdJM1mJtShQJUqZJEyAoFxBcQJCslg1almDL
@@ -5017,10 +5014,34 @@
   <data name="DropDownButton1.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsRAAALEQF/ZF+RAAAAeElE
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsOAAALDgFAvuFBAAAAeElE
         QVQ4T2P4//8/RRhMFHQfKgDi/yAaXQEhDCZAmkNbnvyXta4CciESLEws//FhmDqYAQUgzUBMngsowVgF
         ScFgYjQQsUsQi8FEYsXyAiD+D6LRFRDCYAKk2bPo6H9J40wgFyKBLeCQMUwdzIACkGYgHnKB+J8BAD5Q
         tqhi4tzWAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="SubMenuButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="SubMenuButton1.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="SubMenuButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="SubMenuButton2.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="DropDownButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -5056,7 +5077,7 @@
   <data name="DropDownButton4.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsRAAALEQF/ZF+RAAAAqElE
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsOAAALDgFAvuFBAAAAqElE
         QVQ4T+VSuw7DIAz0mA2PmSKWVF2QGDtV/QTGjvwVX9Vvcn0OparSPJSxPckyOrjjsKAfA/cs32oYB9Ht
         onW1gyso3ntJKZmwcWcvMcaXyTqYWfI9C3qlLBlMQwiNW4QZ5GaAyAcSqAEEWENczR5amzMg7lTUq0h7
         pQoMqsmOBDDArW+DidPhhtP2DOy220Xf29FHAqTCeqKWgUOzcs6h7/oH/weiJw+9TXv5pBJzAAAAAElF
@@ -5066,13 +5087,13 @@
   <data name="ribbonButtonExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
+        vgAADr4B6kKxwAAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="ribbonButtonExit.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAIlJREFUOE+djwEOwCAIA3m6P3dWRBsEXSS5zIE9NkmqllI20Jda7XysNCzrPalx
+        vgAADr4B6kKxwAAAAIlJREFUOE+djwEOwCAIA3m6P3dWRBsEXSS5zIE9NkmqllI20Jda7XysNCzrPalx
         OQvfBbRlCigcCXSDgctOcha0YVQsOQto0KFwm/4Q+HLhKcDvgavAhadg9O+CsSkUDG4ClG4zngQIMbmg
         DRkfNEwAeWso+oWrEQWNLQxYEIWYfhlPpgvU8obUD6Qum1d4qUX9AAAAAElFTkSuQmCC
 </value>
@@ -5086,7 +5107,7 @@
   <data name="RibbonButtonOpen.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsRAAALEQF/ZF+RAAACeUlE
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsOAAALDgFAvuFBAAACeUlE
         QVQ4T6WSWUiUURiG/4suurJIjUIwskQsEAMjqosQpUVNKbdCSRPKrQVDMddmXEedGdcpFXNGnUYdrSzF
         sEIoFInQcqHE1CwoKsXUUMnt6XfEye0munjgnO+c9+HjO0cA/osNi2tJLdA6SXN13MwoI12lJ06uiV8+
         W3d5IwIjVXiGKvwX11djSs2TRFlUito7ILIAoVab7SvCWhqrZYq1omXC4gpPe4Ur8AjNMQjo69IwPVZj
@@ -5098,30 +5119,6 @@
         KxxsTGwMAlVmLN3NiTzQZkJ/IrwR233tzUyLG5PPHRmrP8Sw3o4vmr30yE2RBO/Bfp9Fg/EV8tKjqSnL
         oOdxGO3ZgpE2+SaaZZtpSNpCdbw56mgLbt/YhZ/L7oVD9pYuRkF2ShTZksukxwQSd813cbJc9HHm7MnD
         OB2x46CdNbZWFljuNGP7NhN2mJqIuRX/YOXm30H4A70P0TsBWkcYAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="SubMenuButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="SubMenuButton1.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="SubMenuButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAABpJREFUWEftwQEBAAAAgiD/r25IQAAAAMC5GhAgAAGdeElDAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="SubMenuButton2.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAABNJREFUOE9jGAWjYBSMAjBgYAAABBAAAadEfGMAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="ribbonButtonFensterSchliessen.FlashImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
